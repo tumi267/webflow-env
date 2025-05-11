@@ -5,6 +5,7 @@
   "homepage": "https://github.com/finsweet/developer-starter#readme",
   "license": "ISC",
   "keywords": [],
+  "private":true,
   "author": {
     "name": "Finsweet",
     "url": "https://finsweet.com/"
