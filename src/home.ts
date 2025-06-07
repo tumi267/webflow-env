@@ -39,3 +39,24 @@ rollRevealReverse[0].innerHTML=' <img src="http://farm9.staticflickr.com/8504/83
 slide_in_left[0].innerHTML=' <img src="http://farm9.staticflickr.com/8504/8365873811_d32571df3d_z.jpg" alt="">'
 slide_in_right[0].innerHTML=' <img src="http://farm9.staticflickr.com/8504/8365873811_d32571df3d_z.jpg" alt="">'
 zoom[0].innerHTML=' <img src="http://farm9.staticflickr.com/8504/8365873811_d32571df3d_z.jpg" alt="">'
+
+const fade_element=document.getElementsByClassName("fade-element")
+const slide_in_left_scroll=document.getElementsByClassName("slide-in-left-scroll")
+const slide_in_right_scroll= document.getElementsByClassName("slide-in-right-scroll")
+const scale_up_scroll=document.getElementsByClassName("scale-up-scroll")
+const rotate_scroll=document.getElementsByClassName("rotate-scroll")
+const stagger_item_scroll=document.getElementsByClassName("stagger-item-scroll")
+const pin_element_scroll=document.getElementsByClassName("pin")
+const color_change_scroll=document.getElementsByClassName("color-change-scroll")
+const toggle_element_scroll=document.getElementsByClassName("toggle-element-scroll")
+const progress_bar_scroll=document.getElementsByClassName('progress-bar-scroll')
+fade_element[0].innerHTML='<div class="box fade-element">Fade In/Out</div>'
+slide_in_left_scroll[0].innerHTML='<div class="box slide-in-left">Slide In Left</div>'
+slide_in_right_scroll[0].innerHTML='<div class="box slide-in-right">Slide In Right</div>'
+scale_up_scroll[0].innerHTML='<div class="box scale-up">Scale Up</div>'
+rotate_scroll[0].innerHTML='<div class="box rotate">Rotate</div>'
+stagger_item_scroll[0].innerHTML='<div class="stagger-container"><div class="stagger-item">1</div><div class="stagger-item">2</div><div class="stagger-item">3</div><div class="stagger-item">4</div><div class="stagger-item">5</div> </div>'
+pin_element_scroll[0].innerHTML='<div class="pin-element">Pinned Element</div>'
+color_change_scroll[0].innerHTML='<div class="box color-change">Color Change</div>'
+toggle_element_scroll[0].innerHTML='<div class="toggle-element">Toggle Active Class</div>'
+progress_bar_scroll[0].innerHTML='<div class="progress-container"><div class="progress-bar"></div></div>'

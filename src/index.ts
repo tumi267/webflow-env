@@ -17,10 +17,20 @@ import { pan } from '$utils/pan';
 import { slideInLeft } from '$utils/slideInLeft';
 import { slideInRight } from '$utils/slideInRight';
 import { zoom } from '$utils/zoom';
+import { fadeInScroll } from '$utils/fadeInscroll';
+import { Pin } from '$utils/pin-element-scroll';
+import { progressBar } from '$utils/progress-bar-scroll';
+import { rotateScroll } from '$utils/rotate-srcoll';
+import { growScroll } from '$utils/scale-up-scroll';
+import { staggerItemScroll } from '$utils/stagger-item-scroll';
+import { slideInLeftScroll } from '$utils/slide-in-left-scroll';
+import { slideInRightScroll } from '$utils/slide-in-right-scroll';
+import { toggleScroll } from '$utils/toggle-scroll';
+import { colorChange } from '$utils/color-change-scroll';
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin, SplitText);
 
-
+// text aniamtion
 // char animation
 initCharAnimations()
 //word aniamtion
@@ -33,6 +43,8 @@ initDecodeAnimations()
 initMaskAnimation()
 // mouse tracking 
 initTracking()
+
+// image aniamtion
 // roll reveal
 rollReveal()
 // roll reveal reverse
@@ -49,6 +61,28 @@ slideInLeft()
 slideInRight()
 // zoom
 zoom()
+
+// scroll aniamtion
+// fadein scroll
+fadeInScroll()
+// pin element scroll
+Pin()
+// progress bar
+progressBar()
+// rotate scroll
+rotateScroll()
+// scale up on scroll
+growScroll()
+// stager in
+staggerItemScroll()
+// slide in on scroll
+slideInLeftScroll()
+slideInRightScroll()
+// change color on scroll
+colorChange()
+// function call on scroll
+toggleScroll()
+
 
 
 // window.Webflow ||= [];
