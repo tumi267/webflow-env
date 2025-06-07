@@ -7,6 +7,9 @@ import { initDecodeAnimations } from '$utils/decode';
 import { initLineAnimations } from '$utils/lineaniamtion';
 import { initWordAnimations } from '$utils/word';
 import { initCharAnimations } from '$utils/char';
+import { initMaskAnimation } from '$utils/textmask';
+import { initTracking } from '$utils/texttracker';
+
 gsap.registerPlugin(ScrollTrigger, TextPlugin, SplitText);
 
 
@@ -18,8 +21,10 @@ initWordAnimations()
 initLineAnimations()
 // decode text
 initDecodeAnimations()
-
-
+// text mask
+initMaskAnimation()
+// mouse tracking 
+initTracking()
 
 // window.Webflow ||= [];
 // window.Webflow.push(() => {

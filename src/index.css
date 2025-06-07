@@ -1,3 +1,10 @@
 body {
     /* background-color: rgb(255, 0, 0); */
 }
+.tracking_text{
+margin: auto;
+justify-content: center;
+align-items: center;
+width: fit-content;
+min-height: 100px;
+}
