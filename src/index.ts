@@ -9,6 +9,14 @@ import { initWordAnimations } from '$utils/word';
 import { initCharAnimations } from '$utils/char';
 import { initMaskAnimation } from '$utils/textmask';
 import { initTracking } from '$utils/texttracker';
+import { rollReveal } from '$utils/rollReveal';
+import { rollRevealReverse } from '$utils/rollRevealReverse';
+import { fadeIn } from '$utils/fadeIn';
+import { flipReveal } from '$utils/flipReveal';
+import { pan } from '$utils/pan';
+import { slideInLeft } from '$utils/slideInLeft';
+import { slideInRight } from '$utils/slideInRight';
+import { zoom } from '$utils/zoom';
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin, SplitText);
 
@@ -25,6 +33,23 @@ initDecodeAnimations()
 initMaskAnimation()
 // mouse tracking 
 initTracking()
+// roll reveal
+rollReveal()
+// roll reveal reverse
+rollRevealReverse()
+// fade in
+fadeIn()
+// flip reveal
+flipReveal()
+// pan
+pan()
+// slide in left
+slideInLeft()
+// slide in right
+slideInRight()
+// zoom
+zoom()
+
 
 // window.Webflow ||= [];
 // window.Webflow.push(() => {
