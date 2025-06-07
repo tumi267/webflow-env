@@ -27,6 +27,9 @@ import { slideInLeftScroll } from '$utils/slide-in-left-scroll';
 import { slideInRightScroll } from '$utils/slide-in-right-scroll';
 import { toggleScroll } from '$utils/toggle-scroll';
 import { colorChange } from '$utils/color-change-scroll';
+import { horizontalScroll } from '$utils/horizontalScroll';
+import { threePanelfade } from '$utils/threepanelfadein';
+import { svgScroll } from '$utils/svgScroll';
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin, SplitText);
 
@@ -83,6 +86,13 @@ colorChange()
 // function call on scroll
 toggleScroll()
 
+// step based
+// horizontal scroll
+// horizontalScroll()
+// three panel fade in from differant directions
+threePanelfade()
+// svg follow the scroll
+svgScroll()
 
 
 // window.Webflow ||= [];
