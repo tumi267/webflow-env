@@ -3,9 +3,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 
 export function initWordAnimations() {
-   
-
-
     document.addEventListener('DOMContentLoaded', () => {
         // Create SplitText instances for all elements with line_animation class
         let word=SplitText.create('.sub_header',{

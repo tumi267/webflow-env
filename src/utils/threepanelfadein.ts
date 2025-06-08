@@ -7,7 +7,7 @@ let tl = gsap.timeline({
     scrollTrigger: {
       trigger: ".panel-wrapper",     // wrap all your panels in a parent
       start: "top top",
-      end: `+=${panels.length*100}%`,                 // 100% per panel (adjust if you add/remove panels)
+      end: `+=${panels.length*200}%`,                 // 100% per panel (adjust if you add/remove panels)
       scrub: true,
       pin: true,
     }

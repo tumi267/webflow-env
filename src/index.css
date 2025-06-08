@@ -143,10 +143,7 @@ visibility: hidden;
         background-color: #333;
         color: aliceblue;
         }
-#svg-stage {
-  max-width: 600px;
-  overflow: visible;
-}
+
 .svg_contain {
     position: relative;
     z-index: 2;
@@ -203,3 +200,17 @@ text {
     overflow: hidden;
     z-index: 1;
   }
+  .Contextual{
+    height: 300px;
+    width: 300px;
+    margin: auto;
+    display: none;
+  }
+  /* #myVideo{
+    position: relative;
+  }*/
+  .vid{
+
+    height: 600px;
+    width: 100;
+  } 

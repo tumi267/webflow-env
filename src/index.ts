@@ -30,6 +30,9 @@ import { colorChange } from '$utils/color-change-scroll';
 import { horizontalScroll } from '$utils/horizontalScroll';
 import { threePanelfade } from '$utils/threepanelfadein';
 import { svgScroll } from '$utils/svgScroll';
+import { Contextual } from '$utils/contextual';
+import { videoScrub } from './utils/videoScrub';
+import { vidOnSnap } from '$utils/vidOnSnap';
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin, SplitText);
 
@@ -87,14 +90,21 @@ colorChange()
 toggleScroll()
 
 // step based
-// horizontal scroll
-// horizontalScroll()
+
 // three panel fade in from differant directions
 threePanelfade()
 // svg follow the scroll
 svgScroll()
 
+// horizontal scroll
+horizontalScroll()
 
+// Contextual/popups
+Contextual()
+// scrub video
+videoScrub()
+// play vid on snap
+vidOnSnap()
 // window.Webflow ||= [];
 // window.Webflow.push(() => {
 //   const name = 'John Doe';

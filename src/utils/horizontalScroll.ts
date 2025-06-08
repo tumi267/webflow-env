@@ -29,7 +29,7 @@ export function horizontalScroll(): void {
       scrub: 1,
       snap: 1 / (panelCount ),
       end: () => "+=" + (container.scrollWidth - window.innerWidth),
-      markers:true
+     
     }
   });
 }

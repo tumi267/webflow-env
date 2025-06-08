@@ -17,11 +17,11 @@ export function svgScroll(): void {
   );
   pulses.fromTo('.ball03, .text02', 
     { autoAlpha: 0, scale: 0 },
-    { autoAlpha: 1, scale: 2, transformOrigin: 'center', ease: 'elastic(2.5, 1)' }, 0.33
+    { autoAlpha: 1, scale: 2, transformOrigin: 'center', ease: 'elastic(2.5, 1)' }, 0.56
   );
   pulses.fromTo('.ball04, .text03', 
     { autoAlpha: 0, scale: 0 },
-    { autoAlpha: 1, scale: 2, transformOrigin: 'center', ease: 'elastic(2.5, 1)' }, 0.46
+    { autoAlpha: 1, scale: 2, transformOrigin: 'center', ease: 'elastic(2.5, 1)' }, 1
   );
 
   const main = gsap.timeline({
@@ -29,13 +29,13 @@ export function svgScroll(): void {
       trigger: '#svg-stage',
       scrub: true,
       start: 'top center',
-      end: 'bottom center',
+      end: '+=300%',
     
     }
   });
 
   main
-    .from('.theLine', { drawSVG: 0 })
+    .from('.theLine', { drawSVG: 0,duration: 4 })
     .to('.ball01', {
       motionPath: {
         path: '.theLine',
@@ -44,7 +44,7 @@ export function svgScroll(): void {
         start: 0,
         end: 1
       },
-      duration: 2
+      duration: 4
     }, 0)
     .add(pulses, 0);
 }
