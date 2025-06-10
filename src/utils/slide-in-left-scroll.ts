@@ -2,10 +2,10 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { slideInLeft } from './slideInLeft';
 
-export function slideInLeftScroll(){
-    gsap.from(".slide-in-left", {
+export function slideInLeftScroll(id:string){
+    gsap.from(`#${id}`, {
         scrollTrigger: {
-          trigger: ".slide-in-left",
+          trigger: `#${id}`,
           start: "top 80%",
           end:"top top",
           scrub:true

@@ -85,42 +85,42 @@ initTracking()
 
 // image aniamtion
 // roll reveal
-rollReveal()
+rollReveal('roll_reveal')
 // roll reveal reverse
-rollRevealReverse()
+rollRevealReverse('roll_reveal_revese')
 // fade in
-fadeIn()
+fadeIn('fade_in')
 // flip reveal
-flipReveal()
+flipReveal('flip_reveal')
 // pan
-pan()
+pan('pan')
 // slide in left
-slideInLeft()
+slideInLeft('slide_in_left')
 // slide in right
-slideInRight()
+slideInRight('slide_in_right')
 // zoom
-zoom()
+zoom('zoom')
 
 // scroll aniamtion
 // fadein scroll
-fadeInScroll()
+fadeInScroll('fade-element')
 // pin element scroll
-Pin()
+Pin('pin')
 // progress bar
-progressBar()
+progressBar('progress-bar-scroll')
 // rotate scroll
-rotateScroll()
+rotateScroll('rotate-scroll')
 // scale up on scroll
-growScroll()
+growScroll('scale-up-scroll')
 // stager in
-staggerItemScroll()
+staggerItemScroll('stagger-item-scroll')
 // slide in on scroll
-slideInLeftScroll()
-slideInRightScroll()
+slideInLeftScroll('slide-in-left-scroll')
+slideInRightScroll('slide-in-right-scroll')
 // change color on scroll
-colorChange()
+colorChange('color-change-scroll')
 // function call on scroll
-toggleScroll()
+toggleScroll('toggle-element-scroll')
 
 // step based
 
@@ -133,7 +133,7 @@ svgScroll()
 horizontalScroll()
 
 // Contextual/popups
-Contextual()
+Contextual('Contextual')
 // scrub video
 videoScrub()
 // play vid on snap

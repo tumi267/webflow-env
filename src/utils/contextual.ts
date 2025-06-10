@@ -1,16 +1,22 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-export function Contextual(){
+gsap.registerPlugin(ScrollTrigger);
+
+export function Contextual(id: string) {
     ScrollTrigger.create({
-        trigger: ".Contextual",
+        trigger: `#${id}`,
         start: "top center",
         end: "bottom center",
-        onEnter: () => {
-            const element = document.getElementsByClassName('Contextual') as HTMLCollectionOf<HTMLElement>;
-            element[0].style.display = 'block';
+        onEnter: (self) => {
+            // Only affect the triggering element
+            const element = self.trigger as HTMLElement;
+            element.style.display = 'block';
         },
-        onLeaveBack: () => {const element = document.getElementsByClassName('Contextual') as HTMLCollectionOf<HTMLElement>;
-        element[0].style.display = 'none';}
-      });
+        onLeaveBack: (self) => {
+            // Only affect the triggering element
+            const element = self.trigger as HTMLElement;
+            element.style.display = 'none';
+        }
+    });
 }

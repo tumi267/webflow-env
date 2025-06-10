@@ -1,8 +1,8 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-export function zoom (){
-    gsap.fromTo(".zoom",
+export function zoom (id:String){
+    gsap.fromTo(`#${id}`,
     {
       scale: 1
     },
@@ -11,7 +11,7 @@ export function zoom (){
       duration: 2,
       ease: "power2.out",
       scrollTrigger: {
-        trigger: ".zoom",
+        trigger: `#${id}`,
         start: "top center",
         end: "bottom 20%",
         scrub: 0.5,

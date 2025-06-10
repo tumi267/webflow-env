@@ -1,10 +1,10 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-export function growScroll(){
-    gsap.from(".scale-up", {
+export function growScroll(id:string){
+    gsap.from(`#${id}`, {
         scrollTrigger: {
-          trigger: ".scale-up",
+          trigger: `#${id}`,
           start: "top 80%",
           end:"top top",
           scrub:true

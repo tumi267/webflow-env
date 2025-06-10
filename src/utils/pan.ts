@@ -1,7 +1,7 @@
 import { gsap } from 'gsap';
 
-export function pan() {
-  const container = document.querySelector('.pan') as HTMLElement;
+export function pan(id:string) {
+  const container = document.querySelector(`#${id}`) as HTMLElement;
   if (!container) return;
 
   const children = Array.from(container.children) as HTMLElement[];

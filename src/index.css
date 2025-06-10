@@ -181,26 +181,19 @@ text {
     overflow: hidden;
   }
   
-  .container_horizontal {
+  #container_horizontal {
     display: flex;
     flex-wrap: nowrap;
     height: 100vh;
-    position: absolute;
-    top: 0;
-    left: 0;
+    overflow-x: hidden;
   }
   
   .panel_horizontal {
     flex: 0 0 100vw;
     height: 100vh;
   }
-  .horizontal-wrapper {
-    height: 100vh;
-    position: relative;
-    overflow: hidden;
-    z-index: 1;
-  }
-  .Contextual{
+
+  #Contextual{
     height: 300px;
     width: 300px;
     margin: auto;

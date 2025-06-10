@@ -1,9 +1,179 @@
-"use strict";var webflowEnv=(()=>{var s=(t=document)=>{let e="Last Published:";for(let i of t.childNodes)if(i.nodeType===Node.COMMENT_NODE&&i.textContent?.includes(e)){let a=i.textContent.trim().split(e)[1];if(a)return new Date(a)}};var l=t=>{let e=s();return`Hello ${t}! This site was last published on ${e?.toLocaleDateString("en-US",{year:"numeric",month:"long",day:"2-digit"})}.`};var n=document.getElementById("header"),u=document.getElementById("sub_header"),r=document.getElementById("line_amination"),m="John Dwight";n?n.innerHTML=`<h1>${l(m)}</h1>`:console.log("no head found");u?u.innerHTML="<h2>this this the word animation</h2>":console.log("no head found");r?r.innerHTML="<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fermentum sodales odio non interdum. Morbi maximus lacus in ipsum ultrices, a fringilla turpis maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eu pellentesque velit. Integer egestas ut orci in fringilla. Nullam at vehicula tortor. Nunc bibendum turpis nec mollis mattis. Vivamus hendrerit aliquet massa. Nulla fermentum aliquet ullamcorper. Proin vitae orci sed diam gravida lacinia eu vitae nulla. Donec ultrices risus vitae convallis congue. Nulla non nisi ullamcorper, dictum nisi ut, hendrerit arcu. Nullam eu nibh augue. Donec eget dapibus mi. Quisque in posuere eros. Aliquam sit amet felis suscipit, egestas risus et, gravida lorem. Integer efficitur, turpis a vehicula scelerisque, odio enim rutrum tellus, a maximus urna metus id purus. Nunc sagittis semper tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Maecenas facilisis justo enim, at elementum mi feugiat quis. Nam consequat libero ut ligula placerat, nec interdum magna posuere. Quisque sagittis laoreet lectus efficitur ultricies. Sed eleifend, felis sed rutrum hendrerit, risus nibh mattis diam, vel suscipit ipsum risus vitae mi. Donec aliquet dapibus sodales.Fusce sit amet viverra augue, vitae varius purus. Vivamus et dignissim metus, eu ornare odio. In et dolor molestie, ultrices odio quis, hendrerit urna. Donec maximus nisl eget auctor cursus. Pellentesque ligula tortor, efficitur ut ornare ac, dapibus non purus. Nulla tellus sapien, finibus in neque ut, sollicitudin efficitur mauris. Vivamus quis arcu risus. Phasellus sed tincidunt dolor. Aenean aliquet posuere tincidunt.Cras vel congue dui. Sed nunc lectus, varius quis elit quis, tincidunt placerat lectus. Phasellus malesuada metus justo. In egestas, enim porta iaculis interdum, leo mi consequat sem, et pellentesque libero ipsum a dui. Aliquam efficitur purus nec tristique aliquam. Mauris quis varius magna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed fermentum vehicula lacus at convallis.Duis mattis accumsan est ac tincidunt. Ut ultrices fringilla suscipit. Nullam malesuada laoreet ante pretium gravida. Etiam consequat, justo eget posuere elementum, lectus nisi eleifend elit, sit amet malesuada nibh leo in lacus. Nulla pellentesque in massa ut bibendum. Cras elit quam, dapibus et magna vitae, imperdiet rutrum ligula. Vivamus placerat eget lectus in dignissim. Nam in gravida sapien, a aliquam erat. Etiam nec mollis ante. In tempor, quam vitae volutpat tempor, mauris ligula mattis eros, vitae venenatis augue neque vitae sapien. Curabitur ac volutpat lectus.</p>":console.log("no head found");var d=document.getElementsByClassName("decode");d[0].innerHTML="<h2 class='.decode-item'>Decode</h2>";var p=document.getElementsByClassName("line_amination_mask");p[0].innerHTML="<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fermentum sodales odio non interdum. Morbi maximus lacus in ipsum ultrices, a fringilla turpis maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eu pellentesque velit. Integer egestas ut orci in fringilla. Nullam at vehicula tortor. Nunc bibendum turpis nec mollis mattis. Vivamus hendrerit aliquet massa. Nulla fermentum aliquet ullamcorper. Proin vitae orci sed diam gravida lacinia eu vitae nulla. Donec ultrices risus vitae convallis congue. Nulla non nisi ullamcorper, dictum nisi ut, hendrerit arcu. Nullam eu nibh augue. Donec eget dapibus mi. Quisque in posuere eros. Aliquam sit amet felis suscipit, egestas risus et, gravida lorem. Integer efficitur, turpis a vehicula scelerisque, odio enim rutrum tellus, a maximus urna metus id purus. Nunc sagittis semper tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Maecenas facilisis justo enim, at elementum mi feugiat quis. Nam consequat libero ut ligula placerat, nec interdum magna posuere. Quisque sagittis laoreet lectus efficitur ultricies. Sed eleifend, felis sed rutrum hendrerit, risus nibh mattis diam, vel suscipit ipsum risus vitae mi. Donec aliquet dapibus sodales.Fusce sit amet viverra augue, vitae varius purus. Vivamus et dignissim metus, eu ornare odio. In et dolor molestie, ultrices odio quis, hendrerit urna. Donec maximus nisl eget auctor cursus. Pellentesque ligula tortor, efficitur ut ornare ac, dapibus non purus. Nulla tellus sapien, finibus in neque ut, sollicitudin efficitur mauris. Vivamus quis arcu risus. Phasellus sed tincidunt dolor. Aenean aliquet posuere tincidunt.Cras vel congue dui. Sed nunc lectus, varius quis elit quis, tincidunt placerat lectus. Phasellus malesuada metus justo. In egestas, enim porta iaculis interdum, leo mi consequat sem, et pellentesque libero ipsum a dui. Aliquam efficitur purus nec tristique aliquam. Mauris quis varius magna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed fermentum vehicula lacus at convallis.Duis mattis accumsan est ac tincidunt. Ut ultrices fringilla suscipit. Nullam malesuada laoreet ante pretium gravida. Etiam consequat, justo eget posuere elementum, lectus nisi eleifend elit, sit amet malesuada nibh leo in lacus. Nulla pellentesque in massa ut bibendum. Cras elit quam, dapibus et magna vitae, imperdiet rutrum ligula. Vivamus placerat eget lectus in dignissim. Nam in gravida sapien, a aliquam erat. Etiam nec mollis ante. In tempor, quam vitae volutpat tempor, mauris ligula mattis eros, vitae venenatis augue neque vitae sapien. Curabitur ac volutpat lectus.</p>";var g=document.getElementsByClassName("tracking_text");g[0].innerHTML="<h1>Tracking Text</h1>";var v=document.getElementsByClassName("fade_in"),f=document.getElementsByClassName("flip_reveal"),h=document.getElementsByClassName("pan"),b=document.getElementsByClassName("roll_reveal"),_=document.getElementsByClassName("roll_reveal_revese"),q=document.getElementsByClassName("slide_in_left"),x=document.getElementsByClassName("slide_in_right"),N=document.getElementsByClassName("zoom");v[0].innerHTML=' <img src="http://farm9.staticflickr.com/8504/8365873811_d32571df3d_z.jpg" alt="">';f[0].innerHTML=' <img src="http://farm9.staticflickr.com/8504/8365873811_d32571df3d_z.jpg" alt="">';h[0].innerHTML=' <img src="http://farm9.staticflickr.com/8504/8365873811_d32571df3d_z.jpg" alt="">';b[0].innerHTML=' <img src="http://farm9.staticflickr.com/8504/8365873811_d32571df3d_z.jpg" alt="">';_[0].innerHTML=' <img src="http://farm9.staticflickr.com/8504/8365873811_d32571df3d_z.jpg" alt="">';q[0].innerHTML=' <img src="http://farm9.staticflickr.com/8504/8365873811_d32571df3d_z.jpg" alt="">';x[0].innerHTML=' <img src="http://farm9.staticflickr.com/8504/8365873811_d32571df3d_z.jpg" alt="">';N[0].innerHTML=' <img src="http://farm9.staticflickr.com/8504/8365873811_d32571df3d_z.jpg" alt="">';var y=document.getElementsByClassName("fade-element"),E=document.getElementsByClassName("slide-in-left-scroll"),M=document.getElementsByClassName("slide-in-right-scroll"),C=document.getElementsByClassName("scale-up-scroll"),T=document.getElementsByClassName("rotate-scroll"),L=document.getElementsByClassName("stagger-item-scroll"),H=document.getElementsByClassName("pin"),B=document.getElementsByClassName("color-change-scroll"),k=document.getElementsByClassName("toggle-element-scroll"),D=document.getElementsByClassName("progress-bar-scroll");y[0].innerHTML='<div class="box fade-element">Fade In/Out</div>';E[0].innerHTML='<div class="box slide-in-left">Slide In Left</div>';M[0].innerHTML='<div class="box slide-in-right">Slide In Right</div>';C[0].innerHTML='<div class="box scale-up">Scale Up</div>';T[0].innerHTML='<div class="box rotate">Rotate</div>';L[0].innerHTML='<div class="stagger-container"><div class="stagger-item">1</div><div class="stagger-item">2</div><div class="stagger-item">3</div><div class="stagger-item">4</div><div class="stagger-item">5</div> </div>';H[0].innerHTML='<div class="pin-element">Pinned Element</div>';B[0].innerHTML='<div class="box color-change">Color Change</div>';k[0].innerHTML='<div class="toggle-element">Toggle Active Class</div>';D[0].innerHTML='<div class="progress-container"><div class="progress-bar"></div></div>';var w=document.getElementsByClassName("container_horizontal"),I=document.getElementsByClassName("svg_contain"),z=document.getElementsByClassName("panel-wrapper"),P=document.getElementsByClassName("Contextual");I[0].innerHTML='<svg id="svg-stage" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 1200"><path class="line01 line" d="M 10 200 600 200" stroke="black" stroke-width="2"></path><path class="line02 line" d="M 10 400 600 400" stroke="black" stroke-width="2"></path><path class="line03 line" d="M 10 600 600 600" stroke="black" stroke-width="2"></path><path class="line04 line" d="M 10 800 600 800" stroke="black" stroke-width="2"></path><path class="line05 line" d="M 10 1000 600 1000" stroke="black" stroke-width="2"></path><text class="text01" x="30" y="190">2018</text><text class="text02" x="30" y="390">2019</text><text class="text03" x="30" y="590">2020</text><path class="theLine" d="M -5,0 Q 450 230 300 450 T 130 750 Q 100 850 300 1000 T 150 1200" fill="none" stroke="white" stroke-width="10px" /><circle class="ball ball01" r="20" cx="-5" cy="0" fill="red"></circle><circle class="ball ball02" r="20" cx="278" cy="201" fill="blue"></circle><circle class="ball ball03" r="20" cx="327" cy="401" fill="green"></circle><circle class="ball ball04" r="20" cx="203" cy="601" fill="yellow"></circle></svg>';z[0].innerHTML='<section class="panel red from-bottom"><div>ONE</div></section><section class="panel orange from-left"><div>TWO</div></section><section class="panel purple from-right">THREE</section>';w[0].innerHTML='<section class="panel_horizontal red">ONE</section><section class="panel_horizontal orange">TWO</section><section class="panel_horizontal purple">THREE</section><section class="panel_horizontal green">FOUR</section><section class="panel_horizontal gray">FIVE</section>';P[0].innerHTML="<div><h1>Pop up<h1></div>";var o=document.getElementById("myVideo");o?o.innerHTML=`
+"use strict";
+var webflowEnv = (() => {
+  // bin/live-reload.js
+  new EventSource(`${"http://localhost:3000"}/esbuild`).addEventListener("change", () => location.reload());
+
+  // node_modules/@finsweet/ts-utils/dist/webflow/getPublishDate.js
+  var getPublishDate = (page = document) => {
+    const publishDatePrefix = "Last Published:";
+    for (const node of page.childNodes) {
+      if (node.nodeType === Node.COMMENT_NODE && node.textContent?.includes(publishDatePrefix)) {
+        const publishDateValue = node.textContent.trim().split(publishDatePrefix)[1];
+        if (publishDateValue)
+          return new Date(publishDateValue);
+      }
+    }
+  };
+
+  // src/utils/greet.ts
+  var greetUser = (name2) => {
+    const publishDate = getPublishDate();
+    return `Hello ${name2}! This site was last published on ${publishDate?.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "2-digit"
+    })}.`;
+  };
+
+  // src/home.ts
+  var head = document.getElementById("header");
+  var subhead = document.getElementById("sub_header");
+  var line_amination = document.getElementById("line_amination");
+  var name = "John Dwight";
+  if (head) {
+    head.innerHTML = `<h1>${greetUser(name)}</h1>`;
+  } else {
+    console.log("no head found");
+  }
+  if (subhead) {
+    subhead.innerHTML = "<h2>this this the word animation</h2>";
+  } else {
+    console.log("no head found");
+  }
+  if (line_amination) {
+    line_amination.innerHTML = "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fermentum sodales odio non interdum. Morbi maximus lacus in ipsum ultrices, a fringilla turpis maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eu pellentesque velit. Integer egestas ut orci in fringilla. Nullam at vehicula tortor. Nunc bibendum turpis nec mollis mattis. Vivamus hendrerit aliquet massa. Nulla fermentum aliquet ullamcorper. Proin vitae orci sed diam gravida lacinia eu vitae nulla. Donec ultrices risus vitae convallis congue. Nulla non nisi ullamcorper, dictum nisi ut, hendrerit arcu. Nullam eu nibh augue. Donec eget dapibus mi. Quisque in posuere eros. Aliquam sit amet felis suscipit, egestas risus et, gravida lorem. Integer efficitur, turpis a vehicula scelerisque, odio enim rutrum tellus, a maximus urna metus id purus. Nunc sagittis semper tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Maecenas facilisis justo enim, at elementum mi feugiat quis. Nam consequat libero ut ligula placerat, nec interdum magna posuere. Quisque sagittis laoreet lectus efficitur ultricies. Sed eleifend, felis sed rutrum hendrerit, risus nibh mattis diam, vel suscipit ipsum risus vitae mi. Donec aliquet dapibus sodales.Fusce sit amet viverra augue, vitae varius purus. Vivamus et dignissim metus, eu ornare odio. In et dolor molestie, ultrices odio quis, hendrerit urna. Donec maximus nisl eget auctor cursus. Pellentesque ligula tortor, efficitur ut ornare ac, dapibus non purus. Nulla tellus sapien, finibus in neque ut, sollicitudin efficitur mauris. Vivamus quis arcu risus. Phasellus sed tincidunt dolor. Aenean aliquet posuere tincidunt.Cras vel congue dui. Sed nunc lectus, varius quis elit quis, tincidunt placerat lectus. Phasellus malesuada metus justo. In egestas, enim porta iaculis interdum, leo mi consequat sem, et pellentesque libero ipsum a dui. Aliquam efficitur purus nec tristique aliquam. Mauris quis varius magna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed fermentum vehicula lacus at convallis.Duis mattis accumsan est ac tincidunt. Ut ultrices fringilla suscipit. Nullam malesuada laoreet ante pretium gravida. Etiam consequat, justo eget posuere elementum, lectus nisi eleifend elit, sit amet malesuada nibh leo in lacus. Nulla pellentesque in massa ut bibendum. Cras elit quam, dapibus et magna vitae, imperdiet rutrum ligula. Vivamus placerat eget lectus in dignissim. Nam in gravida sapien, a aliquam erat. Etiam nec mollis ante. In tempor, quam vitae volutpat tempor, mauris ligula mattis eros, vitae venenatis augue neque vitae sapien. Curabitur ac volutpat lectus.</p>";
+  } else {
+    console.log("no head found");
+  }
+  var decode = document.getElementsByClassName("decode");
+  decode[0].innerHTML = `<h2 class='.decode-item'>Decode</h2>`;
+  var line_amination_mask = document.getElementsByClassName("line_amination_mask");
+  line_amination_mask[0].innerHTML = "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fermentum sodales odio non interdum. Morbi maximus lacus in ipsum ultrices, a fringilla turpis maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eu pellentesque velit. Integer egestas ut orci in fringilla. Nullam at vehicula tortor. Nunc bibendum turpis nec mollis mattis. Vivamus hendrerit aliquet massa. Nulla fermentum aliquet ullamcorper. Proin vitae orci sed diam gravida lacinia eu vitae nulla. Donec ultrices risus vitae convallis congue. Nulla non nisi ullamcorper, dictum nisi ut, hendrerit arcu. Nullam eu nibh augue. Donec eget dapibus mi. Quisque in posuere eros. Aliquam sit amet felis suscipit, egestas risus et, gravida lorem. Integer efficitur, turpis a vehicula scelerisque, odio enim rutrum tellus, a maximus urna metus id purus. Nunc sagittis semper tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Maecenas facilisis justo enim, at elementum mi feugiat quis. Nam consequat libero ut ligula placerat, nec interdum magna posuere. Quisque sagittis laoreet lectus efficitur ultricies. Sed eleifend, felis sed rutrum hendrerit, risus nibh mattis diam, vel suscipit ipsum risus vitae mi. Donec aliquet dapibus sodales.Fusce sit amet viverra augue, vitae varius purus. Vivamus et dignissim metus, eu ornare odio. In et dolor molestie, ultrices odio quis, hendrerit urna. Donec maximus nisl eget auctor cursus. Pellentesque ligula tortor, efficitur ut ornare ac, dapibus non purus. Nulla tellus sapien, finibus in neque ut, sollicitudin efficitur mauris. Vivamus quis arcu risus. Phasellus sed tincidunt dolor. Aenean aliquet posuere tincidunt.Cras vel congue dui. Sed nunc lectus, varius quis elit quis, tincidunt placerat lectus. Phasellus malesuada metus justo. In egestas, enim porta iaculis interdum, leo mi consequat sem, et pellentesque libero ipsum a dui. Aliquam efficitur purus nec tristique aliquam. Mauris quis varius magna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed fermentum vehicula lacus at convallis.Duis mattis accumsan est ac tincidunt. Ut ultrices fringilla suscipit. Nullam malesuada laoreet ante pretium gravida. Etiam consequat, justo eget posuere elementum, lectus nisi eleifend elit, sit amet malesuada nibh leo in lacus. Nulla pellentesque in massa ut bibendum. Cras elit quam, dapibus et magna vitae, imperdiet rutrum ligula. Vivamus placerat eget lectus in dignissim. Nam in gravida sapien, a aliquam erat. Etiam nec mollis ante. In tempor, quam vitae volutpat tempor, mauris ligula mattis eros, vitae venenatis augue neque vitae sapien. Curabitur ac volutpat lectus.</p>";
+  var tracking_text = document.getElementsByClassName("tracking_text");
+  tracking_text[0].innerHTML = "<h1>Tracking Text</h1>";
+  var roll_reveal = document.getElementById("roll_reveal");
+  var rollRevealReverse = document.getElementById("roll_reveal_revese");
+  var slide_in_left = document.getElementById("slide_in_left");
+  var slide_in_right = document.getElementById("slide_in_right");
+  var zoom = document.getElementById("zoom");
+  var fade_in = document.getElementById("fade_in");
+  var flipReveal = document.getElementById("flip_reveal");
+  var pan = document.getElementById("pan");
+  if (roll_reveal) {
+    roll_reveal.innerHTML = ' <img src="http://farm9.staticflickr.com/8504/8365873811_d32571df3d_z.jpg" alt="">';
+  } else {
+    console.log("no head found");
+  }
+  if (rollRevealReverse) {
+    rollRevealReverse.innerHTML = ' <img src="http://farm9.staticflickr.com/8504/8365873811_d32571df3d_z.jpg" alt="">';
+  } else {
+    console.log("no head found");
+  }
+  if (slide_in_left) {
+    slide_in_left.innerHTML = ' <img src="http://farm9.staticflickr.com/8504/8365873811_d32571df3d_z.jpg" alt="">';
+  } else {
+    console.log("no head found");
+  }
+  if (slide_in_right) {
+    slide_in_right.innerHTML = ' <img src="http://farm9.staticflickr.com/8504/8365873811_d32571df3d_z.jpg" alt="">';
+  } else {
+    console.log("no head found");
+  }
+  if (zoom) {
+    zoom.innerHTML = ' <img src="http://farm9.staticflickr.com/8504/8365873811_d32571df3d_z.jpg" alt="">';
+  } else {
+    console.log("no head found");
+  }
+  if (fade_in) {
+    fade_in.innerHTML = ' <img src="http://farm9.staticflickr.com/8504/8365873811_d32571df3d_z.jpg" alt="">';
+  } else {
+    console.log("no head found");
+  }
+  if (flipReveal) {
+    flipReveal.innerHTML = ' <img src="http://farm9.staticflickr.com/8504/8365873811_d32571df3d_z.jpg" alt="">';
+  } else {
+    console.log("no head found");
+  }
+  if (pan) {
+    pan.innerHTML = ' <img src="http://farm9.staticflickr.com/8504/8365873811_d32571df3d_z.jpg" alt="">';
+  } else {
+    console.log("no head found");
+  }
+  var fadeElement = document.getElementById("fade-element");
+  var slideInLeftScroll = document.getElementById("slide-in-left-scroll");
+  var slideInRightScroll = document.getElementById("slide-in-right-scroll");
+  var scaleUpScroll = document.getElementById("scale-up-scroll");
+  var rotateScroll = document.getElementById("rotate-scroll");
+  var staggerItemScroll = document.getElementById("stagger-item-scroll");
+  var pinElementScroll = document.getElementById("pin");
+  var colorChangeScroll = document.getElementById("color-change-scroll");
+  if (fadeElement) {
+    fadeElement.innerHTML = `<div class="box fade-element">Fade In/Out</div>`;
+  }
+  if (slideInLeftScroll) {
+    slideInLeftScroll.innerHTML = `<div class="box slide-in-left">Slide In Left</div>`;
+  }
+  if (slideInRightScroll) {
+    slideInRightScroll.innerHTML = `<div class="box slide-in-right">Slide In Right</div>`;
+  }
+  if (scaleUpScroll) {
+    scaleUpScroll.innerHTML = `<div class="box scale-up">Scale Up</div>`;
+  }
+  if (rotateScroll) {
+    rotateScroll.innerHTML = `<div class="box rotate">Rotate</div>`;
+  }
+  if (staggerItemScroll) {
+    staggerItemScroll.innerHTML = `
+    <div class="stagger-container">
+      <div class="stagger-item">1</div>
+      <div class="stagger-item">2</div>
+      <div class="stagger-item">3</div>
+      <div class="stagger-item">4</div>
+      <div class="stagger-item">5</div>
+    </div>
+  `;
+  }
+  if (pinElementScroll) {
+    pinElementScroll.innerHTML = `<div class="pin-element">Pinned Element</div>`;
+  }
+  if (colorChangeScroll) {
+    colorChangeScroll.innerHTML = `<div class="box color-change">Color Change</div>`;
+  }
+  var progress_bar_scroll = document.getElementById("progress-bar-scroll");
+  var toggle_element_scroll = document.getElementById("toggle-element-scroll");
+  var container_horizontal = document.getElementById("container_horizontal");
+  var Contextual = document.getElementById("Contextual");
+  if (progress_bar_scroll && toggle_element_scroll && container_horizontal && Contextual) {
+    toggle_element_scroll.innerHTML = '<div class="toggle-element">Toggle Active Class</div>';
+    progress_bar_scroll.innerHTML = '<div class="progress-container"><div class="progress-bar"></div></div>';
+    Contextual.innerHTML = "<div><h1>Pop up</h1></div>";
+    container_horizontal.innerHTML = '<section class="panel_horizontal red">ONE</section><section class="panel_horizontal orange">TWO</section><section class="panel_horizontal purple">THREE</section><section class="panel_horizontal green">FOUR</section><section class="panel_horizontal gray">FIVE</section>';
+  } else {
+    console.error("One or more elements were not found");
+  }
+  var svg_contain = document.getElementsByClassName("svg_contain");
+  var panel_wrapper = document.getElementsByClassName("panel-wrapper");
+  svg_contain[0].innerHTML = '<svg id="svg-stage" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 1200"><path class="line01 line" d="M 10 200 600 200" stroke="black" stroke-width="2"></path><path class="line02 line" d="M 10 400 600 400" stroke="black" stroke-width="2"></path><path class="line03 line" d="M 10 600 600 600" stroke="black" stroke-width="2"></path><path class="line04 line" d="M 10 800 600 800" stroke="black" stroke-width="2"></path><path class="line05 line" d="M 10 1000 600 1000" stroke="black" stroke-width="2"></path><text class="text01" x="30" y="190">2018</text><text class="text02" x="30" y="390">2019</text><text class="text03" x="30" y="590">2020</text><path class="theLine" d="M -5,0 Q 450 230 300 450 T 130 750 Q 100 850 300 1000 T 150 1200" fill="none" stroke="white" stroke-width="10px" /><circle class="ball ball01" r="20" cx="-5" cy="0" fill="red"></circle><circle class="ball ball02" r="20" cx="278" cy="201" fill="blue"></circle><circle class="ball ball03" r="20" cx="327" cy="401" fill="green"></circle><circle class="ball ball04" r="20" cx="203" cy="601" fill="yellow"></circle></svg>';
+  panel_wrapper[0].innerHTML = '<section class="panel red from-bottom"><div>ONE</div></section><section class="panel orange from-left"><div>TWO</div></section><section class="panel purple from-right">THREE</section>';
+  var video = document.getElementById("myVideo");
+  if (video) {
+    video.innerHTML = `
   <video class='vid' src="https://videos.pexels.com/video-files/32316899/13783420_360_640_24fps.mp4" muted
   preload="auto"
   playsinline ></video>
-  `:alert("no vid");var c=document.getElementById("myVideo2");c?c.innerHTML=`
+  `;
+  } else {
+    alert("no vid");
+  }
+  var video2 = document.getElementById("myVideo2");
+  if (video2) {
+    video2.innerHTML = `
   <video class='vid2' src="https://videos.pexels.com/video-files/32316899/13783420_360_640_24fps.mp4" muted
   preload="auto"
   playsinline ></video>
-  `:alert("no vid");})();
+  `;
+  } else {
+    alert("no vid");
+  }
+})();
+//# sourceMappingURL=home.js.map

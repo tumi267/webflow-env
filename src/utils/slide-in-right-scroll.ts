@@ -1,9 +1,9 @@
 import { gsap } from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-export function slideInRightScroll(){
-    gsap.from(".slide-in-right", {
+export function slideInRightScroll(id:string){
+    gsap.from(`#${id}`, {
         scrollTrigger: {
-          trigger: ".slide-in-right",
+          trigger: `#${id}`,
           start: "top 80%",
           end:"top top",
           scrub:true

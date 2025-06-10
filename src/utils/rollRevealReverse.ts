@@ -2,11 +2,11 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export function rollRevealReverse(
-  selector: string = ".roll_reveal_revese",
+  id: string ,
   duration: number = 2
 ) {
   // Set initial clip path
-  gsap.set(selector, {
+  gsap.set(`#${id}`, {
     clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)"
   });
 
@@ -15,14 +15,14 @@ export function rollRevealReverse(
   // Create timeline with ScrollTrigger
   const tl = gsap.timeline({
     scrollTrigger: {
-      trigger: selector,
+      trigger: `#${id}`,
       start: "top center",   // When top of element hits 80% viewport
       end: "bottom 10%",     // When top hits 20% viewport
       scrub:true,
       markers: false      // Enable for debugging
     }
   });
-  tl.to(selector, {
+  tl.to(`#${id}`, {
     clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
     duration,
     ease: "power3.out"
