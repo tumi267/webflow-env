@@ -9,6 +9,8 @@ import { initCharAnimations } from '$utils/char';
 import { initMaskAnimation } from '$utils/textmask';
 import { initTracking } from '$utils/texttracker';
 
+// Register GSAP plugins
+gsap.registerPlugin(ScrollTrigger, TextPlugin, SplitText);
 // text aniamtion
 // char animation
 initCharAnimations('header')

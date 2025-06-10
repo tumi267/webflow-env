@@ -10,7 +10,7 @@ import { videoScrub } from './utils/videoScrub';
 import { vidOnSnap } from '$utils/vidOnSnap';
 
 // Register GSAP plugins
-gsap.registerPlugin(ScrollTrigger, TextPlugin, SplitText);
+gsap.registerPlugin(ScrollTrigger);
 
 // Expose globally for plain <script> tag usage
 // (globalThis as any).initDecodeAnimations = initDecodeAnimations;

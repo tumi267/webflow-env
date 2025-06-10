@@ -10,7 +10,8 @@ import { pan } from '$utils/pan';
 import { slideInLeft } from '$utils/slideInLeft';
 import { slideInRight } from '$utils/slideInRight';
 import { zoom } from '$utils/zoom';
-
+// Register GSAP plugins
+gsap.registerPlugin(ScrollTrigger);
 // image aniamtion
 // roll reveal
 rollReveal('roll_reveal')
