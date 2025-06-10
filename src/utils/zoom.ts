@@ -12,10 +12,9 @@ export function zoom (){
       ease: "power2.out",
       scrollTrigger: {
         trigger: ".zoom",
-        start: "top 85%",
-        end: "center center",
+        start: "top center",
+        end: "bottom 20%",
         scrub: 0.5,
-        toggleActions: "play none none none",
         markers: false // Enable for debugging
       }
     }

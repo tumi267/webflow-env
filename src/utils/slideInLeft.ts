@@ -9,9 +9,9 @@ export function slideInLeft (){
         ease: "power3.out",
         scrollTrigger: {
           trigger: ".slide_in_left",
-          start: "top 80%",
-          end: "top 30%",
-          toggleActions: "play none none none",
+          start: "top center",
+          end: "bottom 10%",
+          scrub:true,
           markers: false // Set to true for debugging
         }
       });

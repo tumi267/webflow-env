@@ -8,9 +8,9 @@ export function slideInRight (){
         ease: "power3.out",
         scrollTrigger: {
           trigger: ".slide_in_right", // Element that triggers the animation
-          start: "top 75%",          // When top hits 75% of viewport
-          end: "top 25%",            // When top hits 25% of viewport
-          toggleActions: "play none none none", // Play once on enter
+          start: "top center",          // When top hits 75% of viewport
+          end: "bottom 10%",            // When top hits 25% of viewport
+          scrub:true,
           markers: false             // Enable for debugging (set to true)
         }
       }); 

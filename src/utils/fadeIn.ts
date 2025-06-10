@@ -7,9 +7,9 @@ export function fadeIn (){
         ease: "power2.out",
         scrollTrigger: {
         trigger: ".fade_in", // Element that triggers the animation
-        start: "top 80%",   // When the top of `.fade_in` hits 80% of the viewport
-        end: "top 20%",     // When the top of `.fade_in` hits 20% of the viewport
-        toggleActions: "play none none none", // Play on enter, no other actions
+        start: "top center",   // When the top of `.fade_in` hits 80% of the viewport
+        end: "bottom 20%",     // When the top of `.fade_in` hits 20% of the viewport
+        scrub:true,
         markers: true // Optional: Visual debugging (remove in production)
       }
       });

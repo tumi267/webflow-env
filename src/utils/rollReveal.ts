@@ -14,9 +14,9 @@ export function rollReveal(
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: selector,
-      start: "top 80%",   // When top of element hits 80% viewport
-      end: "top 20%",     // When top hits 20% viewport
-      toggleActions: "play none none none", // Play once on enter
+      start: "top center",   // When top of element hits 80% viewport
+      end: "bottom 10%",     // When top hits 20% viewport
+      scrub:true,
       markers: false      // Enable for debugging
     }
   });

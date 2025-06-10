@@ -139,7 +139,7 @@ videoScrub()
 // play vid on snap
 vidOnSnap()
 
-console.log('test')
+
 // window.Webflow ||= [];
 // window.Webflow.push(() => {
 //   const name = 'John Doe';
