@@ -34,15 +34,48 @@ import { Contextual } from '$utils/contextual';
 import { videoScrub } from './utils/videoScrub';
 import { vidOnSnap } from '$utils/vidOnSnap';
 
+// Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger, TextPlugin, SplitText);
+
+// Expose globally for plain <script> tag usage
+// (globalThis as any).initDecodeAnimations = initDecodeAnimations;
+// (globalThis as any).initLineAnimations = initLineAnimations;
+// (globalThis as any).initWordAnimations = initWordAnimations;
+// (globalThis as any).initCharAnimations = initCharAnimations;
+// (globalThis as any).initMaskAnimation = initMaskAnimation;
+// (globalThis as any).initTracking = initTracking;
+// (globalThis as any).rollReveal = rollReveal;
+// (globalThis as any).rollRevealReverse = rollRevealReverse;
+// (globalThis as any).fadeIn = fadeIn;
+// (globalThis as any).flipReveal = flipReveal;
+// (globalThis as any).pan = pan;
+// (globalThis as any).slideInLeft = slideInLeft;
+// (globalThis as any).slideInRight = slideInRight;
+// (globalThis as any).zoom = zoom;
+// (globalThis as any).fadeInScroll = fadeInScroll;
+// (globalThis as any).Pin = Pin;
+// (globalThis as any).progressBar = progressBar;
+// (globalThis as any).rotateScroll = rotateScroll;
+// (globalThis as any).growScroll = growScroll;
+// (globalThis as any).staggerItemScroll = staggerItemScroll;
+// (globalThis as any).slideInLeftScroll = slideInLeftScroll;
+// (globalThis as any).slideInRightScroll = slideInRightScroll;
+// (globalThis as any).toggleScroll = toggleScroll;
+// (globalThis as any).colorChange = colorChange;
+// (globalThis as any).horizontalScroll = horizontalScroll;
+// (globalThis as any).threePanelfade = threePanelfade;
+// (globalThis as any).svgScroll = svgScroll;
+// (globalThis as any).Contextual = Contextual;
+// (globalThis as any).videoScrub = videoScrub;
+// (globalThis as any).vidOnSnap = vidOnSnap;
 
 // text aniamtion
 // char animation
-initCharAnimations()
+initCharAnimations('header')
 //word aniamtion
-initWordAnimations()
+initWordAnimations('sub_header')
 // lineaniamtion
-initLineAnimations()
+initLineAnimations('line_amination')
 // decode text
 initDecodeAnimations()
 // text mask

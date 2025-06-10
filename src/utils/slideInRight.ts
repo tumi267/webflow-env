@@ -5,6 +5,13 @@ export function slideInRight (){
         x: 300,
         opacity: 0,
         duration: 2,
-        ease: "power3.out"
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".slide_in_right", // Element that triggers the animation
+          start: "top 75%",          // When top hits 75% of viewport
+          end: "top 25%",            // When top hits 25% of viewport
+          toggleActions: "play none none none", // Play once on enter
+          markers: false             // Enable for debugging (set to true)
+        }
       }); 
 }

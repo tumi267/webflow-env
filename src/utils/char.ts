@@ -2,28 +2,32 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 
-export function initCharAnimations() {
+export function initCharAnimations(id: string) {
    
-
-
     document.addEventListener('DOMContentLoaded', () => {
-        // Create SplitText instances for all elements with line_animation class
-        let char=SplitText.create(".header",{
-            type:'chars'
-          });
-          
-          let tl=gsap.timeline({defaults:{duration:1,autoAlpha:0,y:-100}})
-          
-          tl.from(char.chars,{stagger:0.05})
-          
-            // Cleanup function for resize events
-            const onResize = () => char.revert();
-            window.addEventListener('resize', onResize);
-
-            // Optional: Add cleanup when component unmounts
-            // (if using in a framework like React/Vue)
-            return () => {
-                window.removeEventListener('resize', onResize);
-                char.revert();
-            };
-        })};
+        const split = SplitText.create(`#${id}`, { type: 'chars' });
+    
+        const chars = split.chars;
+    
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: `#${id}`,
+            start: 'top 80%',
+            end: 'top 20%',
+            scrub: true,
+          },
+        });
+    
+        chars.forEach((char, i) => {
+          tl.from(char, {
+            autoAlpha: 0,
+            y: -100,
+            duration: 1,
+          }, i * 0.05); // Manual stagger by offsetting start time
+        });
+    
+        // Revert on resize (optional)
+        const onResize = () => split.revert();
+        window.addEventListener('resize', onResize);
+      });
+    }

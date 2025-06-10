@@ -3,8 +3,18 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export function flipReveal (){
+  const flipReveal = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".flip_reveal",
+      start: "top 80%",
+      end: "top 30%",
+      toggleActions: "play none none none",
+      markers: false, // Enable for debugging
+      scrub:true,
+      }
+    })
     let num = 3;
-    gsap.to(".flip_reveal img", {
+    flipReveal.to(".flip_reveal img", {
       rotationY: `+=${360 * num}`,
       stagger: 0.2,
       duration: 2,
