@@ -1,7 +1,3 @@
-// import { greetUser } from '$utils/greet';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
 import { rollReveal } from '$utils/rollReveal';
 import { rollRevealReverse } from '$utils/rollRevealReverse';
 import { fadeIn } from '$utils/fadeIn';
@@ -10,8 +6,7 @@ import { pan } from '$utils/pan';
 import { slideInLeft } from '$utils/slideInLeft';
 import { slideInRight } from '$utils/slideInRight';
 import { zoom } from '$utils/zoom';
-// Register GSAP plugins
-gsap.registerPlugin(ScrollTrigger);
+
 // image aniamtion
 // roll reveal
 rollReveal('roll_reveal')

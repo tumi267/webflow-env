@@ -1,7 +1,3 @@
-// import { greetUser } from '$utils/greet';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
 import { horizontalScroll } from '$utils/horizontalScroll';
 import { threePanelFade } from '$utils/threepanelfadein';
 import { svgScroll } from '$utils/svgScroll';
@@ -9,8 +5,7 @@ import { Contextual } from '$utils/contextual';
 import { videoScrub } from './utils/videoScrub';
 import { vidOnSnap } from '$utils/vidOnSnap';
 
-// Register GSAP plugins
-gsap.registerPlugin(ScrollTrigger);
+
 
 // Expose globally for plain <script> tag usage
 // (globalThis as any).initDecodeAnimations = initDecodeAnimations;

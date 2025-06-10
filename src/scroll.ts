@@ -1,6 +1,4 @@
-// import { greetUser } from '$utils/greet';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+
 import { fadeInScroll } from '$utils/fadeInscroll';
 import { Pin } from '$utils/pin-element-scroll';
 import { progressBar } from '$utils/progress-bar-scroll';
@@ -11,8 +9,7 @@ import { slideInLeftScroll } from '$utils/slide-in-left-scroll';
 import { slideInRightScroll } from '$utils/slide-in-right-scroll';
 import { toggleScroll } from '$utils/toggle-scroll';
 import { colorChange } from '$utils/color-change-scroll';
-// Register GSAP plugins
-gsap.registerPlugin(ScrollTrigger);
+
 // scroll aniamtion
 // fadein scroll
 fadeInScroll('fade-element')

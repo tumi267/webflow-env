@@ -6834,7 +6834,6 @@ var webflowEnv = (() => {
   }
 
   // src/scroll.ts
-  gsapWithCSS.registerPlugin(ScrollTrigger2);
   fadeInScroll("fade-element");
   Pin("pin");
   progressBar("progress-bar-scroll");
