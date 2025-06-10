@@ -1,10 +1,6 @@
 # Auto detect text files and perform LF normalization
 * text=auto
-# Mark minified JS as generated (GitHub will hide diff)
-*.min.js linguist-generated=true
-
-# Mark lock files as generated (optional)
-*.lock linguist-generated=true
-
-*.js linguist-language=JavaScript
-*.css linguist-language=CSS
+# Force GitHub to treat these built files as non-generated (i.e. show in diffs)
+dist/index.js linguist-generated=false
+dist/home.js linguist-generated=false
+dist/index.css linguist-generated=false
