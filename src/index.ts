@@ -135,7 +135,7 @@ horizontalScroll('container_horizontal')
 // Contextual/popups
 Contextual('Contextual')
 // scrub video
-// videoScrub()
+videoScrub()
 // play vid on snap
 vidOnSnap()
 
