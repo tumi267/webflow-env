@@ -26,6 +26,8 @@ const context = await esbuild.context({
   define: {
     SERVE_ORIGIN: JSON.stringify(SERVE_ORIGIN),
   },
+  format: 'iife',          // Self-executing function for global scope
+  globalName: 'webflowEnv',
 });
 
 // Build files in prod
