@@ -1,4 +1,7 @@
 # Auto detect text files and perform LF normalization
 * text=auto
-*.lock binary
-*.min.js -diff
+# Mark minified JS as generated (GitHub will hide diff)
+*.min.js linguist-generated=true
+
+# Mark lock files as generated (optional)
+*.lock linguist-generated=true
