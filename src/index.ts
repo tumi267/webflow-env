@@ -1,32 +1,7 @@
 // import { greetUser } from '$utils/greet';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { TextPlugin } from "gsap/TextPlugin";
-import { SplitText } from "gsap/SplitText";
-import { initDecodeAnimations } from '$utils/decode';
-import { initLineAnimations } from '$utils/lineaniamtion';
-import { initWordAnimations } from '$utils/word';
-import { initCharAnimations } from '$utils/char';
-import { initMaskAnimation } from '$utils/textmask';
-import { initTracking } from '$utils/texttracker';
-import { rollReveal } from '$utils/rollReveal';
-import { rollRevealReverse } from '$utils/rollRevealReverse';
-import { fadeIn } from '$utils/fadeIn';
-import { flipReveal } from '$utils/flipReveal';
-import { pan } from '$utils/pan';
-import { slideInLeft } from '$utils/slideInLeft';
-import { slideInRight } from '$utils/slideInRight';
-import { zoom } from '$utils/zoom';
-import { fadeInScroll } from '$utils/fadeInscroll';
-import { Pin } from '$utils/pin-element-scroll';
-import { progressBar } from '$utils/progress-bar-scroll';
-import { rotateScroll } from '$utils/rotate-srcoll';
-import { growScroll } from '$utils/scale-up-scroll';
-import { staggerItemScroll } from '$utils/stagger-item-scroll';
-import { slideInLeftScroll } from '$utils/slide-in-left-scroll';
-import { slideInRightScroll } from '$utils/slide-in-right-scroll';
-import { toggleScroll } from '$utils/toggle-scroll';
-import { colorChange } from '$utils/color-change-scroll';
+
 import { horizontalScroll } from '$utils/horizontalScroll';
 import { threePanelFade } from '$utils/threepanelfadein';
 import { svgScroll } from '$utils/svgScroll';
@@ -69,58 +44,6 @@ gsap.registerPlugin(ScrollTrigger, TextPlugin, SplitText);
 // (globalThis as any).videoScrub = videoScrub;
 // (globalThis as any).vidOnSnap = vidOnSnap;
 
-// text aniamtion
-// char animation
-initCharAnimations('header')
-//word aniamtion
-initWordAnimations('sub_header')
-// lineaniamtion
-initLineAnimations('line_amination')
-// decode text
-initDecodeAnimations()
-// text mask
-initMaskAnimation()
-// mouse tracking 
-initTracking()
-
-// image aniamtion
-// roll reveal
-rollReveal('roll_reveal')
-// roll reveal reverse
-rollRevealReverse('roll_reveal_revese')
-// fade in
-fadeIn('fade_in')
-// flip reveal
-flipReveal('flip_reveal')
-// pan
-pan('pan')
-// slide in left
-slideInLeft('slide_in_left')
-// slide in right
-slideInRight('slide_in_right')
-// zoom
-zoom('zoom')
-
-// scroll aniamtion
-// fadein scroll
-fadeInScroll('fade-element')
-// pin element scroll
-Pin('pin')
-// progress bar
-progressBar('progress-bar-scroll')
-// rotate scroll
-rotateScroll('rotate-scroll')
-// scale up on scroll
-growScroll('scale-up-scroll')
-// stager in
-staggerItemScroll('stagger-item-scroll')
-// slide in on scroll
-slideInLeftScroll('slide-in-left-scroll')
-slideInRightScroll('slide-in-right-scroll')
-// change color on scroll
-colorChange('color-change-scroll')
-// function call on scroll
-toggleScroll('toggle-element-scroll')
 
 // step based
 

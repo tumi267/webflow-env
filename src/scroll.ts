@@ -1,0 +1,36 @@
+// import { greetUser } from '$utils/greet';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+
+import { fadeInScroll } from '$utils/fadeInscroll';
+import { Pin } from '$utils/pin-element-scroll';
+import { progressBar } from '$utils/progress-bar-scroll';
+import { rotateScroll } from '$utils/rotate-srcoll';
+import { growScroll } from '$utils/scale-up-scroll';
+import { staggerItemScroll } from '$utils/stagger-item-scroll';
+import { slideInLeftScroll } from '$utils/slide-in-left-scroll';
+import { slideInRightScroll } from '$utils/slide-in-right-scroll';
+import { toggleScroll } from '$utils/toggle-scroll';
+import { colorChange } from '$utils/color-change-scroll';
+
+// scroll aniamtion
+// fadein scroll
+fadeInScroll('fade-element')
+// pin element scroll
+Pin('pin')
+// progress bar
+progressBar('progress-bar-scroll')
+// rotate scroll
+rotateScroll('rotate-scroll')
+// scale up on scroll
+growScroll('scale-up-scroll')
+// stager in
+staggerItemScroll('stagger-item-scroll')
+// slide in on scroll
+slideInLeftScroll('slide-in-left-scroll')
+slideInRightScroll('slide-in-right-scroll')
+// change color on scroll
+colorChange('color-change-scroll')
+// function call on scroll
+toggleScroll('toggle-element-scroll')
