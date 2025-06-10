@@ -1,36 +1,49 @@
 import { gsap } from 'gsap';
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-export function threePanelfade(){
-    const panels = document.querySelectorAll('.panel')
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-let tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".panel-wrapper",     // wrap all your panels in a parent
-      start: "top top",
-      end: `+=${panels.length*200}%`,                 // 100% per panel (adjust if you add/remove panels)
-      scrub: true,
-      pin: true,
+export function threePanelFade(id: string) {
+    gsap.registerPlugin(ScrollTrigger);
+    
+    const wrapper = document.getElementById(id);
+    if (!wrapper) {
+        console.warn(`Wrapper element not found: ${id}`);
+        return;
     }
-  });
-  
-  // Panel 1 - from bottom
-  tl.from(".from-bottom", {
-    y: 200,
-    opacity: 0,
-    duration: 0.5
-  })
-  
-  // Panel 2 - from left
-  .from(".from-left", {
-    x: -200,
-    opacity: 0,
-    duration: 0.5
-  })
-  
-  // Panel 3 - from right
-  .from(".from-right", {
-    x: 200,
-    opacity: 0,
-    duration: 0.5
-  });
+
+    // Get all direct children (regardless of their tag or class)
+    const children = Array.from(wrapper.children);
+    if (children.length === 0) {
+        console.warn('No child elements found in wrapper');
+        return;
+    }
+
+    const tl = gsap.timeline({
+        scrollTrigger: {
+            trigger: wrapper,
+            start: "top top",
+            end: `+=${children.length * 100}%`,
+            scrub: true,
+            pin: true,
+            markers: true // helpful for debugging (remove in production)
+        }
+    });
+
+    // Animation patterns (bottom → left → right → repeat)
+    const animations = [
+        { y: 200, opacity: 0 }, // bottom
+        { x: -200, opacity: 0 }, // left
+        { x: 200, opacity: 0 }   // right
+    ];
+
+    children.forEach((child, index) => {
+        const animationType = animations[index % animations.length];
+        tl.from(child, {
+            ...animationType,
+            duration: 0.5,
+            ease: "power2.out"
+        }, index * 0.1); // slight stagger
+    });
+
+    // Optional: Return cleanup function for frameworks
+    return () => ScrollTrigger.getAll().forEach(st => st.kill());
 }

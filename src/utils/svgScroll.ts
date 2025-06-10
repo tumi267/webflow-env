@@ -5,7 +5,7 @@ import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 
 gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin, MotionPathPlugin);
 
-export function svgScroll(): void {
+export function svgScroll(id:string): void {
   gsap.set('.ball01', { x: -5, y: 0 ,autoAlpha: 1});
 
   // Pulses: start hidden & scaled down, then animate to visible + pulse
@@ -26,7 +26,7 @@ export function svgScroll(): void {
 
   const main = gsap.timeline({
     scrollTrigger: {
-      trigger: '#svg-stage',
+      trigger: `#${id}`,
       scrub: true,
       start: 'top center',
       end: '+=300%',

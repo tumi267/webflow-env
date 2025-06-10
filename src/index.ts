@@ -28,7 +28,7 @@ import { slideInRightScroll } from '$utils/slide-in-right-scroll';
 import { toggleScroll } from '$utils/toggle-scroll';
 import { colorChange } from '$utils/color-change-scroll';
 import { horizontalScroll } from '$utils/horizontalScroll';
-import { threePanelfade } from '$utils/threepanelfadein';
+import { threePanelFade } from '$utils/threepanelfadein';
 import { svgScroll } from '$utils/svgScroll';
 import { Contextual } from '$utils/contextual';
 import { videoScrub } from './utils/videoScrub';
@@ -125,12 +125,12 @@ toggleScroll('toggle-element-scroll')
 // step based
 
 // three panel fade in from differant directions
-threePanelfade()
+threePanelFade('panel-wrapper')
 // svg follow the scroll
-svgScroll()
+svgScroll('svg_contain')
 
 // horizontal scroll
-horizontalScroll()
+horizontalScroll('container_horizontal')
 
 // Contextual/popups
 Contextual('Contextual')

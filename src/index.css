@@ -144,7 +144,7 @@ visibility: hidden;
         color: aliceblue;
         }
 
-.svg_contain {
+#svg_contain {
     position: relative;
     z-index: 2;
   }
@@ -165,21 +165,11 @@ text {
   font-size: 15px; 
   visibility: hidden;
 }
-        .svg_contain{
+        #svg_contain{
             background-color: grey;
             margin: auto;
         }
-.container_horizontal{
-    display: flex;
-    flex-wrap: nowrap;
-    width: max-content;
-    height: 100vh;
-}
-.horizontal-scroll-section {
-    position: relative;
-    height: 100vh; /* required for pinning */
-    overflow: hidden;
-  }
+
   
   #container_horizontal {
     display: flex;
@@ -199,9 +189,7 @@ text {
     margin: auto;
     display: none;
   }
-  /* #myVideo{
-    position: relative;
-  }*/
+
   .vid{
 
     height: 600px;

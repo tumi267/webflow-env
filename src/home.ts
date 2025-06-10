@@ -153,12 +153,42 @@ if (progress_bar_scroll && toggle_element_scroll && container_horizontal && Cont
   console.error('One or more elements were not found');
 }
 
+const svgContain = document.getElementById('svg_contain') as HTMLElement | null;
+const panelWrapper = document.getElementById('panel-wrapper') as HTMLElement | null;
 
-const svg_contain = document.getElementsByClassName('svg_contain')
-const panel_wrapper = document.getElementsByClassName('panel-wrapper')
+// Check if elements exist before manipulation
+if (svgContain) {
+    svgContain.innerHTML = `
+        <svg id="svg-stage" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 1200">
+            <path class="line01 line" d="M 10 200 600 200" stroke="black" stroke-width="2"></path>
+            <path class="line02 line" d="M 10 400 600 400" stroke="black" stroke-width="2"></path>
+            <path class="line03 line" d="M 10 600 600 600" stroke="black" stroke-width="2"></path>
+            <path class="line04 line" d="M 10 800 600 800" stroke="black" stroke-width="2"></path>
+            <path class="line05 line" d="M 10 1000 600 1000" stroke="black" stroke-width="2"></path>
+            <text class="text01" x="30" y="190">2018</text>
+            <text class="text02" x="30" y="390">2019</text>
+            <text class="text03" x="30" y="590">2020</text>
+            <path class="theLine" d="M -5,0 Q 450 230 300 450 T 130 750 Q 100 850 300 1000 T 150 1200" 
+                  fill="none" stroke="white" stroke-width="10px" />
+            <circle class="ball ball01" r="20" cx="-5" cy="0" fill="red"></circle>
+            <circle class="ball ball02" r="20" cx="278" cy="201" fill="blue"></circle>
+            <circle class="ball ball03" r="20" cx="327" cy="401" fill="green"></circle>
+            <circle class="ball ball04" r="20" cx="203" cy="601" fill="yellow"></circle>
+        </svg>
+    `;
+} else {
+    console.error('SVG container element not found');
+}
 
-svg_contain[0].innerHTML='<svg id="svg-stage" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 1200"><path class="line01 line" d="M 10 200 600 200" stroke="black" stroke-width="2"></path><path class="line02 line" d="M 10 400 600 400" stroke="black" stroke-width="2"></path><path class="line03 line" d="M 10 600 600 600" stroke="black" stroke-width="2"></path><path class="line04 line" d="M 10 800 600 800" stroke="black" stroke-width="2"></path><path class="line05 line" d="M 10 1000 600 1000" stroke="black" stroke-width="2"></path><text class="text01" x="30" y="190">2018</text><text class="text02" x="30" y="390">2019</text><text class="text03" x="30" y="590">2020</text><path class="theLine" d="M -5,0 Q 450 230 300 450 T 130 750 Q 100 850 300 1000 T 150 1200" fill="none" stroke="white" stroke-width="10px" /><circle class="ball ball01" r="20" cx="-5" cy="0" fill="red"></circle><circle class="ball ball02" r="20" cx="278" cy="201" fill="blue"></circle><circle class="ball ball03" r="20" cx="327" cy="401" fill="green"></circle><circle class="ball ball04" r="20" cx="203" cy="601" fill="yellow"></circle></svg>'
-panel_wrapper[0].innerHTML='<section class="panel red from-bottom"><div>ONE</div></section><section class="panel orange from-left"><div>TWO</div></section><section class="panel purple from-right">THREE</section>'
+if (panelWrapper) {
+    panelWrapper.innerHTML = `
+        <section class="panel red from-bottom"><div>ONE</div></section>
+        <section class="panel orange from-left"><div>TWO</div></section>
+        <section class="panel purple from-right">THREE</section>
+    `;
+} else {
+    console.error('Panel wrapper element not found');
+}
 
 
 const video=document.getElementById('myVideo')

@@ -3,33 +3,38 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export function horizontalScroll(): void {
-  const container = document.querySelector('.container_horizontal') as HTMLElement | null;
-  const panels = gsap.utils.toArray<HTMLElement>('.panel_horizontal');
-  const panelCount = panels.length;
-
-  if (!container || panelCount === 0) {
-    console.warn('horizontalScroll: container or panels not found.');
+export function horizontalScroll(id: string): void {
+  const container = document.querySelector(`#${id}`) as HTMLElement | null;
+console.log(id)
+  if (!container) {
+    console.warn('horizontalScroll: container not found.');
     return;
   }
 
-  // Set container width to accommodate all panels
+  // Scope the panels to only those inside the container
+  const panels = Array.from(container.querySelectorAll<HTMLElement>('.panel_horizontal'));
+  const panelCount = panels.length;
+
+  if (panelCount === 0) {
+    console.warn('horizontalScroll: No .panel_horizontal elements found inside container.');
+    return;
+  }
+
+  // Set the container's width to fit all panels horizontally
   gsap.set(container, {
     width: `${100 * panelCount}vw`
   });
 
-  // Create horizontal scroll animation
+  // Create the horizontal scroll animation
   gsap.to(panels, {
-    xPercent: -100 * (panelCount ),
+    xPercent: -100 * (panelCount - 1),
     ease: "none",
     scrollTrigger: {
       trigger: container,
-      
       pin: true,
       scrub: 1,
-      snap: 1 / (panelCount ),
-      end: () => "+=" + (container.scrollWidth - window.innerWidth),
-     
+      snap: 1 / (panelCount - 1),
+      end: () => "+=" + (container.scrollWidth - window.innerWidth)
     }
   });
 }
