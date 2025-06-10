@@ -15,7 +15,7 @@ export function zoom (id:String){
         start: "top center",
         end: "bottom 20%",
         scrub: 0.5,
-        markers: false // Enable for debugging
+      
       }
     }
   );

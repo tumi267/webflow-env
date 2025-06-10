@@ -5,3 +5,6 @@
 
 # Mark lock files as generated (optional)
 *.lock linguist-generated=true
+
+*.js linguist-language=JavaScript
+*.css linguist-language=CSS

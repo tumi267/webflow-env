@@ -17,7 +17,7 @@ export function rollReveal(
       start: "top center",   // When top of element hits 80% viewport
       end: "bottom 10%",     // When top hits 20% viewport
       scrub:true,
-      markers: false      // Enable for debugging
+   
     }
   });
   tl.to(`#${id}`, {

@@ -16,7 +16,7 @@ export function videoScrub() {
       end: `+=${vid.duration * 1500}`,
       pin: true,
       scrub: true,
-      // markers: true,
+      
       onUpdate: (self) => {
         scrubbedTime = vid.duration * self.progress;
       },

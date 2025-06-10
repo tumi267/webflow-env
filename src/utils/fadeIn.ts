@@ -10,7 +10,7 @@ export function fadeIn (id:string){
         start: "top center",   // When the top of `.fade_in` hits 80% of the viewport
         end: "bottom 20%",     // When the top of `.fade_in` hits 20% of the viewport
         scrub:true,
-        // markers: true // Optional: Visual debugging (remove in production)
+        
       }
       });
 }

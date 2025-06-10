@@ -18,7 +18,7 @@ export function initLineAnimations(id:string) {
         start: 'top 75%',
         end: 'bottom 25%',
         scrub: true,
-        markers: false
+        
       }
     });
 

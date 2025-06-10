@@ -11,7 +11,7 @@ export function slideInRight (id:string){
           start: "top center",          // When top hits 75% of viewport
           end: "bottom 10%",            // When top hits 25% of viewport
           scrub:true,
-          markers: false             // Enable for debugging (set to true)
+          
         }
       }); 
 }

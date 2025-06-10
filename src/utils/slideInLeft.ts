@@ -12,7 +12,7 @@ export function slideInLeft (id:string){
           start: "top center",
           end: "bottom 10%",
           scrub:true,
-          markers: false // Set to true for debugging
+         
         }
       });
 }

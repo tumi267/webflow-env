@@ -24,7 +24,7 @@ export function vidOnSnap() {
       end: `+=${scrollDistance}`,
       pin: true,
       scrub: true, // Smooth scrubbing
-      // markers: true, // For debugging (remove in production)
+     
       onUpdate: (self) => {
         if (vid.duration) {
           // Directly set currentTime for immediate scrubbing

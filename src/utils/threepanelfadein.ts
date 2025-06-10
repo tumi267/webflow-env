@@ -24,7 +24,7 @@ export function threePanelFade(id: string) {
             end: `+=${children.length * 100}%`,
             scrub: true,
             pin: true,
-            markers: true // helpful for debugging (remove in production)
+           
         }
     });
 

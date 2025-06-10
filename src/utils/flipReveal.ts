@@ -17,7 +17,7 @@ export function flipReveal (id:string){
       start: "top 80%",
       end: "top 30%",
       toggleActions: "play none none none",
-      markers: false, // Enable for debugging
+      
       scrub:true,
       }
     })
