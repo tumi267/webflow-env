@@ -1,6 +1,6 @@
-import { gsap } from 'gsap';
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { SplitText } from "gsap/SplitText";
+import { gsap, ScrollTrigger } from '$utils/gsap-core';
+import { SplitText } from 'gsap/SplitText';
+
 
 export function initCharAnimations(id: string) {
    

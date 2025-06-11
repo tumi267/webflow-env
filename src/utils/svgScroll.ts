@@ -1,9 +1,8 @@
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { gsap, ScrollTrigger } from '$utils/gsap-core';
 import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin';
 import { MotionPathPlugin } from 'gsap/MotionPathPlugin';
 
-gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin, MotionPathPlugin);
+gsap.registerPlugin( DrawSVGPlugin, MotionPathPlugin);
 
 export function svgScroll(id:string): void {
   gsap.set('.ball01', { x: -5, y: 0 ,autoAlpha: 1});

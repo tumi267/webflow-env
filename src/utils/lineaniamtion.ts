@@ -1,8 +1,7 @@
-import { gsap } from 'gsap';
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap, ScrollTrigger } from '$utils/gsap-core';
 import { SplitText } from "gsap/SplitText";
 
-gsap.registerPlugin(ScrollTrigger, SplitText);
+
 
 export function initLineAnimations(id:string) {
   document.addEventListener('DOMContentLoaded', () => {

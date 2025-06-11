@@ -1,6 +1,2 @@
 # Auto detect text files and perform LF normalization
 * text=auto
-# Force GitHub to treat these built files as non-generated (i.e. show in diffs)
-dist/index.js linguist-generated=false
-dist/home.js linguist-generated=false
-dist/index.css linguist-generated=false

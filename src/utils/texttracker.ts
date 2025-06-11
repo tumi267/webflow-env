@@ -1,5 +1,4 @@
-
-import { gsap } from 'gsap';
+import { gsap, ScrollTrigger } from '$utils/gsap-core';
 
 export function initTracking(){
     const trackingText = document.querySelector('.tracking_text');

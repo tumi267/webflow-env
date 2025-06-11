@@ -1,5 +1,4 @@
-import { gsap } from 'gsap';
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap, ScrollTrigger } from '$utils/gsap-core';
 
 export function toggleScroll(id:string){
     ScrollTrigger.create({

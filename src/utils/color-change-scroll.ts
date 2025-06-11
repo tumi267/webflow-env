@@ -1,7 +1,4 @@
-import { gsap } from 'gsap';
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
+import { gsap, ScrollTrigger } from '$utils/gsap-core';
 
 export function colorChange(id: string) {
   const parent = document.getElementById(id);

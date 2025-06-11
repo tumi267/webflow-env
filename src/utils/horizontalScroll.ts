@@ -1,11 +1,8 @@
-import { gsap } from 'gsap';
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
+import { gsap, ScrollTrigger } from '$utils/gsap-core';
 
 export function horizontalScroll(id: string): void {
   const container = document.querySelector(`#${id}`) as HTMLElement | null;
-console.log(id)
+
   if (!container) {
     console.warn('horizontalScroll: container not found.');
     return;

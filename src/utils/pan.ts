@@ -1,4 +1,4 @@
-import { gsap } from 'gsap';
+import { gsap, ScrollTrigger } from '$utils/gsap-core';
 
 export function pan(id:string) {
   const container = document.querySelector(`#${id}`) as HTMLElement;
