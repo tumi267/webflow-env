@@ -22,11 +22,12 @@ const context = await esbuild.context({
   minify: PRODUCTION,
   sourcemap: !PRODUCTION,
   target: PRODUCTION ? 'es2020' : 'esnext',
+  splitting:true,
   inject: LIVE_RELOAD ? ['./bin/live-reload.js'] : undefined,
   define: {
     SERVE_ORIGIN: JSON.stringify(SERVE_ORIGIN),
   },
-  format: 'iife',          // Self-executing function for global scope
+  format: 'esm',          // Self-executing function for global scope
   globalName: 'webflowEnv',
 });
 
