@@ -1,7 +1,9 @@
-import { gsap, ScrollTrigger } from '$utils/gsap-core';
 
+export async function vidOnSnap() {
+    // Dynamically import GSAP and its plugins
+    const { gsap } = await import('gsap');
+    const { ScrollTrigger } = await import('gsap/ScrollTrigger');
 
-export function vidOnSnap() {
   const vid = document.querySelector(".vid2") as HTMLVideoElement;
   if (!vid) return;
 

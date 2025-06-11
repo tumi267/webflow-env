@@ -1,5 +1,9 @@
-import { gsap, ScrollTrigger } from '$utils/gsap-core';
-export function fadeIn (id:string){
+
+export async function fadeIn (id:string){
+      // Dynamically import GSAP and its plugins
+      const { gsap } = await import('gsap');
+      const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+      gsap.registerPlugin(ScrollTrigger);
     gsap.from(`#${id}`, {
         opacity: 0,
         duration: 6,

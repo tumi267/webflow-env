@@ -7,7 +7,14 @@ const BUILD_DIRECTORY = 'dist';
 const PRODUCTION = process.env.NODE_ENV === 'production';
 
 // Config entrypoint files
-const ENTRY_POINTS = ['src/index.ts', 'src/home.ts', 'src/index.css','src/text.ts','src/scroll.ts','src/images.ts'];
+const ENTRY_POINTS = [
+  'src/index.ts',
+  'src/home.ts',
+  'src/index.css',
+  'src/text.ts',
+  'src/scroll.ts',
+  'src/images.ts'
+];
 
 // Config dev serving
 const LIVE_RELOAD = !PRODUCTION;
@@ -19,26 +26,25 @@ const context = await esbuild.context({
   bundle: true,
   entryPoints: ENTRY_POINTS,
   outdir: BUILD_DIRECTORY,
-  minify: PRODUCTION,
+  format: 'iife',
+
   sourcemap: !PRODUCTION,
   target: PRODUCTION ? 'es2020' : 'esnext',
-  splitting:true,
   inject: LIVE_RELOAD ? ['./bin/live-reload.js'] : undefined,
   define: {
     SERVE_ORIGIN: JSON.stringify(SERVE_ORIGIN),
   },
-  format: 'esm',          // Self-executing function for global scope
-  globalName: 'webflowEnv',
+  minify: PRODUCTION,
+  minifyIdentifiers: PRODUCTION,
+  minifySyntax: PRODUCTION,
+  minifyWhitespace: PRODUCTION,
 });
 
 // Build files in prod
 if (PRODUCTION) {
   await context.rebuild();
   context.dispose();
-}
-
-// Watch and serve files in dev
-else {
+} else {
   await context.watch();
   await context
     .serve({
@@ -52,11 +58,6 @@ else {
  * Logs information about the files that are being served during local development.
  */
 function logServedFiles() {
-  /**
-   * Recursively gets all files in a directory.
-   * @param {string} dirPath
-   * @returns {string[]} An array of file paths.
-   */
   const getFiles = (dirPath) => {
     const files = readdirSync(dirPath, { withFileTypes: true }).map((dirent) => {
       const path = join(dirPath, dirent.name);
@@ -72,13 +73,10 @@ function logServedFiles() {
     .map((file) => {
       if (file.endsWith('.map')) return;
 
-      // Normalize path and create file location
       const paths = file.split(sep);
       paths[0] = SERVE_ORIGIN;
-
       const location = paths.join('/');
 
-      // Create import suggestion
       const tag = location.endsWith('.css')
         ? `<link href="${location}" rel="stylesheet" type="text/css"/>`
         : `<script defer src="${location}"></script>`;
@@ -90,6 +88,5 @@ function logServedFiles() {
     })
     .filter(Boolean);
 
-  // eslint-disable-next-line no-console
   console.table(filesInfo);
 }

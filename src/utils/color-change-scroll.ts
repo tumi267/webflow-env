@@ -1,6 +1,10 @@
-import { gsap, ScrollTrigger } from '$utils/gsap-core';
 
-export function colorChange(id: string) {
+
+export async function colorChange(id: string) {
+      // Dynamically import GSAP and its plugins
+      const { gsap } = await import('gsap');
+      const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+     
   const parent = document.getElementById(id);
   const child = parent?.firstElementChild as HTMLElement | null;
 

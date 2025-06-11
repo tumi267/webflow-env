@@ -1,9 +1,8 @@
-import { gsap, ScrollTrigger } from '$utils/gsap-core';
-import { SplitText } from 'gsap/SplitText';
-
-gsap.registerPlugin( SplitText);
-
-export function initWordAnimations(id: string) {
+export async function initWordAnimations(id: string) {
+        // Dynamically import GSAP and its plugins
+    const { gsap } = await import('gsap');
+    const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+    const { SplitText } = await import('gsap/SplitText');
   document.addEventListener('DOMContentLoaded', () => {
     const split = SplitText.create(`#${id}`, {
       type: 'words',

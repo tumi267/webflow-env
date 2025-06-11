@@ -1,6 +1,10 @@
-import { gsap, ScrollTrigger } from '$utils/gsap-core';
 
-export function horizontalScroll(id: string): void {
+
+export async function horizontalScroll(id: string):Promise<void>  {
+      // Dynamically import GSAP and its plugins
+      const { gsap } = await import('gsap');
+      const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+      gsap.registerPlugin(ScrollTrigger);
   const container = document.querySelector(`#${id}`) as HTMLElement | null;
 
   if (!container) {

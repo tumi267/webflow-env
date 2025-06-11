@@ -1,5 +1,8 @@
-import { gsap, ScrollTrigger } from '$utils/gsap-core';
-export function slideInRightScroll(id:string){
+export async function slideInRightScroll(id:string){
+      // Dynamically import GSAP and its plugins
+      const { gsap } = await import('gsap');
+      const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+      gsap.registerPlugin(ScrollTrigger);
     gsap.from(`#${id}`, {
         scrollTrigger: {
           trigger: `#${id}`,

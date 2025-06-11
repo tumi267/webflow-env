@@ -1,6 +1,9 @@
-import { gsap, ScrollTrigger } from '$utils/gsap-core';
-
-export function toggleScroll(id:string){
+export async function toggleScroll(id:string){
+    // Dynamically import GSAP and its plugins
+    const { gsap } = await import('gsap');
+    const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+    gsap.registerPlugin(ScrollTrigger)
+    
     ScrollTrigger.create({
         trigger: `#${id}`,
         start: "top center",

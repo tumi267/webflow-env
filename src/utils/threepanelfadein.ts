@@ -1,7 +1,8 @@
-import { gsap, ScrollTrigger } from '$utils/gsap-core';
-
-export function threePanelFade(id: string) {
-    
+export async function threePanelFade(id: string) {
+        // Dynamically import GSAP and its plugins
+        const { gsap } = await import('gsap');
+        const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+        gsap.registerPlugin(ScrollTrigger);
     
     const wrapper = document.getElementById(id);
     if (!wrapper) {

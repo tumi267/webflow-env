@@ -1,9 +1,13 @@
-import { gsap, ScrollTrigger } from '$utils/gsap-core';
-import { SplitText } from "gsap/SplitText";
 
 
 
-export function initLineAnimations(id:string) {
+
+export async function initLineAnimations(id:string) {
+      // Dynamically import GSAP and its plugins
+      const { gsap } = await import('gsap');
+      const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+      const { SplitText } = await import('gsap/SplitText');
+      
   document.addEventListener('DOMContentLoaded', () => {
     const split = SplitText.create(`#${id}`, {
       type: 'lines'

@@ -1,6 +1,10 @@
-import { gsap, ScrollTrigger } from '$utils/gsap-core';
 
-export function rotateScroll(id: string) {
+
+export async function rotateScroll(id: string) {
+      // Dynamically import GSAP and its plugins
+      const { gsap } = await import('gsap');
+      const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+      gsap.registerPlugin(ScrollTrigger);
   const parent = document.getElementById(id);
   if (!parent) return;
 

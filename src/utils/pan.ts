@@ -1,6 +1,11 @@
-import { gsap, ScrollTrigger } from '$utils/gsap-core';
 
-export function pan(id:string) {
+
+export async function pan(id:string) {
+      // Dynamically import GSAP and its plugins
+      const { gsap } = await import('gsap');
+      const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+      const { SplitText } = await import('gsap/SplitText');
+      
   const container = document.querySelector(`#${id}`) as HTMLElement;
   if (!container) return;
 

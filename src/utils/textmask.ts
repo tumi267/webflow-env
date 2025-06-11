@@ -1,8 +1,9 @@
-import { gsap, ScrollTrigger } from '$utils/gsap-core';
-import { SplitText } from "gsap/SplitText";
-
-export function initMaskAnimation() {
-   
+export async function initMaskAnimation() {
+      // Dynamically import GSAP and its plugins
+      const { gsap } = await import('gsap');
+      const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+      const { SplitText } = await import('gsap/SplitText');
+      gsap.registerPlugin(ScrollTrigger);
     document.addEventListener('DOMContentLoaded', () => {
 
         let char=SplitText.create(".headline",{

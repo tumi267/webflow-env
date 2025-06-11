@@ -1,6 +1,8 @@
-import { gsap, ScrollTrigger } from '$utils/gsap-core';
-
-export function zoom (id:String){
+export async function zoom (id:String){
+    // Dynamically import GSAP and its plugins
+    const { gsap } = await import('gsap');
+    const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+    const { SplitText } = await import('gsap/SplitText');
     gsap.fromTo(`#${id}`,
     {
       scale: 1

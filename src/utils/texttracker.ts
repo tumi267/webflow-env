@@ -1,6 +1,9 @@
-import { gsap, ScrollTrigger } from '$utils/gsap-core';
+export async function initTracking(){
+    // Dynamically import GSAP and its plugins
+    const { gsap } = await import('gsap');
+    const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+    const { SplitText } = await import('gsap/SplitText');
 
-export function initTracking(){
     const trackingText = document.querySelector('.tracking_text');
 
     // Add mousemove effect

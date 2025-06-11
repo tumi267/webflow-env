@@ -1,8 +1,12 @@
-import { gsap, ScrollTrigger } from '$utils/gsap-core';
-export function rollReveal(
+export async function rollReveal(
   id: string ,
   duration: number = 2
 ) {
+
+      // Dynamically import GSAP and its plugins
+      const { gsap } = await import('gsap');
+      const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+      gsap.registerPlugin(ScrollTrigger);
   // Set initial clip path
   gsap.set(`#${id}`, {
     clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)"

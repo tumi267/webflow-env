@@ -1,7 +1,8 @@
-import { gsap, ScrollTrigger } from '$utils/gsap-core';
-
-
-export function videoScrub() {
+export async function videoScrub() {
+      // Dynamically import GSAP and its plugins
+    const { gsap } = await import('gsap');
+    const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+ 
   const vid = document.querySelector(".vid") as HTMLVideoElement;
   if (!vid) return;
 

@@ -1,14 +1,14 @@
-import { gsap, ScrollTrigger } from '$utils/gsap-core';
-
 const CHARACTERS = "01";
 
 class TextDecoder {
     private originalTexts: string[] = [];
     private textNodes: Text[] = [];
     private target: HTMLElement;
+    private gsap: any;
 
-    constructor(target: HTMLElement) {
+    constructor(target: HTMLElement, gsap: any) {
         this.target = target;
+        this.gsap = gsap;
         this.initialize();
     }
 
@@ -43,10 +43,10 @@ class TextDecoder {
         const obj = { progress: 0 };
         const totalLength = this.originalTexts.reduce((sum, text) => sum + text.length, 0);
 
-        gsap.killTweensOf(obj);
+        this.gsap.killTweensOf(obj);
         this.scrambleAll();
 
-        gsap.to(obj, {
+        this.gsap.to(obj, {
             progress: totalLength,
             duration,
             ease: "none",
@@ -80,12 +80,15 @@ class TextDecoder {
     }
 }
 
-export function initDecodeAnimations() {
-
-
+export async function initDecodeAnimations() {
+    // Dynamically import GSAP and its plugins
+    const { gsap } = await import('gsap');
+    const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+    gsap.registerPlugin(ScrollTrigger);
+    
     document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll<HTMLElement>('.decode').forEach(element => {
-            const decoder = new TextDecoder(element);
+            const decoder = new TextDecoder(element, gsap);
             
             ScrollTrigger.create({
                 trigger: element,
@@ -97,10 +100,4 @@ export function initDecodeAnimations() {
             });
         });
     });
-}
-
-// Optional: Direct decode function if you want to trigger manually
-export function decodeElement(element: HTMLElement, duration: number = 2) {
-    const decoder = new TextDecoder(element);
-    decoder.decode(duration);
 }
