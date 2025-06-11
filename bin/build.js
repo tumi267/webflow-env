@@ -26,14 +26,17 @@ const context = await esbuild.context({
   bundle: true,
   entryPoints: ENTRY_POINTS,
   outdir: BUILD_DIRECTORY,
-  format: 'iife',
-
+  splitting: true,
+  format: 'esm',
   sourcemap: !PRODUCTION,
   target: PRODUCTION ? 'es2020' : 'esnext',
   inject: LIVE_RELOAD ? ['./bin/live-reload.js'] : undefined,
   define: {
     SERVE_ORIGIN: JSON.stringify(SERVE_ORIGIN),
   },
+  outExtension: { '.js': '.mjs' }, // Helps with module recognition
+  chunkNames: 'chunks/[name]-[hash]', // Better chunk organization
+  treeShaking: true,
   minify: PRODUCTION,
   minifyIdentifiers: PRODUCTION,
   minifySyntax: PRODUCTION,
