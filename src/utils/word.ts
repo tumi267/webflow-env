@@ -20,7 +20,7 @@ export async function initWordAnimations(id: string): Promise<() => void> {
           console.warn(`Element #${id} not found`);
           return;
         }
-  
+
         // Create SplitText instance
         splitInstance = SplitText.create(element, {
           type: 'words',
