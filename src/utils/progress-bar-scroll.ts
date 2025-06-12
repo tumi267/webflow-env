@@ -1,5 +1,5 @@
 
-export async function progressBar(id:string){
+export async function progressBar(id:string,start:number){
       // Dynamically import GSAP and its plugins
       const { gsap } = await import('gsap');
       const { ScrollTrigger } = await import('gsap/ScrollTrigger');
@@ -14,9 +14,10 @@ export async function progressBar(id:string){
     gsap.to(children, {
         scrollTrigger: {
           trigger: `#${id}`,
-          start: "top 35%",
-          end: "top 1%",
+          start: `top ${start}%`,
+          end: "top top",
           scrub: 3,
+       
         },
         width: "100%"
       });

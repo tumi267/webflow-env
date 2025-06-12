@@ -1,4 +1,4 @@
-export async function zoom (id:String){
+export async function zoom (id:String,start:Number){
     // Dynamically import GSAP and its plugins
     const { gsap } = await import('gsap');
     const { ScrollTrigger } = await import('gsap/ScrollTrigger');
@@ -13,10 +13,9 @@ export async function zoom (id:String){
       ease: "power2.out",
       scrollTrigger: {
         trigger: `#${id}`,
-        start: "top center",
+        start: `top ${start}%`,
         end: "bottom 20%",
         scrub: 0.5,
-      
       }
     }
   );

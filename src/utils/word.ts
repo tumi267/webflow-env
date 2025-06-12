@@ -1,4 +1,4 @@
-export async function initWordAnimations(id: string): Promise<() => void> {
+export async function initWordAnimations(id: string) {
     try {
       // Dynamic imports with proper typing
       const { gsap } = await import('gsap');
@@ -12,13 +12,10 @@ export async function initWordAnimations(id: string): Promise<() => void> {
   
       let splitInstance: SplitText | null = null;
       let scrollTriggerInstance: ScrollTrigger | null = null;
-      const cleanupFns: (() => void)[] = [];
-  
-      const init = () => {
+
         const element = document.getElementById(id);
         if (!element) {
           console.warn(`Element #${id} not found`);
-          return;
         }
 
         // Create SplitText instance
@@ -31,11 +28,11 @@ export async function initWordAnimations(id: string): Promise<() => void> {
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: element,
-            start: 'top 80%',
-            end: 'top 30%',
+            start: 'top center',
+            end: 'top 20%',
             scrub: true,
             markers: false,
-            invalidateOnRefresh: true
+
           }
         });
   
@@ -54,45 +51,7 @@ export async function initWordAnimations(id: string): Promise<() => void> {
             from: 'random'
           }
         });
-  
-        // Throttled resize handler
-        const onResize = () => {
-          splitInstance?.revert();
-          scrollTriggerInstance?.refresh();
-          init();
-        };
-  
-        const throttledResize = gsap.utils.throttle(onResize, 200);
-        const resizeObserver = new ResizeObserver(throttledResize);
-        resizeObserver.observe(element);
-        cleanupFns.push(() => resizeObserver.disconnect());
-  
-        return () => {
-          splitInstance?.revert();
-          scrollTriggerInstance?.kill();
-        };
-      };
-  
-      // Handle DOM ready state
-      if (document.readyState === 'complete') {
-        const animationCleanup = init();
-        if (animationCleanup) cleanupFns.push(animationCleanup);
-      } else {
-        const domLoadedHandler = () => {
-          const animationCleanup = init();
-          if (animationCleanup) cleanupFns.push(animationCleanup);
-        };
-        document.addEventListener('DOMContentLoaded', domLoadedHandler);
-        cleanupFns.push(() => {
-          document.removeEventListener('DOMContentLoaded', domLoadedHandler);
-        });
-      }
-  
-      // Return comprehensive cleanup function
-      return () => {
-        cleanupFns.forEach(fn => fn());
-      };
-  
+      
     } catch (error) {
       console.error('Word animation initialization failed:', error);
       return () => {}; // Return no-op function if initialization fails

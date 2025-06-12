@@ -1,4 +1,4 @@
-export async function Pin(id:string){
+export async function Pin(id:string,start:number,end:number){
       // Dynamically import GSAP and its plugins
       const { gsap } = await import('gsap');
       const { ScrollTrigger } = await import('gsap/ScrollTrigger');
@@ -7,9 +7,10 @@ export async function Pin(id:string){
         scrollTrigger: {
           trigger: `#${id}`,
           pin: true,
-          start: "top top",
-          end: "+=500",
-          scrub:true
+          start: `top top`,
+          end: `bottom ${end}%`,
+          scrub:true,
+
         }
       });
 }

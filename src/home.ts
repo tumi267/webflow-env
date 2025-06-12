@@ -94,24 +94,24 @@ if(pan){
   console.log('no head found')
 }
 
-const fadeElement = document.getElementById("fade-element");
-const slideInLeftScroll = document.getElementById("slide-in-left-scroll");
-const slideInRightScroll = document.getElementById("slide-in-right-scroll");
+// const fadeElement = document.getElementById("fade-element");
+// const slideInLeftScroll = document.getElementById("slide-in-left-scroll");
+// const slideInRightScroll = document.getElementById("slide-in-right-scroll");
 const scaleUpScroll = document.getElementById("scale-up-scroll");
 const rotateScroll = document.getElementById("rotate-scroll");
 const staggerItemScroll = document.getElementById("stagger-item-scroll") ;
 const pinElementScroll = document.getElementById("pin");
 const colorChangeScroll = document.getElementById("color-change-scroll");
 
-if (fadeElement) {
-  fadeElement.innerHTML = `<div class="box fade-element">Fade In/Out</div>`;
-}
-if (slideInLeftScroll) {
-  slideInLeftScroll.innerHTML = `<div class="box slide-in-left">Slide In Left</div>`;
-}
-if (slideInRightScroll) {
-  slideInRightScroll.innerHTML = `<div class="box slide-in-right">Slide In Right</div>`;
-}
+// if (fadeElement) {
+//   fadeElement.innerHTML = `<div class="box fade-element">Fade In/Out</div>`;
+// }
+// if (slideInLeftScroll) {
+//   slideInLeftScroll.innerHTML = `<div class="box slide-in-left">Slide In Left</div>`;
+// }
+// if (slideInRightScroll) {
+//   slideInRightScroll.innerHTML = `<div class="box slide-in-right">Slide In Right</div>`;
+// }
 if (scaleUpScroll) {
   scaleUpScroll.innerHTML = `<div class="box scale-up">Scale Up</div>`;
 }

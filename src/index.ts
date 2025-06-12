@@ -43,15 +43,15 @@ import { vidOnSnap } from '$utils/vidOnSnap';
 // step based
 
 // three panel fade in from differant directions
-threePanelFade('panel-wrapper')
+threePanelFade('panel-wrapper',-10,false)
 // svg follow the scroll
-svgScroll('svg_contain')
+svgScroll('svg_contain',100,false)
 
 // horizontal scroll
-horizontalScroll('container_horizontal')
+horizontalScroll('container_horizontal',0,true)
 
 // Contextual/popups
-Contextual('Contextual')
+Contextual('Contextual',-10,false)
 // scrub video
 videoScrub()
 // play vid on snap

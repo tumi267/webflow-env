@@ -39,7 +39,7 @@ min-height: 100px;
     font-weight: bold;
   }
   /* Pin placeholder */
-  .pin {
+  #pin {
     height: 150px;
     background: #f5a623;
     display: flex;

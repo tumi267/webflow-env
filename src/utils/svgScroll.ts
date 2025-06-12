@@ -1,4 +1,4 @@
-export async function svgScroll(id: string): Promise<void> {
+export async function svgScroll(id: string,start:number,mark:boolean): Promise<void> {
   // Dynamically import GSAP and plugins
   const { gsap } = await import('gsap');
   const { ScrollTrigger } = await import('gsap/ScrollTrigger');
@@ -51,8 +51,9 @@ export async function svgScroll(id: string): Promise<void> {
     scrollTrigger: {
       trigger: `#${id}`,
       scrub: true,
-      start: 'top center',
+      start: `top ${start}`,
       end: '+=300%',
+      markers:mark?true:false,
     },
   });
 

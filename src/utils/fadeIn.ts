@@ -1,5 +1,5 @@
 
-export async function fadeIn (id:string){
+export async function fadeIn (id:string,start:number){
       // Dynamically import GSAP and its plugins
       const { gsap } = await import('gsap');
       const { ScrollTrigger } = await import('gsap/ScrollTrigger');
@@ -10,7 +10,7 @@ export async function fadeIn (id:string){
         ease: "power2.out",
         scrollTrigger: {
         trigger: `#${id}`, // Element that triggers the animation
-        start: "top center",   // When the top of `.fade_in` hits 80% of the viewport
+        start: `top ${start}`,   // When the top of `.fade_in` hits 80% of the viewport
         end: "bottom 20%",     // When the top of `.fade_in` hits 20% of the viewport
         scrub:true,
         
