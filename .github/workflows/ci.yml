@@ -1,0 +1,40 @@
+name: CI
+on: [pull_request]
+
+jobs:
+  Lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      # Force npm instead of pnpm
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies (npm)
+        run: |
+          npm install
+          # Delete pnpm-lock if it exists
+          rm -f pnpm-lock.yaml
+
+      # Run the Finsweet linter with npm
+      - name: Lint 
+        run: npm run lint
+
+  Tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies (npm)
+        run: npm install
+
+      - name: Test
+        run: npm test

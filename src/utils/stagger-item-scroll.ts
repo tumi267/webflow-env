@@ -1,4 +1,4 @@
-export async function staggerItemScroll(id: string) {
+export async function staggerItemScroll(id: string,start:number) {
       // Dynamically import GSAP and its plugins
   const { gsap } = await import('gsap');
   const { ScrollTrigger } = await import('gsap/ScrollTrigger');
@@ -13,8 +13,8 @@ export async function staggerItemScroll(id: string) {
   gsap.from(items, {
     scrollTrigger: {
       trigger: parent,
-      start: 'top 80%',
-      end: 'top center',
+      start: `top ${start}%`,
+      end: 'bottom 10%',
       scrub: true,
     },
     y: 50,

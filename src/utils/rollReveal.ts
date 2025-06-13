@@ -1,8 +1,8 @@
 export async function rollReveal(
   id: string ,
+  start:number,
   duration: number = 2
 ) {
-
       // Dynamically import GSAP and its plugins
       const { gsap } = await import('gsap');
       const { ScrollTrigger } = await import('gsap/ScrollTrigger');
@@ -17,10 +17,9 @@ export async function rollReveal(
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: `#${id}`,
-      start: "top center",   // When top of element hits 80% viewport
+      start: `top ${start}%`,   // When top of element hits 80% viewport
       end: "bottom 10%",     // When top hits 20% viewport
       scrub:true,
-   
     }
   });
   tl.to(`#${id}`, {

@@ -10,23 +10,23 @@ import { slideInRightScroll } from '$utils/slide-in-right-scroll';
 import { toggleScroll } from '$utils/toggle-scroll';
 import { colorChange } from '$utils/color-change-scroll';
 
-// scroll aniamtion
-// fadein scroll
-fadeInScroll('fade-element')
-// pin element scroll
-Pin('pin')
-// progress bar
-progressBar('progress-bar-scroll')
-// rotate scroll
-rotateScroll('rotate-scroll')
-// scale up on scroll
-growScroll('scale-up-scroll')
-// stager in
-staggerItemScroll('stagger-item-scroll')
-// slide in on scroll
-slideInLeftScroll('slide-in-left-scroll')
-slideInRightScroll('slide-in-right-scroll')
-// change color on scroll
-colorChange('color-change-scroll')
-// function call on scroll
-toggleScroll('toggle-element-scroll')
+// // scroll aniamtion
+// // fadein scroll
+// // fadeInScroll('fade-element')
+// // pin element scroll
+// Pin('pin',5,-300)
+// // progress bar
+// progressBar('progress-bar-scroll',20)
+// // rotate scroll
+// rotateScroll('rotate-scroll',20)
+// // scale up on scroll
+// // growScroll('scale-up-scroll')
+// // stager in
+// staggerItemScroll('stagger-item-scroll',10)
+// // slide in on scroll
+// // slideInLeftScroll('slide-in-left-scroll')
+// // slideInRightScroll('slide-in-right-scroll')
+// // change color on scroll
+// colorChange('color-change-scroll',10)
+// // function call on scroll
+// toggleScroll('toggle-element-scroll')

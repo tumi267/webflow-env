@@ -1,6 +1,6 @@
 
 
-export async function horizontalScroll(id: string):Promise<void>  {
+export async function horizontalScroll(id: string,start:number,mark:boolean):Promise<void>  {
       // Dynamically import GSAP and its plugins
       const { gsap } = await import('gsap');
       const { ScrollTrigger } = await import('gsap/ScrollTrigger');
@@ -34,8 +34,11 @@ export async function horizontalScroll(id: string):Promise<void>  {
       trigger: container,
       pin: true,
       scrub: 1,
+      
       snap: 1 / (panelCount - 1),
-      end: () => "+=" + (container.scrollWidth - window.innerWidth)
+      start: `top ${start}%`,
+      end: () => "+=" + (container.scrollWidth - window.innerWidth),
+      markers:mark,
     }
   });
 }

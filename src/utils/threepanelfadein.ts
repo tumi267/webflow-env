@@ -1,4 +1,4 @@
-export async function threePanelFade(id: string) {
+export async function threePanelFade(id: string,start:number,mark:boolean) {
         // Dynamically import GSAP and its plugins
         const { gsap } = await import('gsap');
         const { ScrollTrigger } = await import('gsap/ScrollTrigger');
@@ -20,11 +20,11 @@ export async function threePanelFade(id: string) {
     const tl = gsap.timeline({
         scrollTrigger: {
             trigger: wrapper,
-            start: "top top",
+            start: `top ${start}%`,
             end: `+=${children.length * 100}%`,
             scrub: true,
             pin: true,
-           
+            markers:mark?true:false,
         }
     });
 

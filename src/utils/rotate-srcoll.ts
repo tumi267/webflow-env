@@ -1,6 +1,6 @@
 
 
-export async function rotateScroll(id: string) {
+export async function rotateScroll(id: string,start:number) {
       // Dynamically import GSAP and its plugins
       const { gsap } = await import('gsap');
       const { ScrollTrigger } = await import('gsap/ScrollTrigger');
@@ -15,9 +15,10 @@ export async function rotateScroll(id: string) {
   gsap.from(children, {
     scrollTrigger: {
       trigger: parent,
-      start: "top 80%",
-      end: "top top",
+      start: `top ${start}%`,
+      end: "bottom -10%",
       scrub: true,
+      // markers:true,
     },
     rotation: 180,
     opacity: 0,

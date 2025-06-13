@@ -28,12 +28,26 @@ const line_amination = document.getElementById('line_amination')
     console.log('no head found')
   }
 
-const decode=document.getElementsByClassName('decode')
-decode[0].innerHTML=`<h2 class='.decode-item'>Decode</h2>`
-const line_amination_mask=document.getElementsByClassName('line_amination_mask')
-line_amination_mask[0].innerHTML='<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fermentum sodales odio non interdum. Morbi maximus lacus in ipsum ultrices, a fringilla turpis maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eu pellentesque velit. Integer egestas ut orci in fringilla. Nullam at vehicula tortor. Nunc bibendum turpis nec mollis mattis. Vivamus hendrerit aliquet massa. Nulla fermentum aliquet ullamcorper. Proin vitae orci sed diam gravida lacinia eu vitae nulla. Donec ultrices risus vitae convallis congue. Nulla non nisi ullamcorper, dictum nisi ut, hendrerit arcu. Nullam eu nibh augue. Donec eget dapibus mi. Quisque in posuere eros. Aliquam sit amet felis suscipit, egestas risus et, gravida lorem. Integer efficitur, turpis a vehicula scelerisque, odio enim rutrum tellus, a maximus urna metus id purus. Nunc sagittis semper tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Maecenas facilisis justo enim, at elementum mi feugiat quis. Nam consequat libero ut ligula placerat, nec interdum magna posuere. Quisque sagittis laoreet lectus efficitur ultricies. Sed eleifend, felis sed rutrum hendrerit, risus nibh mattis diam, vel suscipit ipsum risus vitae mi. Donec aliquet dapibus sodales.Fusce sit amet viverra augue, vitae varius purus. Vivamus et dignissim metus, eu ornare odio. In et dolor molestie, ultrices odio quis, hendrerit urna. Donec maximus nisl eget auctor cursus. Pellentesque ligula tortor, efficitur ut ornare ac, dapibus non purus. Nulla tellus sapien, finibus in neque ut, sollicitudin efficitur mauris. Vivamus quis arcu risus. Phasellus sed tincidunt dolor. Aenean aliquet posuere tincidunt.Cras vel congue dui. Sed nunc lectus, varius quis elit quis, tincidunt placerat lectus. Phasellus malesuada metus justo. In egestas, enim porta iaculis interdum, leo mi consequat sem, et pellentesque libero ipsum a dui. Aliquam efficitur purus nec tristique aliquam. Mauris quis varius magna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed fermentum vehicula lacus at convallis.Duis mattis accumsan est ac tincidunt. Ut ultrices fringilla suscipit. Nullam malesuada laoreet ante pretium gravida. Etiam consequat, justo eget posuere elementum, lectus nisi eleifend elit, sit amet malesuada nibh leo in lacus. Nulla pellentesque in massa ut bibendum. Cras elit quam, dapibus et magna vitae, imperdiet rutrum ligula. Vivamus placerat eget lectus in dignissim. Nam in gravida sapien, a aliquam erat. Etiam nec mollis ante. In tempor, quam vitae volutpat tempor, mauris ligula mattis eros, vitae venenatis augue neque vitae sapien. Curabitur ac volutpat lectus.</p>'
-const tracking_text=document.getElementsByClassName('tracking_text');
-tracking_text[0].innerHTML='<h1>Tracking Text</h1>'
+const decode=document.getElementById('decode')
+if(decode){
+  decode.innerHTML=`<h2 class='.decode-item'>Decode</h2>`
+}else{
+  console.log('no head found')
+}
+
+const line_amination_mask=document.getElementById('line_amination_mask')
+if(line_amination_mask){
+  line_amination_mask.innerHTML='<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec fermentum sodales odio non interdum. Morbi maximus lacus in ipsum ultrices, a fringilla turpis maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eu pellentesque velit. Integer egestas ut orci in fringilla. Nullam at vehicula tortor. Nunc bibendum turpis nec mollis mattis. Vivamus hendrerit aliquet massa. Nulla fermentum aliquet ullamcorper. Proin vitae orci sed diam gravida lacinia eu vitae nulla. Donec ultrices risus vitae convallis congue. Nulla non nisi ullamcorper, dictum nisi ut, hendrerit arcu. Nullam eu nibh augue. Donec eget dapibus mi. Quisque in posuere eros. Aliquam sit amet felis suscipit, egestas risus et, gravida lorem. Integer efficitur, turpis a vehicula scelerisque, odio enim rutrum tellus, a maximus urna metus id purus. Nunc sagittis semper tincidunt. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Maecenas facilisis justo enim, at elementum mi feugiat quis. Nam consequat libero ut ligula placerat, nec interdum magna posuere. Quisque sagittis laoreet lectus efficitur ultricies. Sed eleifend, felis sed rutrum hendrerit, risus nibh mattis diam, vel suscipit ipsum risus vitae mi. Donec aliquet dapibus sodales.Fusce sit amet viverra augue, vitae varius purus. Vivamus et dignissim metus, eu ornare odio. In et dolor molestie, ultrices odio quis, hendrerit urna. Donec maximus nisl eget auctor cursus. Pellentesque ligula tortor, efficitur ut ornare ac, dapibus non purus. Nulla tellus sapien, finibus in neque ut, sollicitudin efficitur mauris. Vivamus quis arcu risus. Phasellus sed tincidunt dolor. Aenean aliquet posuere tincidunt.Cras vel congue dui. Sed nunc lectus, varius quis elit quis, tincidunt placerat lectus. Phasellus malesuada metus justo. In egestas, enim porta iaculis interdum, leo mi consequat sem, et pellentesque libero ipsum a dui. Aliquam efficitur purus nec tristique aliquam. Mauris quis varius magna. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed fermentum vehicula lacus at convallis.Duis mattis accumsan est ac tincidunt. Ut ultrices fringilla suscipit. Nullam malesuada laoreet ante pretium gravida. Etiam consequat, justo eget posuere elementum, lectus nisi eleifend elit, sit amet malesuada nibh leo in lacus. Nulla pellentesque in massa ut bibendum. Cras elit quam, dapibus et magna vitae, imperdiet rutrum ligula. Vivamus placerat eget lectus in dignissim. Nam in gravida sapien, a aliquam erat. Etiam nec mollis ante. In tempor, quam vitae volutpat tempor, mauris ligula mattis eros, vitae venenatis augue neque vitae sapien. Curabitur ac volutpat lectus.</p>'
+}else{
+  console.log('no head found')
+}
+const tracking_text=document.getElementById('tracking_text');
+if(tracking_text){
+  tracking_text.innerHTML='<h1>Tracking Text</h1>'
+}else{
+  console.log('no head found')
+}
+
 
 
 
@@ -94,24 +108,24 @@ if(pan){
   console.log('no head found')
 }
 
-const fadeElement = document.getElementById("fade-element");
-const slideInLeftScroll = document.getElementById("slide-in-left-scroll");
-const slideInRightScroll = document.getElementById("slide-in-right-scroll");
+// const fadeElement = document.getElementById("fade-element");
+// const slideInLeftScroll = document.getElementById("slide-in-left-scroll");
+// const slideInRightScroll = document.getElementById("slide-in-right-scroll");
 const scaleUpScroll = document.getElementById("scale-up-scroll");
 const rotateScroll = document.getElementById("rotate-scroll");
 const staggerItemScroll = document.getElementById("stagger-item-scroll") ;
 const pinElementScroll = document.getElementById("pin");
 const colorChangeScroll = document.getElementById("color-change-scroll");
 
-if (fadeElement) {
-  fadeElement.innerHTML = `<div class="box fade-element">Fade In/Out</div>`;
-}
-if (slideInLeftScroll) {
-  slideInLeftScroll.innerHTML = `<div class="box slide-in-left">Slide In Left</div>`;
-}
-if (slideInRightScroll) {
-  slideInRightScroll.innerHTML = `<div class="box slide-in-right">Slide In Right</div>`;
-}
+// if (fadeElement) {
+//   fadeElement.innerHTML = `<div class="box fade-element">Fade In/Out</div>`;
+// }
+// if (slideInLeftScroll) {
+//   slideInLeftScroll.innerHTML = `<div class="box slide-in-left">Slide In Left</div>`;
+// }
+// if (slideInRightScroll) {
+//   slideInRightScroll.innerHTML = `<div class="box slide-in-right">Slide In Right</div>`;
+// }
 if (scaleUpScroll) {
   scaleUpScroll.innerHTML = `<div class="box scale-up">Scale Up</div>`;
 }

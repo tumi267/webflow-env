@@ -1,6 +1,6 @@
 
 
-export async function colorChange(id: string) {
+export async function colorChange(id: string,start:number) {
       // Dynamically import GSAP and its plugins
       const { gsap } = await import('gsap');
       const { ScrollTrigger } = await import('gsap/ScrollTrigger');
@@ -16,9 +16,9 @@ export async function colorChange(id: string) {
   gsap.to(child, {
     scrollTrigger: {
       trigger: parent,
-      start: "top center",
-      end: "bottom center",
-      scrub: true
+      start: `top ${start}%`,
+      end: "bottom top",
+      scrub: true,
     },
     backgroundColor: "#4a00e0",
     color: "#ffffff"

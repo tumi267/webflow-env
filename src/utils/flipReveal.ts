@@ -1,6 +1,6 @@
 
 
-export async function flipReveal (id:string){
+export async function flipReveal (id:string,start:number){
       // Dynamically import GSAP and its plugins
       const { gsap } = await import('gsap');
       const { ScrollTrigger } = await import('gsap/ScrollTrigger');
@@ -16,10 +16,9 @@ export async function flipReveal (id:string){
       const tl = gsap.timeline({
       scrollTrigger: {
       trigger: parent,
-      start: "top 80%",
-      end: "top 30%",
+      start: `top ${start}%`,
+      end: "bottom 20%",
       toggleActions: "play none none none",
-      
       scrub:true,
       }
     })

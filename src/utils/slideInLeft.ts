@@ -1,4 +1,4 @@
-export async function slideInLeft (id:string){
+export async function slideInLeft (id:string,start:number){
       // Dynamically import GSAP and its plugins
       const { gsap } = await import('gsap');
       const { ScrollTrigger } = await import('gsap/ScrollTrigger');
@@ -10,7 +10,7 @@ export async function slideInLeft (id:string){
         ease: "power3.out",
         scrollTrigger: {
           trigger: `#${id}`,
-          start: "top center",
+          start: `top ${start}%`,
           end: "bottom 10%",
           scrub:true,
          

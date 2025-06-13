@@ -2,7 +2,7 @@ body {
     /* background-color: rgb(255, 0, 0); */
     overflow-x: hidden;
 }
-.tracking_text{
+#tracking_text{
 margin: auto;
 justify-content: center;
 align-items: center;
@@ -39,7 +39,7 @@ min-height: 100px;
     font-weight: bold;
   }
   /* Pin placeholder */
-  .pin {
+  #pin {
     height: 150px;
     background: #f5a623;
     display: flex;
