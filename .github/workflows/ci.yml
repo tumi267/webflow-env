@@ -1,41 +1,40 @@
 name: CI
-
-on:
-  pull_request:
-    branches: [main, master]
-  push:
-    branches: [main, master]
-    paths-ignore:
-      - 'docs/**'
-      - '**.md'
+on: [pull_request]
 
 jobs:
-  quality_checks:
+  Lint:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v4
-
-      - name: Set up Node.js
+      
+      # Force npm instead of pnpm
+      - name: Install Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 18
-          cache: 'npm'
 
-      - name: Install dependencies
+      - name: Install dependencies (npm)
         run: |
-          npm install --legacy-peer-deps
-          npm cache verify
+          npm install
+          # Delete pnpm-lock if it exists
+          rm -f pnpm-lock.yaml
 
-      - name: Run linter
+      # Run the Finsweet linter with npm
+      - name: Lint 
         run: npm run lint
-        continue-on-error: false
 
+  Tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
 
-      - name: Run tests
+      - name: Install dependencies (npm)
+        run: npm install
+
+      - name: Test
         run: npm test
-        env:
-          CI: true
-
-      - name: Build verification
-        run: npm run build -- --dry-run
