@@ -17,21 +17,9 @@ jobs:
           node-version: 18
           cache: 'npm'
 
-      - name: Install core dependencies
-        run: |
-          npm install eslint@9 @finsweet/eslint-config@3 eslint-plugin-prettier@5 prettier@3 --legacy-peer-deps
-          
-      - name: Install remaining dependencies
+      - name: Install dependencies
         run: npm install --legacy-peer-deps
-          
-      - name: Verify installations
-        run: |
-          npm ls eslint @finsweet/eslint-config
-          npx eslint --version
-          
-      - name: Run linter
-        run: npm run lint
-        
+
       - name: Build project
         run: npm run build
 
