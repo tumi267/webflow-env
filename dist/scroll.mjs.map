@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../src/scroll.ts"],
-  "sourcesContent": ["\nimport { fadeInScroll } from '$utils/fadeInscroll';\nimport { Pin } from '$utils/pin-element-scroll';\nimport { progressBar } from '$utils/progress-bar-scroll';\nimport { rotateScroll } from '$utils/rotate-srcoll';\nimport { growScroll } from '$utils/scale-up-scroll';\nimport { staggerItemScroll } from '$utils/stagger-item-scroll';\nimport { slideInLeftScroll } from '$utils/slide-in-left-scroll';\nimport { slideInRightScroll } from '$utils/slide-in-right-scroll';\nimport { toggleScroll } from '$utils/toggle-scroll';\nimport { colorChange } from '$utils/color-change-scroll';\n\n// scroll aniamtion\n// fadein scroll\n// fadeInScroll('fade-element')\n// pin element scroll\nPin('pin',5,-300)\n// progress bar\nprogressBar('progress-bar-scroll',20)\n// rotate scroll\nrotateScroll('rotate-scroll',20)\n// scale up on scroll\n// growScroll('scale-up-scroll')\n// stager in\nstaggerItemScroll('stagger-item-scroll',10)\n// slide in on scroll\n// slideInLeftScroll('slide-in-left-scroll')\n// slideInRightScroll('slide-in-right-scroll')\n// change color on scroll\ncolorChange('color-change-scroll',10)\n// function call on scroll\ntoggleScroll('toggle-element-scroll')\n"],
-  "mappings": ";;;;;;;;;;;AAgBA,IAAI,OAAM,GAAE,IAAI;AAEhB,YAAY,uBAAsB,EAAE;AAEpC,aAAa,iBAAgB,EAAE;AAI/B,kBAAkB,uBAAsB,EAAE;AAK1C,YAAY,uBAAsB,EAAE;AAEpC,aAAa,uBAAuB;",
-  "names": []
-}
