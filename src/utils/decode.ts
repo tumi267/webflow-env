@@ -68,7 +68,7 @@ class TextDecoder {
   }
 }
 
-export async function initDecodeAnimations() {
+export async function initDecodeAnimations(id:string,start:number,mark:boolean) {
     const { gsap } = await import("gsap");
     const { ScrollTrigger } = await import("gsap/ScrollTrigger");
     gsap.registerPlugin(ScrollTrigger);
@@ -80,16 +80,17 @@ export async function initDecodeAnimations() {
     }
   
     function init() {
-      document.querySelectorAll<HTMLElement>(".decode").forEach(el => {
+      document.querySelectorAll<HTMLElement>(`#${id}`).forEach(el => {
         const decoder = new TextDecoder(el, gsap);
   
         ScrollTrigger.create({
           trigger: el,
-          start: "top center",
+          start: `top ${start}`,
           onEnter: () => decoder.decode(3),
           onEnterBack: () => decoder.decode(2),
           onLeave: () => decoder.scramble(),      // Encode again when leaving downward
-          onLeaveBack: () => decoder.scramble(),  // Encode again when leaving upward
+          onLeaveBack: () => decoder.scramble(), 
+          markers:mark, // Encode again when leaving upward
         });
       });
     }

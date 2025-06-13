@@ -1,1 +1,18 @@
-import"./chunks/chunk-UPU5AEYP.mjs";async function l(o,n,r){let{gsap:i}=await import("./chunks/gsap-6MQHRXBS.mjs"),{ScrollTrigger:t}=await import("./chunks/ScrollTrigger-ZPG2FTA2.mjs");i.to(`#${o}`,{scrollTrigger:{trigger:`#${o}`,pin:!0,start:"top top",end:`bottom ${r}%`,scrub:!0}})}async function g(o,n){let{gsap:r}=await import("./chunks/gsap-6MQHRXBS.mjs"),{ScrollTrigger:i}=await import("./chunks/ScrollTrigger-ZPG2FTA2.mjs");r.registerPlugin(i);let t=document.getElementById(o);if(!t)return;let e=t.querySelectorAll("*");e.length&&r.to(e,{scrollTrigger:{trigger:`#${o}`,start:`top ${n}%`,end:"top top",scrub:3},width:"100%"})}async function c(o,n){let{gsap:r}=await import("./chunks/gsap-6MQHRXBS.mjs"),{ScrollTrigger:i}=await import("./chunks/ScrollTrigger-ZPG2FTA2.mjs");r.registerPlugin(i);let t=document.getElementById(o);if(!t)return;let e=t.querySelectorAll("*");e.length&&r.from(e,{scrollTrigger:{trigger:t,start:`top ${n}%`,end:"bottom -10%",scrub:!0},rotation:180,opacity:0,duration:1})}async function s(o,n){let{gsap:r}=await import("./chunks/gsap-6MQHRXBS.mjs"),{ScrollTrigger:i}=await import("./chunks/ScrollTrigger-ZPG2FTA2.mjs");r.registerPlugin(i);let t=document.getElementById(o);if(!t)return;let e=t.querySelectorAll("*");e.length&&r.from(e,{scrollTrigger:{trigger:t,start:`top ${n}%`,end:"bottom 10%",scrub:!0},y:50,opacity:0,duration:.6,stagger:.2})}async function a(o){let{gsap:n}=await import("./chunks/gsap-6MQHRXBS.mjs"),{ScrollTrigger:r}=await import("./chunks/ScrollTrigger-ZPG2FTA2.mjs");n.registerPlugin(r),r.create({trigger:`#${o}`,start:"top center",end:"bottom center",onEnter:()=>{console.log("do something")},onLeaveBack:()=>{console.log("do something else")}})}async function p(o,n){let{gsap:r}=await import("./chunks/gsap-6MQHRXBS.mjs"),{ScrollTrigger:i}=await import("./chunks/ScrollTrigger-ZPG2FTA2.mjs"),t=document.getElementById(o),e=t?.firstElementChild;if(!t||!e){console.warn(`colorChange: Missing parent or child for id "${o}"`);return}r.to(e,{scrollTrigger:{trigger:t,start:`top ${n}%`,end:"bottom top",scrub:!0},backgroundColor:"#4a00e0",color:"#ffffff"})}l("pin",5,-300);g("progress-bar-scroll",20);c("rotate-scroll",20);s("stagger-item-scroll",10);p("color-change-scroll",10);a("toggle-element-scroll");
+import {
+  Pin,
+  colorChange,
+  progressBar,
+  rotateScroll,
+  staggerItemScroll,
+  toggleScroll
+} from "./chunks/chunk-XJ5VVBMW.mjs";
+import "./chunks/chunk-SUYWSG3L.mjs";
+
+// src/scroll.ts
+Pin("pin", 5, -300);
+progressBar("progress-bar-scroll", 20);
+rotateScroll("rotate-scroll", 20);
+staggerItemScroll("stagger-item-scroll", 10);
+colorChange("color-change-scroll", 10);
+toggleScroll("toggle-element-scroll");
+//# sourceMappingURL=scroll.mjs.map

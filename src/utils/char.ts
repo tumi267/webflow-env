@@ -1,4 +1,4 @@
-export async function initCharAnimations(id: string) {
+export async function initCharAnimations(id: string,start:number,mark:boolean) {
     try {
       // Dynamic imports with error handling
       const [gsap, ScrollTrigger, SplitText] = await Promise.all([
@@ -23,9 +23,10 @@ export async function initCharAnimations(id: string) {
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: element,
-            start: 'top center',
+            start: `top ${start}%`,
             end: 'top 20%',
             scrub: true,
+            markers:mark
           }
         });
   

@@ -1,4 +1,4 @@
-export async function initWordAnimations(id: string) {
+export async function initWordAnimations(id: string,start:number,mark:boolean) {
     try {
       // Dynamic imports with proper typing
       const { gsap } = await import('gsap');
@@ -28,10 +28,10 @@ export async function initWordAnimations(id: string) {
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: element,
-            start: 'top center',
+            start: `top ${start}%`,
             end: 'top 20%',
             scrub: true,
-            markers: false,
+            markers: mark,
 
           }
         });
