@@ -15,7 +15,7 @@ jobs:
 
       - name: Install dependencies (npm)
         run: |
-          npm install
+          npm install --legacy-peer-deps
           # Delete pnpm-lock if it exists
           rm -f pnpm-lock.yaml
 
