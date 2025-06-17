@@ -108,14 +108,10 @@ if (pan) {
 } else {
   console.log("no head found");
 }
-var scaleUpScroll = document.getElementById("scale-up-scroll");
 var rotateScroll = document.getElementById("rotate-scroll");
 var staggerItemScroll = document.getElementById("stagger-item-scroll");
 var pinElementScroll = document.getElementById("pin");
 var colorChangeScroll = document.getElementById("color-change-scroll");
-if (scaleUpScroll) {
-  scaleUpScroll.innerHTML = `<div class="box scale-up">Scale Up</div>`;
-}
 if (rotateScroll) {
   rotateScroll.innerHTML = `<div class="box rotate">Rotate</div>`;
 }
@@ -180,16 +176,6 @@ if (panelWrapper) {
     `;
 } else {
   console.error("Panel wrapper element not found");
-}
-var video = document.getElementById("myVideo");
-if (video) {
-  video.innerHTML = `
-  <video class='vid' src="https://videos.pexels.com/video-files/32316899/13783420_360_640_24fps.mp4" muted
-  preload="auto"
-  playsinline ></video>
-  `;
-} else {
-  alert("no vid");
 }
 var video2 = document.getElementById("myVideo2");
 if (video2) {

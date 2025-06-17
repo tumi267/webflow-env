@@ -1,9 +1,9 @@
 
-export async function vidOnSnap() {
+export async function vidOnSnap(start:number,mark:boolean) {
     // Dynamically import GSAP and its plugins
     const { gsap } = await import('gsap');
     const { ScrollTrigger } = await import('gsap/ScrollTrigger');
-
+gsap.registerPlugin(ScrollTrigger)
   const vid = document.querySelector(".vid2") as HTMLVideoElement;
   if (!vid) return;
 
@@ -20,11 +20,11 @@ export async function vidOnSnap() {
     
     ScrollTrigger.create({
       trigger: vid,
-      start: "top top",
+      start: `top ${start}%`,
       end: `+=${scrollDistance}`,
       pin: true,
       scrub: true, // Smooth scrubbing
-     
+     markers:mark,
       onUpdate: (self) => {
         if (vid.duration) {
           // Directly set currentTime for immediate scrubbing

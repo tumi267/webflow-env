@@ -68,7 +68,7 @@ class TextDecoder {
   }
 }
 
-export async function initDecodeAnimations(id:string,start:number,mark:boolean) {
+export async function initDecodeAnimations(id:string,start:number,end:number,mark:boolean) {
     const { gsap } = await import("gsap");
     const { ScrollTrigger } = await import("gsap/ScrollTrigger");
     gsap.registerPlugin(ScrollTrigger);
@@ -85,7 +85,8 @@ export async function initDecodeAnimations(id:string,start:number,mark:boolean) 
   
         ScrollTrigger.create({
           trigger: el,
-          start: `top ${start}`,
+          start: `top ${start}%`,
+          end:`top ${end}%`,
           onEnter: () => decoder.decode(3),
           onEnterBack: () => decoder.decode(2),
           onLeave: () => decoder.scramble(),      // Encode again when leaving downward

@@ -111,7 +111,7 @@ if(pan){
 // const fadeElement = document.getElementById("fade-element");
 // const slideInLeftScroll = document.getElementById("slide-in-left-scroll");
 // const slideInRightScroll = document.getElementById("slide-in-right-scroll");
-const scaleUpScroll = document.getElementById("scale-up-scroll");
+// const scaleUpScroll = document.getElementById("scale-up-scroll");
 const rotateScroll = document.getElementById("rotate-scroll");
 const staggerItemScroll = document.getElementById("stagger-item-scroll") ;
 const pinElementScroll = document.getElementById("pin");
@@ -126,9 +126,9 @@ const colorChangeScroll = document.getElementById("color-change-scroll");
 // if (slideInRightScroll) {
 //   slideInRightScroll.innerHTML = `<div class="box slide-in-right">Slide In Right</div>`;
 // }
-if (scaleUpScroll) {
-  scaleUpScroll.innerHTML = `<div class="box scale-up">Scale Up</div>`;
-}
+// if (scaleUpScroll) {
+//   scaleUpScroll.innerHTML = `<div class="box scale-up">Scale Up</div>`;
+// }
 if (rotateScroll) {
   rotateScroll.innerHTML = `<div class="box rotate">Rotate</div>`;
 }
@@ -205,17 +205,17 @@ if (panelWrapper) {
 }
 
 
-const video=document.getElementById('myVideo')
+// const video=document.getElementById('myVideo')
 
-if (video) {
-  video.innerHTML = `
-  <video class='vid' src="https://videos.pexels.com/video-files/32316899/13783420_360_640_24fps.mp4" muted
-  preload="auto"
-  playsinline ></video>
-  `;
-}else{
-  alert('no vid')
-}
+// if (video) {
+//   video.innerHTML = `
+//   <video class='vid' src="https://videos.pexels.com/video-files/32316899/13783420_360_640_24fps.mp4" muted
+//   preload="auto"
+//   playsinline ></video>
+//   `;
+// }else{
+//   alert('no vid')
+// }
 const video2=document.getElementById('myVideo2')
 
 if (video2) {

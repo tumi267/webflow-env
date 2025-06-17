@@ -5,7 +5,7 @@ import {
   initLineMaskReveal,
   initTracking,
   initWordAnimations
-} from "./chunks/chunk-FXDJOQCJ.mjs";
+} from "./chunks/chunk-CMLHQXFA.mjs";
 import {
   Pin,
   colorChange,
@@ -13,7 +13,7 @@ import {
   rotateScroll,
   staggerItemScroll,
   toggleScroll
-} from "./chunks/chunk-XJ5VVBMW.mjs";
+} from "./chunks/chunk-TSJF53LC.mjs";
 import {
   fadeIn,
   flipReveal,
@@ -23,7 +23,7 @@ import {
   slideInLeft,
   slideInRight,
   zoom
-} from "./chunks/chunk-WBJTZ6SI.mjs";
+} from "./chunks/chunk-T3WK3O3V.mjs";
 import "./chunks/chunk-SUYWSG3L.mjs";
 
 // src/utils/horizontalScroll.ts
@@ -61,7 +61,7 @@ async function horizontalScroll(id, start, mark) {
 }
 
 // src/utils/threepanelfadein.ts
-async function threePanelFade(id, start, mark) {
+async function threePanelFade(id, start, panelSpeed, mark) {
   const { gsap } = await import("./chunks/gsap-L2HCQACZ.mjs");
   const { ScrollTrigger } = await import("./chunks/ScrollTrigger-HIJSDX7Q.mjs");
   gsap.registerPlugin(ScrollTrigger);
@@ -82,7 +82,7 @@ async function threePanelFade(id, start, mark) {
       end: `+=${children.length * 100}%`,
       scrub: true,
       pin: true,
-      markers: mark ? true : false
+      markers: mark
     }
   });
   const animations = [
@@ -97,9 +97,9 @@ async function threePanelFade(id, start, mark) {
     const animationType = animations[index % animations.length];
     tl.from(child, {
       ...animationType,
-      duration: 0.5,
+      duration: 1,
       ease: "power2.out"
-    }, index * 0.1);
+    }, index * panelSpeed);
   });
   return () => ScrollTrigger.getAll().forEach((st) => st.kill());
 }
@@ -220,9 +220,10 @@ async function videoScrub() {
 }
 
 // src/utils/vidOnSnap.ts
-async function vidOnSnap() {
+async function vidOnSnap(start, mark) {
   const { gsap } = await import("./chunks/gsap-L2HCQACZ.mjs");
   const { ScrollTrigger } = await import("./chunks/ScrollTrigger-HIJSDX7Q.mjs");
+  gsap.registerPlugin(ScrollTrigger);
   const vid = document.querySelector(".vid2");
   if (!vid)
     return;
@@ -235,11 +236,12 @@ async function vidOnSnap() {
     const scrollDistance = vid.duration * 500;
     ScrollTrigger.create({
       trigger: vid,
-      start: "top top",
+      start: `top ${start}%`,
       end: `+=${scrollDistance}`,
       pin: true,
       scrub: true,
       // Smooth scrubbing
+      markers: mark,
       onUpdate: (self) => {
         if (vid.duration) {
           vid.currentTime = vid.duration * self.progress;

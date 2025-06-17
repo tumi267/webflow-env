@@ -1,10 +1,17 @@
 
 
-export async function colorChange(id: string,start:number) {
+export async function colorChange(id: string,
+  start:number,
+  end:number,
+  position:"top" | "center" | "bottom" = "top" ,
+  positionEnd:"top" | "center" | "bottom" = "top",
+  colorto:string,
+  colorfrom:string,
+  mark:boolean) {
       // Dynamically import GSAP and its plugins
       const { gsap } = await import('gsap');
       const { ScrollTrigger } = await import('gsap/ScrollTrigger');
-     
+     gsap.registerPlugin(ScrollTrigger)
   const parent = document.getElementById(id);
   const child = parent?.firstElementChild as HTMLElement | null;
 
@@ -16,11 +23,12 @@ export async function colorChange(id: string,start:number) {
   gsap.to(child, {
     scrollTrigger: {
       trigger: parent,
-      start: `top ${start}%`,
-      end: "bottom top",
+      start: `${position} ${start}%`,
+      end: `${positionEnd} ${end}%`,
       scrub: true,
+      markers:mark
     },
-    backgroundColor: "#4a00e0",
-    color: "#ffffff"
+    backgroundColor:colorto ,
+    color:colorfrom 
   });
 }

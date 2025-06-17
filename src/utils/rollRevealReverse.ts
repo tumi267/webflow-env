@@ -3,7 +3,11 @@
 export async function rollRevealReverse(
   id: string ,
   start:number,
-  duration: number = 2
+  end:number,
+  duration: number = 2,
+  position:"top" | "center" | "bottom" = "top" ,
+  positionEnd:"top" | "center" | "bottom" = "top",
+  mark:boolean
 ) {
       // Dynamically import GSAP and its plugins
       const { gsap } = await import('gsap');
@@ -20,10 +24,10 @@ export async function rollRevealReverse(
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: `#${id}`,
-      start: `top ${start}%`,   // When top of element hits 80% viewport
-      end: "bottom 10%",     // When top hits 20% viewport
+      start: `${position} ${start}%`,   // When top of element hits 80% viewport
+      end: `${positionEnd} ${end}%`,     // When top hits 20% viewport
       scrub:true,
-     
+      markers:mark
     }
   });
   tl.to(`#${id}`, {

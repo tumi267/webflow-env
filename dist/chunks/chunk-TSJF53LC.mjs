@@ -17,9 +17,10 @@ async function toggleScroll(id) {
 }
 
 // src/utils/color-change-scroll.ts
-async function colorChange(id, start) {
+async function colorChange(id, start, end, position = "top", positionEnd = "top", colorto, colorfrom, mark) {
   const { gsap } = await import("./gsap-L2HCQACZ.mjs");
   const { ScrollTrigger } = await import("./ScrollTrigger-HIJSDX7Q.mjs");
+  gsap.registerPlugin(ScrollTrigger);
   const parent = document.getElementById(id);
   const child = parent?.firstElementChild;
   if (!parent || !child) {
@@ -29,17 +30,18 @@ async function colorChange(id, start) {
   gsap.to(child, {
     scrollTrigger: {
       trigger: parent,
-      start: `top ${start}%`,
-      end: "bottom top",
-      scrub: true
+      start: `${position} ${start}%`,
+      end: `${positionEnd} ${end}%`,
+      scrub: true,
+      markers: mark
     },
-    backgroundColor: "#4a00e0",
-    color: "#ffffff"
+    backgroundColor: colorto,
+    color: colorfrom
   });
 }
 
 // src/utils/stagger-item-scroll.ts
-async function staggerItemScroll(id, start) {
+async function staggerItemScroll(id, start, end, position = "top", positionEnd = "top", mark) {
   const { gsap } = await import("./gsap-L2HCQACZ.mjs");
   const { ScrollTrigger } = await import("./ScrollTrigger-HIJSDX7Q.mjs");
   gsap.registerPlugin(ScrollTrigger);
@@ -52,9 +54,10 @@ async function staggerItemScroll(id, start) {
   gsap.from(items, {
     scrollTrigger: {
       trigger: parent,
-      start: `top ${start}%`,
-      end: "bottom 10%",
-      scrub: true
+      start: `${position} ${start}%`,
+      end: `${positionEnd} ${end}%`,
+      scrub: true,
+      markers: mark
     },
     y: 50,
     opacity: 0,
@@ -64,7 +67,7 @@ async function staggerItemScroll(id, start) {
 }
 
 // src/utils/rotate-srcoll.ts
-async function rotateScroll(id, start) {
+async function rotateScroll(id, start, end, amount, position = "top", positionEnd = "top", mark) {
   const { gsap } = await import("./gsap-L2HCQACZ.mjs");
   const { ScrollTrigger } = await import("./ScrollTrigger-HIJSDX7Q.mjs");
   gsap.registerPlugin(ScrollTrigger);
@@ -77,12 +80,12 @@ async function rotateScroll(id, start) {
   gsap.from(children, {
     scrollTrigger: {
       trigger: parent,
-      start: `top ${start}%`,
-      end: "bottom -10%",
-      scrub: true
-      // markers:true,
+      start: `${position} ${start}%`,
+      end: `${positionEnd} ${end}%`,
+      scrub: true,
+      markers: mark
     },
-    rotation: 180,
+    rotation: amount,
     opacity: 0,
     duration: 1
     // stagger: 0.2, // optional: stagger effect
@@ -90,7 +93,7 @@ async function rotateScroll(id, start) {
 }
 
 // src/utils/progress-bar-scroll.ts
-async function progressBar(id, start) {
+async function progressBar(id, start, end, position = "top", positionEnd = "top", mark) {
   const { gsap } = await import("./gsap-L2HCQACZ.mjs");
   const { ScrollTrigger } = await import("./ScrollTrigger-HIJSDX7Q.mjs");
   gsap.registerPlugin(ScrollTrigger);
@@ -103,25 +106,28 @@ async function progressBar(id, start) {
   gsap.to(children, {
     scrollTrigger: {
       trigger: `#${id}`,
-      start: `top ${start}%`,
-      end: "top top",
-      scrub: 3
+      start: `${position} ${start}%`,
+      end: `${positionEnd} ${end}%`,
+      scrub: 3,
+      markers: mark
     },
     width: "100%"
   });
 }
 
 // src/utils/pin-element-scroll.ts
-async function Pin(id, start, end) {
+async function Pin(id, start, end, position = "top", positionEnd = "top", mark) {
   const { gsap } = await import("./gsap-L2HCQACZ.mjs");
   const { ScrollTrigger } = await import("./ScrollTrigger-HIJSDX7Q.mjs");
+  gsap.registerPlugin(ScrollTrigger);
   gsap.to(`#${id}`, {
     scrollTrigger: {
       trigger: `#${id}`,
       pin: true,
-      start: `top top`,
-      end: `bottom ${end}%`,
-      scrub: true
+      start: `${position} ${start}%`,
+      end: `${positionEnd} ${end}%`,
+      scrub: true,
+      markers: mark
     }
   });
 }
@@ -134,4 +140,4 @@ export {
   progressBar,
   Pin
 };
-//# sourceMappingURL=chunk-XJ5VVBMW.mjs.map
+//# sourceMappingURL=chunk-TSJF53LC.mjs.map

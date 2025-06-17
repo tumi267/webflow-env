@@ -1,4 +1,4 @@
-export async function initLineAnimations(id: string,start:number,mark:boolean) {
+export async function initLineAnimations(id: string,start:number,end:number,mark:boolean) {
   try {
     const { gsap } = await import('gsap');
     const { ScrollTrigger } = await import('gsap/ScrollTrigger');
@@ -25,8 +25,8 @@ export async function initLineAnimations(id: string,start:number,mark:boolean) {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: element,
-        start: `top ${start}`,
-        end: 'bottom 10%',
+        start: `top ${start}%`,
+        end: `top ${end}%`,
         scrub: true,
         markers: mark,
         invalidateOnRefresh: true,

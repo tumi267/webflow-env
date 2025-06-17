@@ -1,4 +1,4 @@
-export async function initLineMaskReveal(id:string,start:number,mark:boolean) {
+export async function initLineMaskReveal(id:string,start:number,end:number,mark:boolean) {
   const { gsap } = await import('gsap');
   const { ScrollTrigger } = await import('gsap/ScrollTrigger');
   const { SplitText } = await import('gsap/SplitText');
@@ -31,7 +31,7 @@ export async function initLineMaskReveal(id:string,start:number,mark:boolean) {
       scrollTrigger: {
         trigger: element,
         start: `top ${start}%`,
-        end: 'bottom 20%',
+        end: `top ${end}%`,
         scrub: true,
         markers:mark,
       }

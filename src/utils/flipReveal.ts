@@ -1,6 +1,11 @@
 
 
-export async function flipReveal (id:string,start:number){
+export async function flipReveal (id:string,
+  start:number,
+  end:number,
+  position:"top" | "center" | "bottom" = "top" ,
+  positionEnd:"top" | "center" | "bottom" = "top",
+  mark:boolean){
       // Dynamically import GSAP and its plugins
       const { gsap } = await import('gsap');
       const { ScrollTrigger } = await import('gsap/ScrollTrigger');
@@ -16,10 +21,11 @@ export async function flipReveal (id:string,start:number){
       const tl = gsap.timeline({
       scrollTrigger: {
       trigger: parent,
-      start: `top ${start}%`,
-      end: "bottom 20%",
+      start: `${position} ${start}%`,
+      end: `${positionEnd} ${end}%`,
       toggleActions: "play none none none",
       scrub:true,
+      markers:mark
       }
     })
     let num = 3;

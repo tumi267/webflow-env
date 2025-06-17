@@ -1,64 +1,72 @@
 // src/utils/zoom.ts
-async function zoom(id, start) {
+async function zoom(id, start, end, amount, position = "top", positionEnd = "top", mark) {
   const { gsap } = await import("./gsap-L2HCQACZ.mjs");
   const { ScrollTrigger } = await import("./ScrollTrigger-HIJSDX7Q.mjs");
   const { SplitText } = await import("./SplitText-LUU4FCPQ.mjs");
+  gsap.registerPlugin(ScrollTrigger, SplitText);
+  const parent = document.getElementById(id);
+  if (!parent)
+    return;
+  const children = parent.querySelectorAll("*");
   gsap.fromTo(
-    `#${id}`,
+    children,
     {
       scale: 1
     },
     {
-      scale: 1.3,
+      scale: amount,
       duration: 2,
       ease: "power2.out",
       scrollTrigger: {
-        trigger: `#${id}`,
-        start: `top ${start}%`,
-        end: "bottom 20%",
-        scrub: 0.5
+        trigger: parent,
+        start: `${position} ${start}%`,
+        end: `${positionEnd} ${end}%`,
+        scrub: 0.5,
+        markers: mark
       }
     }
   );
 }
 
 // src/utils/slideInRight.ts
-async function slideInRight(id, start) {
+async function slideInRight(id, start, end, amount, position = "top", positionEnd = "top", mark) {
   const { gsap } = await import("./gsap-L2HCQACZ.mjs");
   const { ScrollTrigger } = await import("./ScrollTrigger-HIJSDX7Q.mjs");
   gsap.registerPlugin(ScrollTrigger);
   gsap.from(`#${id}`, {
-    x: 300,
+    x: amount,
     opacity: 0,
     duration: 2,
     ease: "power3.out",
     scrollTrigger: {
       trigger: `#${id}`,
       // Element that triggers the animation
-      start: `top ${start}%`,
+      start: `${position} ${start}%`,
       // When top hits 75% of viewport
-      end: "bottom 10%",
+      end: `${positionEnd} ${end}%`,
       // When top hits 25% of viewport
-      scrub: true
+      scrub: true,
+      markers: mark
     }
   });
 }
 
 // src/utils/slideInLeft.ts
-async function slideInLeft(id, start) {
+async function slideInLeft(id, start, end, amount, position = "top", positionEnd = "top", mark) {
   const { gsap } = await import("./gsap-L2HCQACZ.mjs");
   const { ScrollTrigger } = await import("./ScrollTrigger-HIJSDX7Q.mjs");
   gsap.registerPlugin(ScrollTrigger);
   gsap.from(`#${id}`, {
-    x: -300,
+    x: -amount,
     opacity: 0,
     duration: 2,
     ease: "power3.out",
     scrollTrigger: {
       trigger: `#${id}`,
-      start: `top ${start}%`,
-      end: "bottom 10%",
-      scrub: true
+      start: `${position} ${start}%`,
+      end: `${positionEnd} ${end}%`,
+      scrub: true,
+      markers: mark
     }
   });
 }
@@ -104,7 +112,7 @@ async function pan(id) {
 }
 
 // src/utils/flipReveal.ts
-async function flipReveal(id, start) {
+async function flipReveal(id, start, end, position = "top", positionEnd = "top", mark) {
   const { gsap } = await import("./gsap-L2HCQACZ.mjs");
   const { ScrollTrigger } = await import("./ScrollTrigger-HIJSDX7Q.mjs");
   gsap.registerPlugin(ScrollTrigger);
@@ -116,10 +124,11 @@ async function flipReveal(id, start) {
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: parent,
-      start: `top ${start}%`,
-      end: "bottom 20%",
+      start: `${position} ${start}%`,
+      end: `${positionEnd} ${end}%`,
       toggleActions: "play none none none",
-      scrub: true
+      scrub: true,
+      markers: mark
     }
   });
   let num = 3;
@@ -143,28 +152,28 @@ async function flipReveal(id, start) {
 }
 
 // src/utils/fadeIn.ts
-async function fadeIn(id, start) {
+async function fadeIn(id, start, end, position = "top", positionEnd = "top", mark) {
   const { gsap } = await import("./gsap-L2HCQACZ.mjs");
   const { ScrollTrigger } = await import("./ScrollTrigger-HIJSDX7Q.mjs");
   gsap.registerPlugin(ScrollTrigger);
   gsap.from(`#${id}`, {
     opacity: 0,
-    duration: 6,
     ease: "power2.out",
     scrollTrigger: {
       trigger: `#${id}`,
       // Element that triggers the animation
-      start: `top ${start}`,
+      start: `${position} ${start}%`,
       // When the top of `.fade_in` hits 80% of the viewport
-      end: "bottom 20%",
+      end: `${positionEnd} ${end}%`,
       // When the top of `.fade_in` hits 20% of the viewport
-      scrub: true
+      scrub: true,
+      markers: mark
     }
   });
 }
 
 // src/utils/rollRevealReverse.ts
-async function rollRevealReverse(id, start, duration = 2) {
+async function rollRevealReverse(id, start, end, duration = 2, position = "top", positionEnd = "top", mark) {
   const { gsap } = await import("./gsap-L2HCQACZ.mjs");
   const { ScrollTrigger } = await import("./ScrollTrigger-HIJSDX7Q.mjs");
   gsap.registerPlugin(ScrollTrigger);
@@ -174,11 +183,12 @@ async function rollRevealReverse(id, start, duration = 2) {
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: `#${id}`,
-      start: `top ${start}%`,
+      start: `${position} ${start}%`,
       // When top of element hits 80% viewport
-      end: "bottom 10%",
+      end: `${positionEnd} ${end}%`,
       // When top hits 20% viewport
-      scrub: true
+      scrub: true,
+      markers: mark
     }
   });
   tl.to(`#${id}`, {
@@ -190,7 +200,7 @@ async function rollRevealReverse(id, start, duration = 2) {
 }
 
 // src/utils/rollReveal.ts
-async function rollReveal(id, start, duration = 2) {
+async function rollReveal(id, start, end, duration = 2, position = "top", positionEnd = "top", mark) {
   const { gsap } = await import("./gsap-L2HCQACZ.mjs");
   const { ScrollTrigger } = await import("./ScrollTrigger-HIJSDX7Q.mjs");
   gsap.registerPlugin(ScrollTrigger);
@@ -200,11 +210,12 @@ async function rollReveal(id, start, duration = 2) {
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: `#${id}`,
-      start: `top ${start}%`,
+      start: `${position} ${start}%`,
       // When top of element hits 80% viewport
-      end: "bottom 10%",
+      end: `${positionEnd} ${end}%`,
       // When top hits 20% viewport
-      scrub: true
+      scrub: true,
+      markers: mark
     }
   });
   tl.to(`#${id}`, {
@@ -225,4 +236,4 @@ export {
   rollRevealReverse,
   rollReveal
 };
-//# sourceMappingURL=chunk-WBJTZ6SI.mjs.map
+//# sourceMappingURL=chunk-T3WK3O3V.mjs.map

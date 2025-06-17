@@ -1,4 +1,4 @@
-export async function threePanelFade(id: string,start:number,mark:boolean) {
+export async function threePanelFade(id: string,start:number,panelSpeed:number,mark:boolean) {
         // Dynamically import GSAP and its plugins
         const { gsap } = await import('gsap');
         const { ScrollTrigger } = await import('gsap/ScrollTrigger');
@@ -24,7 +24,7 @@ export async function threePanelFade(id: string,start:number,mark:boolean) {
             end: `+=${children.length * 100}%`,
             scrub: true,
             pin: true,
-            markers:mark?true:false,
+            markers:mark,
         }
     });
 
@@ -39,9 +39,9 @@ export async function threePanelFade(id: string,start:number,mark:boolean) {
         const animationType = animations[index % animations.length];
         tl.from(child, {
             ...animationType,
-            duration: 0.5,
+            duration: 1,
             ease: "power2.out"
-        }, index * 0.1); // slight stagger
+        }, index * panelSpeed); // slight stagger
     });
 
     // Optional: Return cleanup function for frameworks
