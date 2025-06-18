@@ -1,5 +1,3 @@
-
-
 export async function rollRevealReverse(
   id: string ,
   start:number,

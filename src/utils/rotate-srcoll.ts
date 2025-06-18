@@ -1,5 +1,3 @@
-
-
 export async function rotateScroll(id: string,
   start:number,
   end:number,

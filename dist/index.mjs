@@ -13,7 +13,7 @@ import {
   rotateScroll,
   staggerItemScroll,
   toggleScroll
-} from "./chunks/chunk-TSJF53LC.mjs";
+} from "./chunks/chunk-PROZYWS7.mjs";
 import {
   fadeIn,
   flipReveal,
@@ -23,7 +23,7 @@ import {
   slideInLeft,
   slideInRight,
   zoom
-} from "./chunks/chunk-RM2DTPQI.mjs";
+} from "./chunks/chunk-FVQY4HM2.mjs";
 import "./chunks/chunk-SUYWSG3L.mjs";
 
 // src/utils/horizontalScroll.ts
@@ -447,9 +447,78 @@ async function gallery2(id, start, end, position = "top", positionEnd = "bottom"
   }
 }
 
+// src/utils/slideShow.ts
+async function slideshow(id, mark = false) {
+  try {
+    let showSlide2 = function(newIndex, direction) {
+      if (newIndex === currentIndex)
+        return;
+      const currentSlide = slides[currentIndex];
+      const nextSlide = slides[newIndex];
+      gsap.to(currentSlide, {
+        duration: 0.5,
+        xPercent: -100 * direction,
+        autoAlpha: 0,
+        ease: "power1.inOut"
+      });
+      gsap.fromTo(
+        nextSlide,
+        { xPercent: 100 * direction, autoAlpha: 0 },
+        {
+          duration: 0.5,
+          xPercent: 0,
+          autoAlpha: 1,
+          ease: "power1.inOut"
+        }
+      );
+      currentIndex = newIndex;
+    };
+    var showSlide = showSlide2;
+    const [gsap] = await Promise.all([
+      import("./chunks/gsap-L2HCQACZ.mjs").then((m) => m.gsap)
+    ]);
+    const container = document.getElementById(id);
+    if (!container) {
+      console.warn(`Container with id "${id}" not found`);
+      return;
+    }
+    const slides = Array.from(container.children);
+    if (slides.length === 0) {
+      console.warn("No slides found inside container");
+      return;
+    }
+    let currentIndex = 0;
+    const total = slides.length;
+    gsap.set(slides, { xPercent: 100, autoAlpha: 0 });
+    gsap.set(slides[0], { xPercent: 0, autoAlpha: 1 });
+    return {
+      next() {
+        showSlide2((currentIndex + 1) % total, 1);
+      },
+      prev() {
+        showSlide2((currentIndex - 1 + total) % total, -1);
+      },
+      goTo(index) {
+        if (index < 0 || index >= total) {
+          console.warn("Slide index out of range");
+          return;
+        }
+        const direction = index > currentIndex ? 1 : -1;
+        showSlide2(index, direction);
+      },
+      getCurrentIndex() {
+        return currentIndex;
+      }
+    };
+  } catch (error) {
+    console.error("GSAP slideshow init error:", error);
+  }
+}
+
 // src/index.ts
 globalThis.gallery = gallery;
 globalThis.gallery2 = gallery2;
+globalThis.slideshow = slideshow;
 globalThis.initDecodeAnimations = initDecodeAnimations;
 globalThis.initLineAnimations = initLineAnimations;
 globalThis.initWordAnimations = initWordAnimations;

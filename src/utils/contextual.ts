@@ -1,6 +1,3 @@
-
-
-
 export async function Contextual(id: string,start:number,mark:Boolean) {
         // Dynamically import GSAP and its plugins
         const { gsap } = await import('gsap');

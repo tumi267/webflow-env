@@ -1,5 +1,3 @@
-
-
 export async function flipReveal (id:string,
   start:number,
   end:number,

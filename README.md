@@ -1,253 +1,394 @@
-# Finsweet Developer Starter
+# Scroll Animation Toolkit
 
-A starter template for both Client & Power projects.
+![GSAP Powered](https://img.shields.io/badge/GSAP-Powered-green.svg)
+![Webflow Ready](https://img.shields.io/badge/Webflow-Ready-blue.svg)
 
-Before starting to work with this template, please take some time to read through the documentation.
+A comprehensive library for creating professional scroll-triggered animations using GSAP. Works in vanilla JS, frameworks, and Webflow.
 
-## Reference
+## 🌟 Features
+- **30+ Animation Types**: Text, media, 3D transforms
+- **Cross-Platform**: Webflow, React, Vanilla JS
+- **Optimized Performance**: 60fps animations
+- **Debug Tools**: Visual scroll trigger markers
+- **Mobile-Friendly**: Touch event support
 
-- [Included tools](#included-tools)
-- [Requirements](#requirements)
-- [Getting started](#getting-started)
-  - [Installing](#installing)
-  - [Building](#building)
-    - [Serving files on development mode](#serving-files-on-development-mode)
-    - [Building multiple files](#building-multiple-files)
-    - [Setting up a path alias](#setting-up-a-path-alias)
-- [Contributing guide](#contributing-guide)
-- [Pre-defined scripts](#pre-defined-scripts)
-- [CI/CD](#cicd)
-  - [Continuous Integration](#continuous-integration)
-  - [Continuous Deployment](#continuous-deployment)
-  - [How to automatically deploy updates to npm](#how-to-automatically-deploy-updates-to-npm)
+## 🚀 Installation
 
-## Included tools
-
-This template contains some preconfigured development tools:
-
-- [Typescript](https://www.typescriptlang.org/): A superset of Javascript that adds an additional layer of Typings, bringing more security and efficiency to the written code.
-- [Prettier](https://prettier.io/): Code formatting that assures consistency across all Finsweet's projects.
-- [ESLint](https://eslint.org/): Code linting that enforces industries' best practices. It uses [our own custom configuration](https://github.com/finsweet/eslint-config) to maintain consistency across all Finsweet's projects.
-- [Playwright](https://playwright.dev/): Fast and reliable end-to-end testing.
-- [esbuild](https://esbuild.github.io/): Javascript bundler that compiles, bundles and minifies the original Typescript files.
-- [Changesets](https://github.com/changesets/changesets): A way to manage your versioning and changelogs.
-- [Finsweet's TypeScript Utils](https://github.com/finsweet/ts-utils): Some utilities to help you in your Webflow development.
-
-## Requirements
-
-This template requires the use of [pnpm](https://pnpm.js.org/en/). You can [install pnpm](https://pnpm.io/installation) with:
-
-```bash
-npm i -g pnpm
-```
-
-To enable automatic deployments to npm, please read the [Continuous Deployment](#continuous-deployment) section.
-
-## Getting started
-
-The quickest way to start developing a new project is by [creating a new repository from this template](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/creating-a-repository-from-a-template#creating-a-repository-from-a-template).
-
-Once the new repository has been created, update the `package.json` file with the correct information, specially the name of the package which has to be unique.
-
-### Installing
-
-After creating the new repository, open it in your terminal and install the packages by running:
-
-```bash
-pnpm install
-```
-
-If this is the first time using Playwright and you want to use it in this project, you'll also have to install the browsers by running:
-
-```bash
-pnpm playwright install
-```
-
-You can read more about the use of Playwright in the [Testing](#testing) section.
-
-It is also recommended that you install the following extensions in your VSCode editor:
-
-- [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
-- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
-
-### Building
-
-To build the files, you have two defined scripts:
-
-- `pnpm dev`: Builds and creates a local server that serves all files (check [Serving files on development mode](#serving-files-on-development-mode) for more info).
-- `pnpm build`: Builds to the production directory (`dist`).
-
-### Serving files on development mode
-
-When you run `pnpm dev`, two things happen:
-
-- esbuild is set to `watch` mode. Every time that you save your files, the project will be rebuilt.
-- A local server is created under `http://localhost:3000` that serves all your project files. You can import them in your Webflow projects like:
-
+### CDN (Webflow/Vanilla JS)
 ```html
-<script defer src="http://localhost:3000/{FILE_PATH}.js"></script>
-```
+<!-- will change when push to npm -->
+<script defer type="module" src="https://tumi267.github.io/webflow-env/dist/index.mjs"></script>
 
-- Live Reloading is enabled by default, meaning that every time you save a change in your files, the website you're working on will reload automatically. You can disable it in `/bin/build.js`.
+NPM (Frameworks)
+bash
+npm install scroll-anim-toolkit
+🎨 Animation Catalog
+1. Text Animations
+javascript
+// Character-by-character reveal
+initCharAnimations('header', 50, 30, 'top', 'top', false);
 
-### Building multiple files
+// Word-by-word animation
+initWordAnimations('sub_header', 40, 20, 'top', 'top', false);
 
-If you need to build multiple files into different outputs, you can do it by updating the build settings.
+// Line-by-line mask reveal
+initLineAnimations('text-block', 30, -10, 'top', 'top', false);
 
-In `bin/build.js`, update the `ENTRY_POINTS` array with any files you'd like to build:
+// Binary decode effect
+initDecodeAnimations('code-element', 30, 10, 'top', 'top', false);
 
-```javascript
-const ENTRY_POINTS = [
-  'src/home/index.ts',
-  'src/contact/whatever.ts',
-  'src/hooyah.ts',
-  'src/home/other.ts',
-];
-```
+// Text tracking (mouse follow)
+initTracking('interactive-text');
+2. Media Animations
+javascript
+// Image gallery with parallax
+gallery('gallery-container', 10, 90, 'top', 'bottom', 20, 80, false);
 
-This will tell `esbuild` to build all those files and output them in the `dist` folder for production and in `http://localhost:3000` for development.
+// Video scrubbing
+vidOnSnap(0, false); // Auto-detects .vid2 elements
 
-### Building CSS files
+// Controlled slideshow
+const mySlideshow = await slideshow("slideshow-container");
+document.getElementById("next").addEventListener("click", () => mySlideshow.next());
+3. Scroll Transitions
+javascript
+// Classic fade-in
+fadeIn('section', 80, 20, 'top', 'center', false);
 
-CSS files are also supported by the bundler. When including a CSS file as an entry point, the compiler will generate a minified version in your output folder.
+// 3D card flip
+flipReveal('product-card', 50, 20, 3, 'center', 'top', false);
 
-You can define a CSS entry point by either:
+// Horizontal scrolling
+horizontalScroll('fullpage-section', 10, 'top', false);
 
-- Manually defining it in the `bin/build.js` config. [See previous section](#building-multiple-files) for reference.
-- Or importing the file inside any of your JavaScript / TypeScript files:
+// Zoom effect
+zoom('hero-image', 30, 0, 2, 'center', 'center', false);
+4. Advanced Effects
+javascript
+// SVG path drawing
+svgScroll('svg-container', 50, 'top', '.main-path', '.cursor', '.pulse', 0.1, false);
 
-```typescript
-// src/index.ts
-import './index.css';
-```
+// Three-panel storytelling
+threePanelFade('story-section', 0, 2, 'bottom', false);
 
-CSS outputs are also available in `localhost` during [development mode](#serving-files-on-development-mode).
+// Dynamic color changes
+colorChange('theme-switcher', 30, 0, 'bottom', 'bottom', "#4a00e0", "#FFFF00", false);
+📚 Complete API Reference
+Core Parameters
+Parameter	Type	Description	Default
+id	string	Target element ID	Required
+start	number	Trigger start position (viewport %)	Required
+end	number	Trigger end position (viewport %)	start + 100
+position	string	Element anchor (top/center/bottom)	'top'
+markers	boolean	Show debug guides	false
+Special Components
+Slideshow Controller
 
-### Setting up a path alias
+javascript
+const slides = await slideshow("container");
+slides.next(); // Methods: next(), prev(), goTo(index)
+Progress Bar
 
-Path aliases are very helpful to avoid code like:
+javascript
+progressBar('status-bar', 30, 0, 'bottom', 'bottom', false);
+Staggered Items
 
-```typescript
-import example from '../../../../utils/example';
-```
+javascript
+staggerItemScroll('feature-list', 20, -20, 'bottom', 'bottom', false);
+⚠️ Troubleshooting Guide
+Common Issues
+Horizontal Scroll Not Working
 
-Instead, we can create path aliases that map to a specific folder, so the code becomes cleaner like:
-
-```typescript
-import example from '$utils/example';
-```
-
-You can set up path aliases using the `paths` setting in `tsconfig.json`. This template has an already predefined path as an example:
-
-```json
-{
-  "paths": {
-    "$utils/*": ["src/utils/*"]
-  }
+css
+/* Required CSS for container */
+#container_horizontal {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  white-space: nowrap;
 }
-```
+Mobile Touch Problems
 
-To avoid any surprises, take some time to familiarize yourself with the [tsconfig](/tsconfig.json) enabled flags.
+javascript
+// Disable complex effects on mobile
+if (window.innerWidth > 768) {
+  pan('parallax-element');
+  initTracking('interactive-text');
+}
+Video Scrubbing Issues
 
-## Testing
+html
+<!-- Required video attributes -->
+<video class="vid2" playsinline webkit-playsinline muted loop>
+  <source src="video.mp4" type="video/mp4">
+</video>
+Debugging Tips
+Set markers: true to visualize trigger points
 
-As previously mentioned, this library has [Playwright](https://playwright.dev/) included as an automated testing tool.
+Check browser console for GSAP errors
 
-All tests are located under the `/tests` folder. This template includes a test spec example that will help you catch up with Playwright.
+Verify elements exist before initialization:
 
-After [installing the dependencies](#installing), you can try it out by running `pnpm test`.
-Make sure you replace it with your own tests! Writing proper tests will help improve the maintainability and scalability of your project in the long term.
+javascript
+if (!document.getElementById('my-element')) {
+  console.error('Element not found!');
+}
+🌐 Webflow Implementation
+Add IDs to target elements in Webflow
 
-By default, Playwright will also run `pnpm dev` in the background while the tests are running, so [your files served](#serving-files-on-development-mode) under `localhost:3000` will run as usual.
-You can disable this behavior in the `playwright.config.ts` file.
+Insert this in Page Settings > Custom Code:
 
-If you project doesn't require any testing, you should disable the Tests job in the [CI workflow](#continuous-integration) by commenting it out in the `.github/workflows/ci.yml` file.
-This will prevent the tests from running when you open a Pull Request.
+html
+<script>
+  window.addEventListener('load', () => {
+    fadeIn('hero-section', 80, 20, 'top', 'center', false);
+    initCharAnimations('headline', 50, 30, 'top', 'top', false);
+  });
+</script>
+📦 Build Customization
+Tree-Shaking (For Developers)
+Import only what you need:
 
-## Contributing guide
+javascript
+import { fadeIn, initCharAnimations } from 'scroll-anim-toolkit';
+Webflow Bundle
+Pre-configured bundle available at:
 
-In general, your development workflow should look like this:
+text
+<!-- change with npm link -->
+https://tumi267.github.io/webflow-env/dist/webflow-bundle.js
+🔧 Full Method List
+Category	Methods
+Text	initCharAnimations, initWordAnimations, initLineAnimations, initDecodeAnimations, initLineMaskReveal, initTracking
+Media	gallery, gallery2, videoScrub, vidOnSnap, slideshow
+Transitions	fadeIn, slideInLeft, slideInRight, rollReveal, flipReveal, zoom, threePanelFade
+Navigation	horizontalScroll, progressBar, Pin
+Utilities	colorChange, toggleScroll, pan, rotateScroll, staggerItemScroll
 
-1. Create a new branch where to develop a new feature or bug fix.
-2. Once you've finished the implementation, [create a Changeset](#continuous-deployment) (or multiple) explaining the changes that you've made in the codebase.
-3. Open a Pull Request and wait until the [CI workflows](#continuous-integration) finish. If something fails, please try to fix it before merging the PR.
-   If you don't want to wait for the CI workflows to run on GitHub to know if something fails, it will be always faster to run them in your machine before opening a PR.
-4. Merge the Pull Request. The Changesets bot will automatically open a new PR with updates to the `CHANGELOG.md`, you should also merge that one. If you have [automatic npm deployments](#how-to-automatically-deploy-updates-to-npm) enabled, Changesets will also publish this new version on npm.
+Complete Guide to Using Every Animation in the Scroll Animation Toolkit
+This guide explains every animation type in detail, with copy-paste examples you can use immediately.
 
-If you need to work on several features before publishing a new version on npm, it is a good practise to create a `development` branch where to merge all the PR's before pushing your code to master.
+📜 Table of Contents
+Text Animations
 
-## Pre-defined scripts
+Character Reveal
 
-This template contains a set of predefined scripts in the `package.json` file:
+Word-by-Word
 
-- `pnpm dev`: Builds and creates a local server that serves all files (check [Serving files on development mode](#serving-files-on-development-mode) for more info).
-- `pnpm build`: Builds to the production directory (`dist`).
-- `pnpm lint`: Scans the codebase with ESLint and Prettier to see if there are any errors.
-- `pnpm lint:fix`: Fixes all auto-fixable issues in ESLint.
-- `pnpm check`: Checks for TypeScript errors in the codebase.
-- `pnpm format`: Formats all the files in the codebase using Prettier. You probably won't need this script if you have automatic [formatting on save](https://www.digitalocean.com/community/tutorials/code-formatting-with-prettier-in-visual-studio-code#automatically-format-on-save) active in your editor.
-- `pnpm test`: Will run all the tests that are located in the `/tests` folder.
-- `pnpm test:headed`: Will run all the tests that are located in the `/tests` folder visually in headed browsers.
-- `pnpm release`: This command is defined for [Changesets](https://github.com/changesets/changesets). You don't have to interact with it.
-- `pnpm run update`: Scans the dependencies of the project and provides an interactive UI to select the ones that you want to update.
+Line-by-Line
 
-## CI/CD
+Binary Decode
 
-This template contains a set of helpers with proper CI/CD workflows.
+Text Tracking (Mouse Follow)
 
-### Continuous Integration
+Media Animations
 
-When you open a Pull Request, a Continuous Integration workflow will run to:
+Image Galleries
 
-- Lint & check your code. It uses the `pnpm lint` and `pnpm check` commands under the hood.
-- Run the automated tests. It uses the `pnpm test` command under the hood.
+Video Scrubbing
 
-If any of these jobs fail, you will get a warning in your Pull Request and should try to fix your code accordingly.
+Slideshow Controls
 
-**Note:** If your project doesn't contain any defined tests in the `/tests` folder, you can skip the Tests workflow job by commenting it out in the `.github/workflows/ci.yml` file. This will significantly improve the workflow running times.
+Scroll Transitions
 
-### Continuous Deployment
+Fade In/Out
 
-[Changesets](https://github.com/changesets/changesets) allows us to generate automatic changelog updates when merging a Pull Request to the `master` branch.
+Slide In (Left/Right)
 
-Before starting, make sure to [enable full compatibility with Changesets in the repository](#how-to-enable-continuous-deployment-with-changesets).
+3D Flip
 
-To generate a new changelog, run:
+Horizontal Scroll
 
-```bash
-pnpm changeset
-```
+Zoom Effects
 
-You'll be prompted with a few questions to complete the changelog.
+Advanced Effects
 
-Once the Pull Request is merged into `master`, a new Pull Request will automatically be opened by a changesets bot that bumps the package version and updates the `CHANGELOG.md` file.
-You'll have to manually merge this new PR to complete the workflow.
+SVG Path Drawing
 
-If an `NPM_TOKEN` secret is included in the repository secrets, Changesets will automatically deploy the new package version to npm.
-See [how to automatically deploy updates to npm](#how-to-automatically-deploy-updates-to-npm) for more info.
+Three-Panel Storytelling
 
-#### How to enable Continuous Deployment with Changesets
+Dynamic Color Changes
 
-Some repositories may not have the required permissions to let Changesets interact with the repository.
+Staggered Items
 
-To enable full compatibility with Changesets, go to the repository settings (`Settings > Actions > General > Workflow Permissions`) and define:
+Troubleshooting
 
-- ✅ Read and write permissions.
-- ✅ Allow GitHub Actions to create and approve pull requests.
+🔤 Text Animations
+1. initCharAnimations() - Character-by-Character Reveal
+Effect: Letters fade and slide in one by one.
+Best for: Headlines, callouts.
 
-Enabling this setting for your organization account (`Account Settings > Actions > General`) could help streamline the process. By doing so, any new repos created under the org will automatically inherit the setting, which can save your teammates time and effort. This can only be applied to organization accounts at the time.
+javascript
+initCharAnimations(
+  'your-element-id', // Target element ID
+  50, // Start scroll position (% of viewport)
+  30, // End scroll position (% of viewport)
+  'top', // Where animation starts ('top'/'center'/'bottom')
+  'top', // Where animation ends
+  false // Show debug markers? (true/false)
+);
+2. initWordAnimations() - Word-by-Word Animation
+Effect: Words fly in with rotation.
+Best for: Paragraphs, quotes.
 
-#### How to automatically deploy updates to npm
+javascript
+initWordAnimations(
+  'your-text-id',
+  40, 20, 'top', 'top', false
+);
+3. initLineAnimations() - Line-by-Line Mask Reveal
+Effect: Text lines animate in sequentially.
+Best for: Long-form content.
 
-As mentioned before, Changesets will automatically deploy the new package version to npm if an `NPM_TOKEN` secret is provided.
+javascript
+initLineAnimations(
+  'your-text-block',
+  30, -10, 'top', 'top', false
+);
+4. initDecodeAnimations() - Binary Decode Effect
+Effect: Text "decodes" from random characters.
+Best for: Tech/cyberpunk themes.
 
-This npm token should be:
+javascript
+initDecodeAnimations(
+  'your-element',
+  30, 10, 'top', 'top', false
+);
+5. initTracking() - Mouse-Follow Text Tilt
+Effect: Text tilts based on mouse movement.
+Best for: Interactive headers.
 
-- From Finsweet's npm organization if this repository is meant for internal/product development.
-- From a client's npm organization if this repository is meant for client development. In this case, you should ask the client to [create an npm account](https://www.npmjs.com/signup) and provide you the credentials (or the npm token, if they know how to get it).
+javascript
+initTracking('your-text-id');
+🖼 Media Animations
+1. gallery() - Parallax Image Gallery
+Effect: Images stack and scroll with depth.
 
-Once you're logged into the npm account, you can get an access token by following [this guide](https://docs.npmjs.com/creating-and-viewing-access-tokens).
+javascript
+gallery(
+  'gallery-container',
+  10, 90, 'top', 'bottom', // Scroll range
+  20, 80, // Effect start/end (%)
+  false // Debug markers
+);
+2. vidOnSnap() - Scroll-Controlled Video
+Effect: Video scrubs with scroll position.
 
-The access token must be then placed in a [repository secret](https://docs.github.com/en/codespaces/managing-codespaces-for-your-organization/managing-encrypted-secrets-for-your-repository-and-organization-for-codespaces#adding-secrets-for-a-repository) named `NPM_TOKEN`.
-# workflow-starter-practice
-# webflow-env
+Required HTML:
+
+html
+<video class="vid2" playsinline muted loop>
+  <source src="video.mp4">
+</video>
+JavaScript:
+
+javascript
+vidOnSnap(
+  0, // Start position (%)
+  false // Debug markers
+);
+3. slideshow() - Controlled Slideshow
+Effect: Manual navigation between slides.
+
+javascript
+const mySlideshow = await slideshow("slideshow-container");
+
+// Add buttons
+document.getElementById("next").addEventListener("click", () => mySlideshow.next());
+document.getElementById("prev").addEventListener("click", () => mySlideshow.prev());
+
+// Jump to slide 2
+mySlideshow.goTo(1);
+🔄 Scroll Transitions
+1. fadeIn() - Classic Fade
+Effect: Smooth opacity transition.
+
+javascript
+fadeIn(
+  'your-element',
+  80, 20, 'top', 'center', false
+);
+2. slideInLeft() / slideInRight()
+Effect: Slides element from left/right.
+
+javascript
+slideInLeft(
+  'your-element',
+  50, 0, 100, // Start, end, distance (px)
+  'bottom', 'bottom', false
+);
+3. flipReveal() - 3D Card Flip
+Effect: Element flips like a card.
+
+javascript
+flipReveal(
+  'card-element',
+  50, 20, 3, // Start, end, rotations
+  'center', 'top', false
+);
+4. horizontalScroll() - Full-Page Horizontal Scroll
+Effect: Scroll horizontally instead of vertically.
+
+Required CSS:
+
+css
+#your-container {
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+JavaScript:
+
+javascript
+horizontalScroll(
+  'scroll-section',
+  10, 'top', false
+);
+5. zoom() - Scale Effect
+Effect: Element zooms in/out on scroll.
+
+javascript
+zoom(
+  'your-image',
+  30, 0, 2, // Start, end, scale amount
+  'center', 'center', false
+);
+🎛 Advanced Effects
+1. svgScroll() - SVG Path Drawing
+Effect: SVG path animates as you scroll.
+
+javascript
+svgScroll(
+  'svg-container',
+  50, 'top', // Start position
+  '.theLine', // SVG path selector
+  '.ball01', // Moving element
+  '.pulse', // Elements that pulse
+  0.1, // Timing between pulses
+  false // Debug
+);
+2. threePanelFade() - Storytelling Panels
+Effect: Three panels animate sequentially.
+
+javascript
+threePanelFade(
+  'story-section',
+  0, 2, // Start, speed
+  'bottom', false
+);
+3. colorChange() - Dynamic Color Shift
+Effect: Background/text color transitions.
+
+javascript
+colorChange(
+  'your-element',
+  30, 0, 'bottom', 'bottom',
+  "#4a00e0", // From color
+  "#FFFF00", // To color
+  false
+);
+⚠️ Troubleshooting
+Common Issues & Fixes
+Problem	Solution
+Animations not working	Check console.log for missing IDs
+Horizontal scroll broken	Add required CSS (see above)
+Video not scrubbing	Ensure playsinline muted loop attributes
+Mobile jankiness	Wrap in if (window.innerWidth > 768)
