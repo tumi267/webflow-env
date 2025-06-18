@@ -1,5 +1,5 @@
 // src/utils/char.ts
-async function initCharAnimations(id, start, end, mark) {
+async function initCharAnimations(id, start, end, position = "top", positionEnd = "top", mark) {
   try {
     const [gsap, ScrollTrigger, SplitText] = await Promise.all([
       import("./gsap-L2HCQACZ.mjs").then((m) => m.gsap),
@@ -20,8 +20,8 @@ async function initCharAnimations(id, start, end, mark) {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: element,
-        start: `top ${start}%`,
-        end: `top ${end}%`,
+        start: `${position} ${start}%`,
+        end: `${positionEnd} ${end}%`,
         scrub: true,
         markers: mark
       }
@@ -39,7 +39,7 @@ async function initCharAnimations(id, start, end, mark) {
 }
 
 // src/utils/word.ts
-async function initWordAnimations(id, start, end, mark) {
+async function initWordAnimations(id, start, end, position = "top", positionEnd = "top", mark) {
   try {
     const { gsap } = await import("./gsap-L2HCQACZ.mjs");
     const { ScrollTrigger } = await import("./ScrollTrigger-HIJSDX7Q.mjs");
@@ -58,8 +58,8 @@ async function initWordAnimations(id, start, end, mark) {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: element,
-        start: `top ${start}%`,
-        end: `top ${end}%`,
+        start: `${position} ${start}%`,
+        end: `${positionEnd} ${end}%`,
         scrub: true,
         markers: mark
       }
@@ -84,7 +84,7 @@ async function initWordAnimations(id, start, end, mark) {
 }
 
 // src/utils/lineaniamtion.ts
-async function initLineAnimations(id, start, end, mark) {
+async function initLineAnimations(id, start, end, position = "top", positionEnd = "top", mark) {
   try {
     const { gsap } = await import("./gsap-L2HCQACZ.mjs");
     const { ScrollTrigger } = await import("./ScrollTrigger-HIJSDX7Q.mjs");
@@ -104,8 +104,8 @@ async function initLineAnimations(id, start, end, mark) {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: element,
-        start: `top ${start}%`,
-        end: `top ${end}%`,
+        start: `${position} ${start}%`,
+        end: `${positionEnd} ${end}%`,
         scrub: true,
         markers: mark,
         invalidateOnRefresh: true,
@@ -194,7 +194,7 @@ var TextDecoder = class {
     });
   }
 };
-async function initDecodeAnimations(id, start, end, mark) {
+async function initDecodeAnimations(id, start, end, position = "top", positionEnd = "top", mark) {
   const { gsap } = await import("./gsap-L2HCQACZ.mjs");
   const { ScrollTrigger } = await import("./ScrollTrigger-HIJSDX7Q.mjs");
   gsap.registerPlugin(ScrollTrigger);
@@ -208,8 +208,8 @@ async function initDecodeAnimations(id, start, end, mark) {
       const decoder = new TextDecoder(el, gsap);
       ScrollTrigger.create({
         trigger: el,
-        start: `top ${start}%`,
-        end: `top ${end}%`,
+        start: `${position} ${start}%`,
+        end: `${positionEnd} ${end}%`,
         onEnter: () => decoder.decode(3),
         onEnterBack: () => decoder.decode(2),
         onLeave: () => decoder.scramble(),
@@ -223,7 +223,7 @@ async function initDecodeAnimations(id, start, end, mark) {
 }
 
 // src/utils/textmask.ts
-async function initLineMaskReveal(id, start, end, mark) {
+async function initLineMaskReveal(id, start, end, position = "top", positionEnd = "top", mark) {
   const { gsap } = await import("./gsap-L2HCQACZ.mjs");
   const { ScrollTrigger } = await import("./ScrollTrigger-HIJSDX7Q.mjs");
   const { SplitText } = await import("./SplitText-LUU4FCPQ.mjs");
@@ -295,4 +295,4 @@ export {
   initLineMaskReveal,
   initTracking
 };
-//# sourceMappingURL=chunk-CMLHQXFA.mjs.map
+//# sourceMappingURL=chunk-WMO54F75.mjs.map

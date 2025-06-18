@@ -24,10 +24,14 @@ import { flipReveal } from '$utils/flipReveal';
 import { fadeIn } from '$utils/fadeIn';
 import { rollRevealReverse } from '$utils/rollRevealReverse';
 import { rollReveal } from '$utils/rollReveal';
+import { gallery } from '$utils/gallery';
+import { gallery2 } from '$utils/gallery2';
 
 
 
 // Expose globally for plain <script> tag usage
+(globalThis as any).gallery = gallery;
+(globalThis as any).gallery2 = gallery2;
 (globalThis as any).initDecodeAnimations = initDecodeAnimations;
 (globalThis as any).initLineAnimations = initLineAnimations;
 (globalThis as any).initWordAnimations = initWordAnimations;

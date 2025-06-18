@@ -5,7 +5,7 @@ import {
   initLineMaskReveal,
   initTracking,
   initWordAnimations
-} from "./chunks/chunk-CMLHQXFA.mjs";
+} from "./chunks/chunk-WMO54F75.mjs";
 import {
   Pin,
   colorChange,
@@ -283,7 +283,173 @@ async function vidOnSnap(start, mark) {
   }
 }
 
+// src/utils/gallery.ts
+async function gallery(id, start, end, position = "top", positionEnd = "bottom", effectStart, effectEnd, mark) {
+  try {
+    const [gsap, ScrollTrigger, SplitText] = await Promise.all([
+      import("./chunks/gsap-L2HCQACZ.mjs").then((m) => m.gsap),
+      import("./chunks/ScrollTrigger-HIJSDX7Q.mjs").then((m) => m.ScrollTrigger),
+      import("./chunks/SplitText-LUU4FCPQ.mjs").then((m) => m.SplitText)
+    ]);
+    gsap.registerPlugin(ScrollTrigger, SplitText);
+    const parent = document.getElementById(id);
+    if (!parent) {
+      console.warn(`Element with ID "${id}" not found`);
+      return;
+    }
+    const layers = Array.from(parent.children);
+    const total = layers.length;
+    ScrollTrigger.create({
+      trigger: parent,
+      start: `${position} ${start}%`,
+      end: `${positionEnd} ${end}%`,
+      scrub: true,
+      pin: true,
+      markers: mark
+    });
+    const unit = 100 / total;
+    layers.forEach((el, i) => {
+      const isEven = i % 2 === 0;
+      const fromX = isEven ? -50 : 50;
+      const exitX = isEven ? -10 : 10;
+      const progress = i / (total - 1 || 1);
+      const yOffset = -40;
+      const z = total - i;
+      const viewportHeight = window.innerHeight;
+      const elHeight = el.getBoundingClientRect().height;
+      const verticalOffset = (viewportHeight - elHeight) / 2;
+      gsap.set(el, {
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        y: verticalOffset,
+        zIndex: z
+      });
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: parent,
+          start: `top+=${i * unit}% ${effectStart}%`,
+          end: `top+=${(i + 1) * unit}% ${effectEnd}%`,
+          scrub: true,
+          markers: mark
+        }
+      });
+      tl.fromTo(
+        el,
+        {
+          opacity: 0,
+          scale: 1,
+          xPercent: fromX
+        },
+        {
+          opacity: 1,
+          scale: 1.2,
+          xPercent: 0,
+          ease: "none"
+        }
+      ).to(el, {
+        opacity: 0,
+        scale: 1.4,
+        yPercent: yOffset,
+        xPercent: exitX,
+        ease: "none"
+      });
+    });
+  } catch (error) {
+    console.error("Animation initialization failed:", error);
+  }
+}
+
+// src/utils/gallery2.ts
+async function gallery2(id, start, end, position = "top", positionEnd = "bottom", effectStart, effectEnd, overlapRatio = 0.33, mark = false) {
+  try {
+    const [gsap, ScrollTrigger] = await Promise.all([
+      import("./chunks/gsap-L2HCQACZ.mjs").then((m) => m.gsap),
+      import("./chunks/ScrollTrigger-HIJSDX7Q.mjs").then((m) => m.ScrollTrigger)
+    ]);
+    gsap.registerPlugin(ScrollTrigger);
+    const parent = document.getElementById(id);
+    if (!parent) {
+      console.warn(`Element with ID "${id}" not found`);
+      return;
+    }
+    const layers = Array.from(parent.children);
+    const total = layers.length;
+    ScrollTrigger.create({
+      trigger: parent,
+      start: `${position} ${start}%`,
+      end: `${positionEnd} ${end}%`,
+      scrub: true,
+      pin: true,
+      markers: mark
+    });
+    const unit = 100 / total;
+    const overlapOffset = unit * overlapRatio;
+    layers.forEach((el, i) => {
+      const sideXPercent = i % 2 === 0 ? -30 : 30;
+      const z = 100 - i;
+      const vh = window.innerHeight;
+      const h = el.getBoundingClientRect().height;
+      const yOffset = (vh - h) / 2;
+      gsap.set(el, {
+        position: "absolute",
+        top: 0,
+        left: 0,
+        width: "100%",
+        y: yOffset,
+        zIndex: z,
+        xPercent: sideXPercent
+        // Set fixed horizontal start position
+      });
+      const sectionStart = `top+=${i * overlapOffset}% ${effectStart}%`;
+      const sectionEnd = `top+=${(i + 1) * overlapOffset}% ${effectEnd}%`;
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: parent,
+          start: sectionStart,
+          end: sectionEnd,
+          scrub: true
+          //   markers: mark,
+        }
+      });
+      tl.fromTo(
+        el,
+        {
+          opacity: 0,
+          scale: 0.1,
+          yPercent: 0
+          // xPercent is fixed by gsap.set above
+        },
+        {
+          opacity: 1,
+          scale: 0.5,
+          ease: "power2.out",
+          duration: 0.4
+          // xPercent stays fixed here
+        }
+      );
+      tl.to(
+        el,
+        {
+          opacity: 0,
+          scale: 1,
+          yPercent: -30,
+          ease: "power1.inOut",
+          duration: 0.2
+          // xPercent stays fixed here too
+        },
+        ">0"
+      );
+    });
+  } catch (error) {
+    console.error("Animation initialization failed:", error);
+  }
+}
+
 // src/index.ts
+globalThis.gallery = gallery;
+globalThis.gallery2 = gallery2;
 globalThis.initDecodeAnimations = initDecodeAnimations;
 globalThis.initLineAnimations = initLineAnimations;
 globalThis.initWordAnimations = initWordAnimations;

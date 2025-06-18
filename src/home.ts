@@ -8,6 +8,12 @@ import { greetUser } from '$utils/greet';
 
 
 // replace with webflow logic
+const gallery= document.getElementById('gallery')
+if(gallery){
+  gallery.innerHTML=`<img src="http://farm9.staticflickr.com/8504/8365873811_d32571df3d_z.jpg" alt=""><img src="http://farm9.staticflickr.com/8504/8365873811_d32571df3d_z.jpg" alt=""><img src="http://farm9.staticflickr.com/8504/8365873811_d32571df3d_z.jpg" alt=""><img src="http://farm9.staticflickr.com/8504/8365873811_d32571df3d_z.jpg" alt=""><img src="http://farm9.staticflickr.com/8504/8365873811_d32571df3d_z.jpg" alt=""><img src="http://farm9.staticflickr.com/8504/8365873811_d32571df3d_z.jpg" alt="">`
+}else{
+  console.log('no head found')
+}
 const head = document.getElementById('header')
 const subhead = document.getElementById('sub_header')
 const line_amination = document.getElementById('line_amination')

@@ -23,6 +23,12 @@ var greetUser = (name2) => {
 };
 
 // src/home.ts
+var gallery = document.getElementById("gallery");
+if (gallery) {
+  gallery.innerHTML = `<img src="http://farm9.staticflickr.com/8504/8365873811_d32571df3d_z.jpg" alt=""><img src="http://farm9.staticflickr.com/8504/8365873811_d32571df3d_z.jpg" alt=""><img src="http://farm9.staticflickr.com/8504/8365873811_d32571df3d_z.jpg" alt=""><img src="http://farm9.staticflickr.com/8504/8365873811_d32571df3d_z.jpg" alt=""><img src="http://farm9.staticflickr.com/8504/8365873811_d32571df3d_z.jpg" alt=""><img src="http://farm9.staticflickr.com/8504/8365873811_d32571df3d_z.jpg" alt="">`;
+} else {
+  console.log("no head found");
+}
 var head = document.getElementById("header");
 var subhead = document.getElementById("sub_header");
 var line_amination = document.getElementById("line_amination");
