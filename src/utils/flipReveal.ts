@@ -3,6 +3,7 @@
 export async function flipReveal (id:string,
   start:number,
   end:number,
+  rotations:number,
   position:"top" | "center" | "bottom" = "top" ,
   positionEnd:"top" | "center" | "bottom" = "top",
   mark:boolean){
@@ -39,7 +40,7 @@ export async function flipReveal (id:string,
     });
     function addFinalWobble() {
         gsap.to(children, {
-          rotationY: "+=10",
+          rotationY: `+=2${rotations}`,
           duration: 0.5,
           yoyo: true,
           repeat: 3,
