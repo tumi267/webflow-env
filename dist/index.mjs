@@ -27,7 +27,7 @@ import {
 import "./chunks/chunk-SUYWSG3L.mjs";
 
 // src/utils/horizontalScroll.ts
-async function horizontalScroll(id, start, mark) {
+async function horizontalScroll(id, start, position = "top", mark) {
   const { gsap } = await import("./chunks/gsap-L2HCQACZ.mjs");
   const { ScrollTrigger } = await import("./chunks/ScrollTrigger-HIJSDX7Q.mjs");
   gsap.registerPlugin(ScrollTrigger);
@@ -53,15 +53,15 @@ async function horizontalScroll(id, start, mark) {
       pin: true,
       scrub: 1,
       snap: 1 / (panelCount - 1),
-      start: `top ${start}%`,
-      end: () => "+=" + (container.scrollWidth - window.innerWidth),
+      start: `${position} ${start}px`,
+      end: () => `+=${container.scrollWidth - window.innerWidth}`,
       markers: mark
     }
   });
 }
 
 // src/utils/threepanelfadein.ts
-async function threePanelFade(id, start, panelSpeed, mark) {
+async function threePanelFade(id, start, panelSpeed, position = "top", mark) {
   const { gsap } = await import("./chunks/gsap-L2HCQACZ.mjs");
   const { ScrollTrigger } = await import("./chunks/ScrollTrigger-HIJSDX7Q.mjs");
   gsap.registerPlugin(ScrollTrigger);
@@ -78,7 +78,7 @@ async function threePanelFade(id, start, panelSpeed, mark) {
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: wrapper,
-      start: `top ${start}%`,
+      start: `${position} ${start}%`,
       end: `+=${children.length * 100}%`,
       scrub: true,
       pin: true,
@@ -105,62 +105,85 @@ async function threePanelFade(id, start, panelSpeed, mark) {
 }
 
 // src/utils/svgScroll.ts
-async function svgScroll(id, start, mark) {
+async function svgScroll(id, start, position = "top", mainline, mainChar, pluse, pluseTiming, mark) {
   const { gsap } = await import("./chunks/gsap-L2HCQACZ.mjs");
   const { ScrollTrigger } = await import("./chunks/ScrollTrigger-HIJSDX7Q.mjs");
   const { DrawSVGPlugin } = await import("./chunks/DrawSVGPlugin-ESCRFPMY.mjs");
   const { MotionPathPlugin } = await import("./chunks/MotionPathPlugin-6Z3F5HXQ.mjs");
   gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin, MotionPathPlugin);
-  gsap.set(".ball01", { x: -5, y: 0, autoAlpha: 1 });
+  const parent = document.getElementById(id);
+  if (!parent) {
+    console.warn(`SVGScroll: Element with ID "${id}" not found`);
+    return;
+  }
+  const elements = Array.from(parent.querySelectorAll("*[class]"));
+  const classList = /* @__PURE__ */ new Set();
+  elements.forEach((element) => {
+    element.classList.forEach((className) => {
+      if (className.trim())
+        classList.add(className.trim());
+    });
+  });
+  const mainLine = parent.querySelector(mainline);
+  const mainCharacter = parent.querySelector(mainChar);
+  if (!mainLine) {
+    console.warn(`SVGScroll: Main line element (${mainline}) not found`);
+    return;
+  }
+  if (!mainCharacter) {
+    console.warn(`SVGScroll: Main character element (${mainChar}) not found`);
+    return;
+  }
+  gsap.set(mainCharacter, { x: -5, y: 0, autoAlpha: 1 });
   const pulses = gsap.timeline();
-  pulses.fromTo(
-    ".ball02, .text01",
-    { autoAlpha: 0, scale: 0 },
-    {
-      autoAlpha: 1,
-      scale: 2,
-      transformOrigin: "center",
-      ease: "elastic(2.5, 1)"
-    },
-    0.2
-  );
-  pulses.fromTo(
-    ".ball03, .text02",
-    { autoAlpha: 0, scale: 0 },
-    {
-      autoAlpha: 1,
-      scale: 2,
-      transformOrigin: "center",
-      ease: "elastic(2.5, 1)"
-    },
-    0.56
-  );
-  pulses.fromTo(
-    ".ball04, .text03",
-    { autoAlpha: 0, scale: 0 },
-    {
-      autoAlpha: 1,
-      scale: 2,
-      transformOrigin: "center",
-      ease: "elastic(2.5, 1)"
-    },
-    1
-  );
+  const pulseElements = elements.filter((el) => {
+    const isBall = el.classList.toString().includes(`${pluse}`) && !el.classList.contains(mainChar.replace(".", ""));
+    const isText = el.classList.toString().includes("text");
+    return isBall || isText;
+  });
+  pulseElements.sort((a, b) => {
+    const getTrailingNumber = (element) => {
+      const classString = Array.from(element.classList).join(" ");
+      const match = classString.match(/(\d+)(?!.*\d)/);
+      return match ? parseInt(match[1], 10) : Infinity;
+    };
+    const aNum = getTrailingNumber(a);
+    const bNum = getTrailingNumber(b);
+    if (aNum === bNum) {
+      return Array.from(a.parentNode?.children || []).indexOf(a) - Array.from(b.parentNode?.children || []).indexOf(b);
+    }
+    return aNum - bNum;
+  });
+  pulseElements.forEach((element, index) => {
+    const delay = 0.2 + index * pluseTiming;
+    pulses.fromTo(
+      element,
+      { autoAlpha: 0, scale: 0 },
+      {
+        autoAlpha: 1,
+        scale: 2,
+        transformOrigin: "center",
+        ease: "elastic(2.5, 1)",
+        duration: 0.8
+      },
+      delay
+    );
+  });
   const main = gsap.timeline({
     scrollTrigger: {
       trigger: `#${id}`,
       scrub: true,
-      start: `top ${start}`,
+      start: `${position} ${start}`,
       end: "+=300%",
-      markers: mark ? true : false
+      markers: mark
     }
   });
-  main.from(".theLine", { drawSVG: 0, duration: 4 }).to(
-    ".ball01",
+  main.from(mainLine, { drawSVG: 0, duration: 4 }).to(
+    mainCharacter,
     {
       motionPath: {
-        path: ".theLine",
-        align: ".theLine",
+        path: mainLine,
+        align: mainLine,
         alignOrigin: [0.5, 0.5],
         start: 0,
         end: 1

@@ -185,6 +185,6 @@ if (video2) {
   playsinline ></video>
   `;
 } else {
-  alert("no vid");
+  console.log("no vid");
 }
 //# sourceMappingURL=home.mjs.map
