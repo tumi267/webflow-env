@@ -1,7 +1,7 @@
 export async function threePanelFade(id: string,
     start:number,
     panelSpeed:number,
-    position:"top" | "center" | "bottom" = "top" ,
+    position:"top" | "center" | "bottom" | string = "top" ,
    
     mark:boolean) {
         // Dynamically import GSAP and its plugins

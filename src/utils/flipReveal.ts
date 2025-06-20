@@ -2,8 +2,8 @@ export async function flipReveal (id:string,
   start:number,
   end:number,
   rotations:number,
-  position:"top" | "center" | "bottom" = "top" ,
-  positionEnd:"top" | "center" | "bottom" = "top",
+  position:"top" | "center" | "bottom" | string = "top" ,
+  positionEnd:"top" | "center" | "bottom" | string = "top",
   mark:boolean){
       // Dynamically import GSAP and its plugins
       const { gsap } = await import('gsap');

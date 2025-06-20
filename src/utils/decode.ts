@@ -71,8 +71,8 @@ class TextDecoder {
 export async function initDecodeAnimations(id:string,
   start:number,
   end:number,
-  position:"top" | "center" | "bottom" = "top" ,
-  positionEnd:"top" | "center" | "bottom" = "top",
+  position:"top" | "center" | "bottom" | string = "top" ,
+  positionEnd:"top" | "center" | "bottom" | string = "top",
   mark:boolean) {
     const { gsap } = await import("gsap");
     const { ScrollTrigger } = await import("gsap/ScrollTrigger");

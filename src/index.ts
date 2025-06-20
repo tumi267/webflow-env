@@ -27,6 +27,7 @@ import { rollReveal } from '$utils/rollReveal';
 import { gallery } from '$utils/gallery';
 import { gallery2 } from '$utils/gallery2';
 import { slideshow } from '$utils/slideShow';
+import { parellex } from '$utils/parallex';
 
 
 
@@ -64,3 +65,5 @@ import { slideshow } from '$utils/slideShow';
 (globalThis as any).videoScrub = videoScrub;
 (globalThis as any).vidOnSnap = vidOnSnap;
 
+
+(globalThis as any).parellex=parellex

@@ -5,7 +5,7 @@ import {
   initLineMaskReveal,
   initTracking,
   initWordAnimations
-} from "./chunks/chunk-WMO54F75.mjs";
+} from "./chunks/chunk-INMVPXMF.mjs";
 import {
   Pin,
   colorChange,
@@ -13,7 +13,7 @@ import {
   rotateScroll,
   staggerItemScroll,
   toggleScroll
-} from "./chunks/chunk-PROZYWS7.mjs";
+} from "./chunks/chunk-DT7CBHF7.mjs";
 import {
   fadeIn,
   flipReveal,
@@ -23,7 +23,7 @@ import {
   slideInLeft,
   slideInRight,
   zoom
-} from "./chunks/chunk-FVQY4HM2.mjs";
+} from "./chunks/chunk-WAUYSMMU.mjs";
 import "./chunks/chunk-SUYWSG3L.mjs";
 
 // src/utils/horizontalScroll.ts
@@ -284,7 +284,7 @@ async function vidOnSnap(start, mark) {
 }
 
 // src/utils/gallery.ts
-async function gallery(id, start, end, position = "top", positionEnd = "bottom", effectStart, effectEnd, mark) {
+async function gallery(id, start, end, position = "top", positionEnd = "top", effectStart, effectEnd, mark) {
   try {
     const [gsap, ScrollTrigger, SplitText] = await Promise.all([
       import("./chunks/gsap-L2HCQACZ.mjs").then((m) => m.gsap),
@@ -362,7 +362,7 @@ async function gallery(id, start, end, position = "top", positionEnd = "bottom",
 }
 
 // src/utils/gallery2.ts
-async function gallery2(id, start, end, position = "top", positionEnd = "bottom", effectStart, effectEnd, overlapRatio = 0.33, mark = false) {
+async function gallery2(id, start, end, position = "top", positionEnd = "top", effectStart, effectEnd, effposition = "top", effpositionEnd = "top", overlapRatio = 0.33, mark = false, markcontatin = false) {
   try {
     const [gsap, ScrollTrigger] = await Promise.all([
       import("./chunks/gsap-L2HCQACZ.mjs").then((m) => m.gsap),
@@ -382,7 +382,7 @@ async function gallery2(id, start, end, position = "top", positionEnd = "bottom"
       end: `${positionEnd} ${end}%`,
       scrub: true,
       pin: true,
-      markers: mark
+      markers: markcontatin
     });
     const unit = 100 / total;
     const overlapOffset = unit * overlapRatio;
@@ -402,15 +402,15 @@ async function gallery2(id, start, end, position = "top", positionEnd = "bottom"
         xPercent: sideXPercent
         // Set fixed horizontal start position
       });
-      const sectionStart = `top+=${i * overlapOffset}% ${effectStart}%`;
-      const sectionEnd = `top+=${(i + 1) * overlapOffset}% ${effectEnd}%`;
+      const sectionStart = `${effposition}+=${i * overlapOffset}% ${effectStart}%`;
+      const sectionEnd = `${effpositionEnd}+=${(i + 1) * overlapOffset}% ${effectEnd}%`;
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: parent,
           start: sectionStart,
           end: sectionEnd,
-          scrub: true
-          //   markers: mark,
+          scrub: true,
+          markers: mark
         }
       });
       tl.fromTo(
@@ -515,6 +515,32 @@ async function slideshow(id, mark = false) {
   }
 }
 
+// src/utils/parallex.ts
+async function parellex(id, start, position = "top", animi1x, animi1y, animi1dur, animi2x, animi2y, animi2dur, animi3x, animi3y, animi3dur, mark) {
+  const { gsap } = await import("./chunks/gsap-L2HCQACZ.mjs");
+  const { ScrollTrigger } = await import("./chunks/ScrollTrigger-HIJSDX7Q.mjs");
+  gsap.registerPlugin(ScrollTrigger);
+  const container = document.getElementById(id);
+  if (!container)
+    return;
+  const children = Array.from(container.children);
+  if (children.length < 3) {
+    console.warn(`Container "${id}" must have at least 3 children`);
+    return;
+  }
+  let tl = gsap.timeline();
+  tl.to(children[0], { x: animi1x, y: animi1y, duration: animi1dur }, 0).to(children[1], { x: animi2x, y: animi2y, duration: animi2dur }, 0).to(children[2], { x: animi3x, y: animi3y, duration: animi3dur }, 0);
+  ScrollTrigger.create({
+    animation: tl,
+    trigger: container,
+    start: `${position} ${start}%`,
+    end: "+=1000",
+    scrub: true,
+    pin: true,
+    markers: mark
+  });
+}
+
 // src/index.ts
 globalThis.gallery = gallery;
 globalThis.gallery2 = gallery2;
@@ -546,4 +572,5 @@ globalThis.svgScroll = svgScroll;
 globalThis.Contextual = Contextual;
 globalThis.videoScrub = videoScrub;
 globalThis.vidOnSnap = vidOnSnap;
+globalThis.parellex = parellex;
 //# sourceMappingURL=index.mjs.map

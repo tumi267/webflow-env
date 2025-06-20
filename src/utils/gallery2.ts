@@ -2,12 +2,15 @@ export async function gallery2(
   id: string,
   start: number,
   end: number,
-  position: "top" | "center" | "bottom" = "top",
-  positionEnd: "top" | "center" | "bottom" = "bottom",
+  position: "top" | "center" | "bottom" | string = "top",
+  positionEnd: "top" | "center" | "bottom" | string = "top",
   effectStart: number,
   effectEnd: number,
+  effposition: "top" | "center" | "bottom" | string = "top",
+  effpositionEnd: "top" | "center" | "bottom" | string = "top",
   overlapRatio: number = 0.33, // 33.3% overlap by default
-  mark: boolean = false
+  mark: boolean = false,
+  markcontatin:boolean=false
 ) {
   try {
     const [gsap, ScrollTrigger] = await Promise.all([
@@ -33,7 +36,7 @@ export async function gallery2(
       end: `${positionEnd} ${end}%`,
       scrub: true,
       pin: true,
-      markers: mark,
+      markers: markcontatin,
     });
 
     // Calculate scroll units per child and overlap offset
@@ -61,8 +64,8 @@ export async function gallery2(
       });
 
       // ScrollTrigger stagger positions
-      const sectionStart = `top+=${i * overlapOffset}% ${effectStart}%`;
-      const sectionEnd = `top+=${(i + 1) * overlapOffset}% ${effectEnd}%`;
+      const sectionStart = `${effposition}+=${i * overlapOffset}% ${effectStart}%`;
+      const sectionEnd = `${effpositionEnd}+=${(i + 1) * overlapOffset}% ${effectEnd}%`;
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -70,7 +73,7 @@ export async function gallery2(
           start: sectionStart,
           end: sectionEnd,
           scrub: true,
-        //   markers: mark,
+          markers: mark,
         },
       });
 

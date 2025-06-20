@@ -1,8 +1,8 @@
 export async function fadeIn (id:string,
   start:number,
   end:number,
-  position:"top" | "center" | "bottom" = "top" ,
-  positionEnd:"top" | "center" | "bottom" = "top",
+  position:"top" | "center" | "bottom" | string = "top" ,
+  positionEnd:"top" | "center" | "bottom" | string = "top",
   mark:boolean){
       // Dynamically import GSAP and its plugins
  

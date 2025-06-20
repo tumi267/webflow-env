@@ -3,8 +3,8 @@
 export async function colorChange(id: string,
   start:number,
   end:number,
-  position:"top" | "center" | "bottom" = "top" ,
-  positionEnd:"top" | "center" | "bottom" = "top",
+  position:"top" | "center" | "bottom" | string = "top" ,
+  positionEnd:"top" | "center" | "bottom" | string = "top",
   colorto:string,
   colorfrom:string,
   mark:boolean) {

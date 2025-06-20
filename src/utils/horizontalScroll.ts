@@ -2,7 +2,7 @@
 export async function horizontalScroll(
   id: string,
   start: number,
-  position: "top" | "center" | "bottom" = "top",
+  position: "top" | "center" | "bottom" | string = "top",
   mark: boolean
 ): Promise<void> {
   // Dynamically import GSAP and its plugins

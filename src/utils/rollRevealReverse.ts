@@ -3,8 +3,8 @@ export async function rollRevealReverse(
   start:number,
   end:number,
   duration: number = 2,
-  position:"top" | "center" | "bottom" = "top" ,
-  positionEnd:"top" | "center" | "bottom" = "top",
+  position:"top" | "center" | "bottom" | string = "top" ,
+  positionEnd:"top" | "center" | "bottom" | string = "top",
   mark:boolean
 ) {
       // Dynamically import GSAP and its plugins

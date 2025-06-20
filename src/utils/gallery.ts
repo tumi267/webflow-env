@@ -2,8 +2,8 @@ export async function gallery(
     id: string,
     start: number,
     end: number,
-    position: "top" | "center" | "bottom" = "top",
-    positionEnd: "top" | "center" | "bottom" = "bottom",
+    position: "top" | "center" | "bottom" | string = "top",
+    positionEnd: "top" | "center" | "bottom" | string = "top",
     effectStart: number,
     effectEnd: number,
     mark: boolean

@@ -1,7 +1,7 @@
 export async function svgScroll(
   id: string,
   start: number,
-  position: "top" | "center" | "bottom" = "top",
+  position: "top" | "center" | "bottom" | string = "top",
   mainline: string,
   mainChar: string,
   pluse:string,
