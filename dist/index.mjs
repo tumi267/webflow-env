@@ -13,7 +13,7 @@ import {
   rotateScroll,
   staggerItemScroll,
   toggleScroll
-} from "./chunks/chunk-DT7CBHF7.mjs";
+} from "./chunks/chunk-2PHWSGQC.mjs";
 import {
   fadeIn,
   flipReveal,
@@ -66,32 +66,38 @@ async function threePanelFade(id, start, panelSpeed, position = "top", mark) {
   const { ScrollTrigger } = await import("./chunks/ScrollTrigger-HIJSDX7Q.mjs");
   gsap.registerPlugin(ScrollTrigger);
   const wrapper = document.getElementById(id);
-  if (!wrapper) {
-    console.warn(`Wrapper element not found: ${id}`);
+  if (!wrapper)
     return;
-  }
   const children = Array.from(wrapper.children);
-  if (children.length === 0) {
-    console.warn("No child elements found in wrapper");
+  if (children.length === 0)
     return;
+  if (position.endsWith("px")) {
+    gsap.set(wrapper, {
+      position: "relative",
+      top: position
+    });
   }
+  const totalDuration = children.length * panelSpeed + 1;
   const tl = gsap.timeline({
     scrollTrigger: {
       trigger: wrapper,
-      start: `${position} ${start}%`,
-      end: `+=${children.length * 100}%`,
+      start: position.endsWith("px") ? `top top` : `${position} ${start}%`,
+      end: position.endsWith("px") ? `+=${totalDuration * 100}px` : `+=${totalDuration * 100}%`,
+      // Percentage-based
       scrub: true,
       pin: true,
-      markers: mark
+      markers: mark,
+      pinSpacing: false,
+      // Changed to true
+      anticipatePin: 1,
+      onRefresh: (self) => self.scroll()
+      // Helps recalculate on resize
     }
   });
   const animations = [
     { y: 200, opacity: 0 },
-    // bottom
     { x: -200, opacity: 0 },
-    // left
     { x: 200, opacity: 0 }
-    // right
   ];
   children.forEach((child, index) => {
     const animationType = animations[index % animations.length];

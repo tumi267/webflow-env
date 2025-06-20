@@ -1,54 +1,61 @@
-export async function threePanelFade(id: string,
-    start:number,
-    panelSpeed:number,
-    position:"top" | "center" | "bottom" | string = "top" ,
-   
-    mark:boolean) {
-        // Dynamically import GSAP and its plugins
-        const { gsap } = await import('gsap');
-        const { ScrollTrigger } = await import('gsap/ScrollTrigger');
-        gsap.registerPlugin(ScrollTrigger);
-    
+export async function threePanelFade(
+    id: string,
+    start: number,
+    panelSpeed: number,
+    position: "top" | "center" | "bottom" | string = "top",
+    mark: boolean
+  ) {
+    const { gsap } = await import('gsap');
+    const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+    gsap.registerPlugin(ScrollTrigger);
+  
     const wrapper = document.getElementById(id);
-    if (!wrapper) {
-        console.warn(`Wrapper element not found: ${id}`);
-        return;
-    }
-
-    // Get all direct children (regardless of their tag or class)
+    if (!wrapper) return;
+  
     const children = Array.from(wrapper.children);
-    if (children.length === 0) {
-        console.warn('No child elements found in wrapper');
-        return;
+    if (children.length === 0) return;
+  
+    // Set initial position
+    if (position.endsWith('px')) {
+      gsap.set(wrapper, {
+        position: 'relative',
+        top: position,
+      });
     }
-
+  
+    // Calculate total animation duration
+    const totalDuration = children.length * panelSpeed + 1; // Base + stagger
+  
     const tl = gsap.timeline({
-        scrollTrigger: {
-            trigger: wrapper,
-            start: `${position} ${start}%`,
-            end: `+=${children.length * 100}%`,
-            scrub: true,
-            pin: true,
-            markers:mark,
-        }
+      scrollTrigger: {
+        trigger: wrapper,
+        start: position.endsWith('px') ? `top top` : `${position} ${start}%`,
+        end: position.endsWith('px')
+          ? `+=${totalDuration * 100}px` // Pixel-based scroll distance
+          : `+=${totalDuration * 100}%`, // Percentage-based
+        scrub: true,
+        pin: true,
+        markers: mark,
+        pinSpacing:false, // Changed to true
+        anticipatePin: 1,
+        onRefresh: self => self.scroll(), // Helps recalculate on resize
+      }
     });
-
-    // Animation patterns (bottom → left → right → repeat)
+  
     const animations = [
-        { y: 200, opacity: 0 }, // bottom
-        { x: -200, opacity: 0 }, // left
-        { x: 200, opacity: 0 }   // right
+      { y: 200, opacity: 0 },
+      { x: -200, opacity: 0 },
+      { x: 200, opacity: 0 }
     ];
-
+  
     children.forEach((child, index) => {
-        const animationType = animations[index % animations.length];
-        tl.from(child, {
-            ...animationType,
-            duration: 1,
-            ease: "power2.out"
-        }, index * panelSpeed); // slight stagger
+      const animationType = animations[index % animations.length];
+      tl.from(child, {
+        ...animationType,
+        duration: 1,
+        ease: "power2.out"
+      }, index * panelSpeed);
     });
-
-    // Optional: Return cleanup function for frameworks
+  
     return () => ScrollTrigger.getAll().forEach(st => st.kill());
-}
+  }
