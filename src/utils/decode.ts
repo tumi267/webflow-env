@@ -68,12 +68,7 @@ class TextDecoder {
   }
 }
 
-export async function initDecodeAnimations(id:string,
-  start:number,
-  end:number,
-  position:"top" | "center" | "bottom" | string = "top" ,
-  positionEnd:"top" | "center" | "bottom" | string = "top",
-  mark:boolean) {
+export async function initDecodeAnimations(id:string) {
     const { gsap } = await import("gsap");
     const { ScrollTrigger } = await import("gsap/ScrollTrigger");
     gsap.registerPlugin(ScrollTrigger);
@@ -85,9 +80,16 @@ export async function initDecodeAnimations(id:string,
     }
   
     function init() {
-      document.querySelectorAll<HTMLElement>(`#${id}`).forEach(el => {
+
+
+      document.querySelectorAll<HTMLElement>(`[data-id="${id}"]`).forEach(el => {
         const decoder = new TextDecoder(el, gsap);
-  
+        const start = el.dataset.start ?? '50';
+        const end = el.dataset.end ?? '30';
+        const position = el.dataset.position ?? 'top';
+        const positionEnd = el.dataset.positionend ?? 'bottom';
+        const mark = el.dataset.mark === 'true';
+
         ScrollTrigger.create({
           trigger: el,
           start: `${position} ${start}%`,

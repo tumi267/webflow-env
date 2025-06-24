@@ -1,20 +1,26 @@
-export async function initLineMaskReveal(id:string,
-  start:number,
-  end:number,
-  position:"top" | "center" | "bottom" | string = "top" ,
-  positionEnd:"top" | "center" | "bottom" | string = "top",
-  mark:boolean) {
+export async function initLineMaskReveal(id:string) {
   const { gsap } = await import('gsap');
   const { ScrollTrigger } = await import('gsap/ScrollTrigger');
   const { SplitText } = await import('gsap/SplitText');
 
   gsap.registerPlugin(ScrollTrigger, SplitText);
 
-  const element = document.querySelector(`#${id}`);
+  const element = document.querySelector<HTMLElement>(`[data-id="${id}"]`);
   if (!element) {
     console.warn(`Element not found for selector: ${id}`);
     return;
   }
+  const start = element.dataset.start ?? '0';
+  const end = element.dataset.end ?? '100';
+  const position = element.dataset.position ?? 'top';
+  const positionEnd = element.dataset.positionend ?? 'bottom';
+  const mark = element.dataset.mark === 'true';
+  // const y = element.dataset.y ?? '100';
+  // const x = element.dataset.x ?? '0';
+  // const duration = parseFloat(element.dataset.duration ?? '0.5');
+  const stagger = parseFloat(element.dataset.stagger ?? '0.1');
+  // const staggerseq = (element.dataset.staggerseq as 'start' | 'end' | 'center' | 'edges') ?? 'start';
+
     // Split text into lines
     const split = SplitText.create(element, {
       type: 'lines',
@@ -32,11 +38,11 @@ export async function initLineMaskReveal(id:string,
       yPercent: 0,
       opacity: 1,
       ease: 'power3.out',
-      stagger: 0.1,
+      stagger: stagger,
       scrollTrigger: {
         trigger: element,
-        start: `top ${start}%`,
-        end: `top ${end}%`,
+        start: `${position} ${start}%`,
+        end: `${positionEnd} ${end}%`,
         scrub: true,
         markers:mark,
       }

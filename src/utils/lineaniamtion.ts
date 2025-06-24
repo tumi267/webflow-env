@@ -1,32 +1,45 @@
-export async function initLineAnimations(id: string,
-  start:number,
-  end:number,
-  position:"top" | "center" | "bottom" | string = "top" ,
-  positionEnd:"top" | "center" | "bottom" | string = "top",
-  mark:boolean) {
+export async function initLineAnimations(id: string): Promise<() => void> {
   try {
+    // Dynamic imports with proper typing
     const { gsap } = await import('gsap');
     const { ScrollTrigger } = await import('gsap/ScrollTrigger');
-    const { SplitText } = await import('gsap/SplitText') as typeof import('gsap/SplitText') & {
-      SplitText: typeof import('gsap/SplitText').SplitText;
-    };
+    const { SplitText } = await import('gsap/SplitText');
 
+    // Register plugins
     gsap.registerPlugin(ScrollTrigger, SplitText);
 
-    const element = document.getElementById(id);
+    const element = document.querySelector<HTMLElement>(`[data-id="${id}"]`);
     if (!element) {
-      console.warn(`Element #${id} not found`);
+      console.warn(`Element with data-id "${id}" not found`);
       return () => {};
     }
 
-    const split = SplitText.create(element, {
+    // Parse dataset values with fallbacks and proper typing
+    const start = element.dataset.start ?? '0';
+    const end = element.dataset.end ?? '100';
+    const position = element.dataset.position ?? 'top';
+    const positionEnd = element.dataset.positionend ?? 'bottom';
+    const mark = element.dataset.mark === 'true';
+    const y = element.dataset.y ?? '100';
+    const x = element.dataset.x ?? '0';
+    const duration = parseFloat(element.dataset.duration ?? '0.5');
+    const stagger = parseFloat(element.dataset.stagger ?? '0.1');
+    const staggerseq = (element.dataset.staggerseq as 'start' | 'end' | 'center' | 'edges') ?? 'start';
+
+    // Create SplitText instance
+    const split = new SplitText(element, {
       type: 'lines',
       linesClass: `line-${id}`
     });
-    
-    // Start hidden & below
-    gsap.set(split.lines, { opacity: 0, y: 1000 });
-    
+
+    // Initial hidden state
+    gsap.set(split.lines, { 
+      opacity: 0, 
+      y: y,  // Start from their final y position (hidden)
+      x: x    // Start from their final x position (hidden)
+    });
+
+    // Create animation timeline
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: element,
@@ -35,27 +48,35 @@ export async function initLineAnimations(id: string,
         scrub: true,
         markers: mark,
         invalidateOnRefresh: true,
-        onLeave: () => gsap.set(split.lines, { opacity: 0, y: 100 }),
-        onLeaveBack: () => gsap.set(split.lines, { opacity: 0, y: 100 })
+        onLeaveBack: () => {
+          // Reset to hidden state when scrolling back past start
+          gsap.set(split.lines, { opacity: 0 });
+        }
       }
     });
-    
+
+    // Animation sequence
     tl.to(split.lines, {
-      y: 0,
       opacity: 1,
-      duration: 1,
+      y: 0,    // Animate to 0 (normal position)
+      x: 0,    // Animate to 0 (normal position)
+      duration: duration,
       ease: 'power3.out',
       stagger: {
-        each: 0.25,
-        from: 'start'
+        each: stagger,
+        from: staggerseq
       }
     });
-    
 
-    // Optional: Return a cleanup function
+    // Return cleanup function
     return () => {
       tl.kill();
       split.revert();
+      ScrollTrigger.getAll().forEach(instance => {
+        if (instance.trigger === element) {
+          instance.kill();
+        }
+      });
     };
 
   } catch (error) {

@@ -1,3 +1,4 @@
+//  make of the the element 
 export async function zoom (id:string,start:Number,
   end:number,
   amount:number,

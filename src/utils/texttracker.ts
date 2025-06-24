@@ -4,7 +4,7 @@ export async function initTracking(id:string){
     const { ScrollTrigger } = await import('gsap/ScrollTrigger');
     const { SplitText } = await import('gsap/SplitText');
 
-    const trackingText = document.querySelector(`#${id}`);
+    const trackingText = document.querySelectorAll<HTMLElement>(`[data-id="${id}"]`);
 
     // Add mousemove effect
     document.addEventListener('mousemove', (e) => {

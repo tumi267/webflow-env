@@ -1,9 +1,4 @@
-export async function initCharAnimations(id: string,
-  start:number,
-  end:number,
-  position:"top" | "center" | "bottom" | string = "top" ,
-  positionEnd:"top" | "center" | "bottom" | string = "top",
-  mark:boolean) {
+export async function initCharAnimations(id: string) {
     try {
       // Dynamic imports with error handling
       const [gsap, ScrollTrigger, SplitText] = await Promise.all([
@@ -13,21 +8,35 @@ export async function initCharAnimations(id: string,
       ]);
   
       gsap.registerPlugin(ScrollTrigger, SplitText);
-  
-        const element = document.getElementById(id);
-        if (!element) {
+      
+      const el = document.querySelector<HTMLElement>(`[data-id="${id}"]`);
+
+      
+
+        // const el = document.getElementById(id);
+        if (!el) {
           console.warn(`Element with ID "${id}" not found`);
           return;
         }
-  
-        const split = new SplitText(element, { 
+        // Parse dataset values with fallbacks
+        const start = el.dataset.start ?? '0';
+        const end = el.dataset.end ?? '100';
+        const position = el.dataset.position ?? 'top';
+        const positionEnd = el.dataset.positionend ?? 'bottom';
+        const mark = el.dataset.mark === 'true';
+        const y = el.dataset.y ?? '100';
+        const x = el.dataset.x ?? '0';
+        const duration = parseFloat(el.dataset.duration ?? '0.5');
+        const stagger = parseFloat(el.dataset.stagger ?? '0.1');
+
+        const split = new SplitText(el, { 
           type: 'chars',
           charsClass: `char-${id}` // Unique class for each instance
         });
   
         const tl = gsap.timeline({
           scrollTrigger: {
-            trigger: element,
+            trigger: el,
             start: `${position} ${start}%`,
             end: `${positionEnd} ${end}%`,
             scrub: true,
@@ -37,9 +46,10 @@ export async function initCharAnimations(id: string,
   
         tl.from(split.chars, {
           autoAlpha: 0,
-          y: -100,
-          duration: 1,
-          stagger: 0.05 // Cleaner stagger syntax
+          y: y,
+          x:x,
+          duration: duration,
+          stagger: stagger 
         });
   
     } catch (error) {

@@ -1,64 +1,77 @@
-export async function initWordAnimations(id: string,
-  start:number,
-  end:number,
-  position:"top" | "center" | "bottom" | string = "top" ,
-  positionEnd:"top" | "center" | "bottom" | string = "top",
-  mark:boolean) {
-    try {
-      // Dynamic imports with proper typing
-      const { gsap } = await import('gsap');
-      const { ScrollTrigger } = await import('gsap/ScrollTrigger');
-      const { SplitText } = await import('gsap/SplitText') as typeof import('gsap/SplitText') & {
-        create: (target: gsap.DOMTarget, vars?: SplitText.Vars) => SplitText;
-      };
-  
-      // Register plugins
-      gsap.registerPlugin(ScrollTrigger, SplitText);
-  
-      let splitInstance: SplitText | null = null;
-      let scrollTriggerInstance: ScrollTrigger | null = null;
+export async function initWordAnimations(id: string): Promise<() => void> {
+  try {
+    // Dynamic imports with proper typing
+    const { gsap } = await import('gsap');
+    const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+    const { SplitText } = await import('gsap/SplitText') as typeof import('gsap/SplitText') & {
+      create: (target: gsap.DOMTarget, vars?: SplitText.Vars) => SplitText;
+    };
 
-        const element = document.getElementById(id);
-        if (!element) {
-          console.warn(`Element #${id} not found`);
-        }
+    // Register plugins
+    gsap.registerPlugin(ScrollTrigger, SplitText);
 
-        // Create SplitText instance
-        splitInstance = SplitText.create(element, {
-          type: 'words',
-          wordsClass: `word-${id}`
-        });
-  
-        // Create animation timeline
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: element,
-            start: `${position} ${start}%`,
-            end: `${positionEnd} ${end}%`,
-            scrub: true,
-            markers: mark,
-
-          }
-        });
-  
-        // Store ScrollTrigger reference
-        scrollTriggerInstance = tl.scrollTrigger as ScrollTrigger;
-  
-        // Animation setup
-        tl.from(splitInstance.words, {
-          y: -100,
-          opacity: 0,
-          rotation: () => gsap.utils.random(-80, 80),
-          duration: 0.7,
-          ease: 'back',
-          stagger: {
-            each: 0.15,
-            from: 'random'
-          }
-        });
-      
-    } catch (error) {
-      console.error('Word animation initialization failed:', error);
-      return () => {}; // Return no-op function if initialization fails
+    const el = document.querySelector<HTMLElement>(`[data-id="${id}"]`);
+    if (!el) {
+      console.warn(`Element with data-id "${id}" not found`);
+      return () => {};
     }
+
+    // Parse dataset values with fallbacks
+    const start = el.dataset.start ?? '0';
+    const end = el.dataset.end ?? '100';
+    const position = el.dataset.position ?? 'top';
+    const positionEnd = el.dataset.positionend ?? 'bottom';
+    const mark = el.dataset.mark === 'true';
+    const y = el.dataset.y ?? '100';
+    const x = el.dataset.x ?? '0';
+    const duration = parseFloat(el.dataset.duration ?? '0.5');
+    const stagger = parseFloat(el.dataset.stagger ?? '0.1');
+    const staggerseq = (el.dataset.staggerseq as 'start' | 'end' | 'center' | 'edges') ?? 'start';
+
+    // Create SplitText instance
+    const splitInstance = SplitText.create(el, {
+      type: 'words',
+      wordsClass: `word-${id}`
+    });
+
+    // Create animation timeline
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: el,
+        start: `${position} ${start}%`,
+        end: `${positionEnd} ${end}%`,
+        scrub: true,
+        markers: mark,
+      }
+    });
+
+    // Animation setup
+    tl.from(splitInstance.words, {
+      y,
+      x,
+      opacity: 0,
+      rotation: () => gsap.utils.random(-80, 80),
+      duration,
+      ease: 'back',
+      stagger: {
+        each: stagger,
+        from: staggerseq
+      }
+    });
+
+    // Return cleanup function
+    return () => {
+      tl.kill();
+      splitInstance.revert();
+      ScrollTrigger.getAll().forEach(instance => {
+        if (instance.trigger === el) {
+          instance.kill();
+        }
+      });
+    };
+
+  } catch (error) {
+    console.error('Word animation initialization failed:', error);
+    return () => {};
   }
+}
