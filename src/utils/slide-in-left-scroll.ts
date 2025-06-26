@@ -5,6 +5,7 @@ export async function slideInLeftScroll(id:string){
       const { gsap } = await import('gsap');
       const { ScrollTrigger } = await import('gsap/ScrollTrigger');
       gsap.registerPlugin(ScrollTrigger);
+      
     gsap.from(`#${id}`, {
         scrollTrigger: {
           trigger: `#${id}`,

@@ -1,22 +1,28 @@
-export async function flipReveal (id:string,
-  start:number,
-  end:number,
-  rotations:number,
-  position:"top" | "center" | "bottom" | string = "top" ,
-  positionEnd:"top" | "center" | "bottom" | string = "top",
-  mark:boolean){
+export async function flipReveal (id:string){
       // Dynamically import GSAP and its plugins
       const { gsap } = await import('gsap');
       const { ScrollTrigger } = await import('gsap/ScrollTrigger');
       gsap.registerPlugin(ScrollTrigger);
-  const parent = document.getElementById(id);
+
+
+  const parent = document.querySelector<HTMLElement>(`[data-id="${id}"]`);
       if (!parent) return;
     
       const children = parent.querySelectorAll<HTMLElement>('*'); // Animate children
     
       // Add perspective to parent for 3D rotation
       gsap.set(parent, { transformPerspective: 2000 });
-    
+
+      const start = parent.dataset.start ?? '0';
+      const end = parent.dataset.end ?? '100';
+      const position = parent.dataset.position ?? 'top';
+      const positionEnd = parent.dataset.positionend ?? 'bottom';
+      const mark = parent.dataset.mark === 'true';
+      const duration = parseFloat(parent.dataset.duration ?? '0.5');
+      const wobble =parent.dataset.wobble??'6'
+      const num = parent.dataset.num??'3';
+
+
       const tl = gsap.timeline({
       scrollTrigger: {
       trigger: parent,
@@ -27,18 +33,20 @@ export async function flipReveal (id:string,
       markers:mark
       }
     })
-    let num = 3;
+    
     tl.to(children, {
       rotationY: `+=${360 * num}`,
+   
       stagger: 0.2,
-      duration: 2,
+      duration: duration,
       ease: "back.out(1.7)",
       transformPerspective: 2000,
       onComplete: addFinalWobble
     });
     function addFinalWobble() {
         gsap.to(children, {
-          rotationY: `+=2${rotations}`,
+          rotationY: `+=2${wobble}`,
+  
           duration: 0.5,
           yoyo: true,
           repeat: 3,

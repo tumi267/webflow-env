@@ -11,8 +11,6 @@ export async function initCharAnimations(id: string) {
       
       const el = document.querySelector<HTMLElement>(`[data-id="${id}"]`);
 
-      
-
         // const el = document.getElementById(id);
         if (!el) {
           console.warn(`Element with ID "${id}" not found`);

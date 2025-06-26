@@ -1,31 +1,43 @@
 export async function staggerItemScroll(id: string,
-  start:number,
-  end:number,
-  position:"top" | "center" | "bottom" | string = "top" ,
-  positionEnd:"top" | "center" | "bottom" | string = "top",
-  mark:boolean) {
+) {
       // Dynamically import GSAP and its plugins
   const { gsap } = await import('gsap');
   const { ScrollTrigger } = await import('gsap/ScrollTrigger');
   gsap.registerPlugin(ScrollTrigger);
-  const parent = document.getElementById(id);
-  if (!parent) return;
+  const el = document.querySelector<HTMLElement>(`[data-id="${id}"]`);
+    
+  if (!el) {
+    console.warn(`Element with ID "${id}" not found`);
+    return;
+  }
+  
+  // Parse dataset values with fallbacks
+  const start = el.dataset.start ?? '0';
+  const end = el.dataset.end ?? '100';
+  const position = el.dataset.position ?? 'top';
+  const positionEnd = el.dataset.positionend ?? 'bottom';
+  const mark = el.dataset.mark === 'true';
 
-  const items = parent.querySelectorAll<HTMLElement>('*'); 
+  const y = el.dataset.y ?? '50';
+  const x = el.dataset.x ?? '0';
+  const duration = parseFloat(el.dataset.duration ?? '0.5');
+
+  const items = el.querySelectorAll<HTMLElement>('*'); 
 
   if (!items.length) return;
 
   gsap.from(items, {
     scrollTrigger: {
-      trigger: parent,
+      trigger: el,
       start: `${position} ${start}%`,
       end: `${positionEnd} ${end}%`,
       scrub: true,
       markers:mark,
     },
-    y: 50,
+    y: y,
+    x:x,
     opacity: 0,
-    duration: 0.6,
+    duration: duration,
     stagger: 0.2,
   });
 }

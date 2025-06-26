@@ -6,17 +6,21 @@ export async function pan(id:string) {
       const { ScrollTrigger } = await import('gsap/ScrollTrigger');
       const { SplitText } = await import('gsap/SplitText');
       
-  const container = document.querySelector(`#${id}`) as HTMLElement;
-  if (!container) return;
+      const el = document.querySelector<HTMLElement>(`[data-id="${id}"]`);
+    
+      if (!el) {
+        console.warn(`Element with ID "${id}" not found`);
+        return;
+      }
 
-  const children = Array.from(container.children) as HTMLElement[];
+  const children = Array.from(el.children) as HTMLElement[];
 
   const intensityX = 30;
   const intensityY = 30;
   const duration = 0.5;
 
   const handleMouseMove = (e: MouseEvent) => {
-    const bounds = container.getBoundingClientRect();
+    const bounds = el.getBoundingClientRect();
     const centerX = bounds.left + bounds.width / 2;
     const centerY = bounds.top + bounds.height / 2;
 
@@ -36,10 +40,10 @@ export async function pan(id:string) {
     });
   };
 
-  container.addEventListener('mousemove', handleMouseMove);
+  el.addEventListener('mousemove', handleMouseMove);
 
   // Optional: reset on mouse leave
-  container.addEventListener('mouseleave', () => {
+  el.addEventListener('mouseleave', () => {
     children.forEach((child) => {
       gsap.to(child, { x: 0, y: 0, duration: 0.5, ease: 'power2.out' });
     });
@@ -47,6 +51,6 @@ export async function pan(id:string) {
 
   // Cleanup function
   return () => {
-    container.removeEventListener('mousemove', handleMouseMove);
+    el.removeEventListener('mousemove', handleMouseMove);
   };
 }

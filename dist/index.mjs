@@ -5,7 +5,7 @@ import {
   initLineMaskReveal,
   initTracking,
   initWordAnimations
-} from "./chunks/chunk-ZMXKTXLY.mjs";
+} from "./chunks/chunk-NHWM2XRD.mjs";
 import {
   Pin,
   colorChange,
@@ -13,7 +13,7 @@ import {
   rotateScroll,
   staggerItemScroll,
   toggleScroll
-} from "./chunks/chunk-HTRPANPX.mjs";
+} from "./chunks/chunk-NODKU6PD.mjs";
 import {
   fadeIn,
   flipReveal,
@@ -23,7 +23,7 @@ import {
   slideInLeft,
   slideInRight,
   zoom
-} from "./chunks/chunk-KIITYMIA.mjs";
+} from "./chunks/chunk-OIT2O2EE.mjs";
 import "./chunks/chunk-SUYWSG3L.mjs";
 
 // src/utils/horizontalScroll.ts
@@ -201,14 +201,24 @@ async function svgScroll(id, start, position = "top", mainline, mainChar, pluse,
 }
 
 // src/utils/contextual.ts
-async function Contextual(id, start, mark) {
+async function Contextual(id) {
   const { gsap } = await import("./chunks/gsap-L2HCQACZ.mjs");
   const { ScrollTrigger } = await import("./chunks/ScrollTrigger-HIJSDX7Q.mjs");
   gsap.registerPlugin(ScrollTrigger);
+  const el = document.querySelector(`[data-id="${id}"]`);
+  if (!el) {
+    console.warn(`Element with ID "${id}" not found`);
+    return;
+  }
+  const start = el.dataset.start ?? "0";
+  const end = el.dataset.end ?? "100";
+  const position = el.dataset.position ?? "top";
+  const positionEnd = el.dataset.positionend ?? "bottom";
+  const mark = el.dataset.mark === "true";
   ScrollTrigger.create({
-    trigger: `#${id}`,
-    start: `top ${start}%`,
-    end: "bottom top",
+    trigger: el,
+    start: `${position} ${start}%`,
+    end: `${positionEnd} ${end}`,
     markers: mark ? true : false,
     onEnter: (self) => {
       const element = self.trigger;
