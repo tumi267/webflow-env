@@ -1,13 +1,4 @@
-export async function svgScroll(
-  id: string,
-  start: number,
-  position: "top" | "center" | "bottom" | string = "top",
-  mainline: string,
-  mainChar: string,
-  pluse:string,
-  pluseTiming:number,
-  mark: boolean
-): Promise<void> {
+export async function svgScroll(id: string): Promise<void> {
   // Dynamically import GSAP and plugins
   const { gsap } = await import('gsap');
   const { ScrollTrigger } = await import('gsap/ScrollTrigger');
@@ -17,11 +8,24 @@ export async function svgScroll(
   // Register plugins
   gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin, MotionPathPlugin);
 
-  const parent = document.getElementById(id);
+  const parent = document.querySelector<HTMLElement>(`[data-id="${id}"]`);
+
+  // const el = document.getElementById(id);
   if (!parent) {
-    console.warn(`SVGScroll: Element with ID "${id}" not found`);
+    console.warn(`Element with ID "${id}" not found`);
     return;
   }
+  // Parse dataset values with fallbacks
+  const start = parent.dataset.start ?? '0';
+  const end = parent.dataset.end ?? '300';
+  const position = parent.dataset.position ?? 'top';
+  
+  const mark = parent.dataset.mark === 'true';
+  const mainline = parent.dataset.mainline ?? '.theLine';
+  const mainChar = parent.dataset.mainChar ?? '.ball01';
+  const duration = parseFloat(parent.dataset.duration ?? '4');
+  const pluse = parent.dataset.pluse ?? 'ball';
+  const pluseTiming = parent.dataset.pluseTiming ?? '0.1';
 
   // Get all elements with class attributes
   const elements = Array.from(parent.querySelectorAll<HTMLElement>('*[class]'));
@@ -108,10 +112,10 @@ export async function svgScroll(
   // Main animation with ScrollTrigger
   const main = gsap.timeline({
     scrollTrigger: {
-      trigger: `#${id}`,
+      trigger: parent,
       scrub: true,
       start: `${position} ${start}`,
-      end: '+=300%',
+      end: `+=${end}%`,
       markers: mark,
     },
   });
@@ -128,7 +132,7 @@ export async function svgScroll(
           start: 0,
           end: 1,
         },
-        duration: 4,
+        duration: duration,
       },
       0
     )

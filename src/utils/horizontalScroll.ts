@@ -1,20 +1,23 @@
 // width issue pannel jumps to blank
-export async function horizontalScroll(
-  id: string,
-  start: number,
-  position: "top" | "center" | "bottom" | string = "top",
-  mark: boolean
-): Promise<void> {
+export async function horizontalScroll(id: string): Promise<void> {
   // Dynamically import GSAP and its plugins
   const { gsap } = await import('gsap');
   const { ScrollTrigger } = await import('gsap/ScrollTrigger');
   gsap.registerPlugin(ScrollTrigger);
 
-  const container = document.querySelector<HTMLElement>(`#${id}`);
+  const container = document.querySelector<HTMLElement>(`[data-id="${id}"]`);
   if (!container) {
     console.warn('horizontalScroll: container not found.');
     return;
   }
+
+  // Parse dataset values with fallbacks
+  const start = container.dataset.start ?? '0';
+  const position = container.dataset.position ?? 'top';
+  const mark = container.dataset.mark === 'true';
+  const y = container.dataset.y ?? '100';
+  const x = container.dataset.x ?? '100';
+
 
   // Scope the panels to only those inside the container
   const panels = Array.from(container.querySelectorAll<HTMLElement>('.panel_horizontal'));
@@ -32,14 +35,14 @@ export async function horizontalScroll(
 
   // Create the horizontal scroll animation
   gsap.to(panels, {
-    xPercent: -100 * (panelCount - 1),
+    xPercent: -x * (panelCount - 1),
     ease: 'none',
     scrollTrigger: {
       trigger: container,
       pin: true,
       scrub: 1,
       snap: 1 / (panelCount - 1),
-      start: `${position} ${start}px`,
+      start: `${position} ${start}`,
       end: () => `+=${container.scrollWidth - window.innerWidth}`,
       markers: mark,
     },

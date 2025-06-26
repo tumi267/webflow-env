@@ -141,10 +141,6 @@ text {
   background-color: #333;
   color: aliceblue;
 }
-#svg_contain {
-  position: relative;
-  z-index: 2;
-}
 .ball {
   fill: black;
   visibility: hidden;

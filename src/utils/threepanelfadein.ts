@@ -1,38 +1,49 @@
-export async function threePanelFade(
-    id: string,
-    start: number,
-    panelSpeed: number,
-    position: "top" | "center" | "bottom" | string = "top",
-    mark: boolean
-  ) {
+export async function threePanelFade(id: string) {
     const { gsap } = await import('gsap');
     const { ScrollTrigger } = await import('gsap/ScrollTrigger');
     gsap.registerPlugin(ScrollTrigger);
   
-    const wrapper = document.getElementById(id);
-    if (!wrapper) return;
+    const el = document.querySelector<HTMLElement>(`[data-id="${id}"]`);
+
+    // const el = document.getElementById(id);
+    if (!el) {
+      console.warn(`Element with ID "${id}" not found`);
+      return;
+    }
+    // Parse dataset values with fallbacks
+    const start = el.dataset.start ?? '0';
+    const end = el.dataset.end ?? '100';
+    const position = el.dataset.position ?? 'top';
+
+    const mark = el.dataset.mark === 'true';
+    const y1 = el.dataset.y1 ?? '200';
+    const x1 = el.dataset.x1 ?? '-200';
+    const y2 = el.dataset.y2 ?? '200';
+    const x2 = el.dataset.x2 ?? '-200';
+    const y3 = el.dataset.y3 ?? '200';
+    const x3 = el.dataset.x3 ?? '-200';
+    const duration = parseFloat(el.dataset.duration ?? '2');
+ 
   
-    const children = Array.from(wrapper.children);
+    const children = Array.from(el.children);
     if (children.length === 0) return;
   
     // Set initial position
     if (position.endsWith('px')) {
-      gsap.set(wrapper, {
+      gsap.set(el, {
         position: 'relative',
         top: position,
       });
     }
   
     // Calculate total animation duration
-    const totalDuration = children.length * panelSpeed + 1; // Base + stagger
+    const totalDuration = children.length * duration + 1; // Base + stagger
   
     const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: wrapper,
-        start: position.endsWith('px') ? `top top` : `${position} ${start}%`,
-        end: position.endsWith('px')
-          ? `+=${totalDuration * 100}px` // Pixel-based scroll distance
-          : `+=${totalDuration * 100}%`, // Percentage-based
+        trigger: el,
+        start:  `${position} ${start}%`,
+        end: `+=${totalDuration * 100}%`, // Percentage-based
         scrub: true,
         pin: true,
         markers: mark,
@@ -43,9 +54,9 @@ export async function threePanelFade(
     });
   
     const animations = [
-      { y: 200, opacity: 0 },
-      { x: -200, opacity: 0 },
-      { x: 200, opacity: 0 }
+      { y: y1,x:x1, opacity: 0 },
+      { y: y2,x:x2, opacity: 0 },
+      { y: y3,x:x3,  opacity: 0 }
     ];
   
     children.forEach((child, index) => {
@@ -54,7 +65,7 @@ export async function threePanelFade(
         ...animationType,
         duration: 1,
         ease: "power2.out"
-      }, index * panelSpeed);
+      }, index * duration);
     });
   
     return () => ScrollTrigger.getAll().forEach(st => st.kill());

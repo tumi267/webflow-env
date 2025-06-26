@@ -27,15 +27,20 @@ import {
 import "./chunks/chunk-SUYWSG3L.mjs";
 
 // src/utils/horizontalScroll.ts
-async function horizontalScroll(id, start, position = "top", mark) {
+async function horizontalScroll(id) {
   const { gsap } = await import("./chunks/gsap-L2HCQACZ.mjs");
   const { ScrollTrigger } = await import("./chunks/ScrollTrigger-HIJSDX7Q.mjs");
   gsap.registerPlugin(ScrollTrigger);
-  const container = document.querySelector(`#${id}`);
+  const container = document.querySelector(`[data-id="${id}"]`);
   if (!container) {
     console.warn("horizontalScroll: container not found.");
     return;
   }
+  const start = container.dataset.start ?? "0";
+  const position = container.dataset.position ?? "top";
+  const mark = container.dataset.mark === "true";
+  const y = container.dataset.y ?? "100";
+  const x = container.dataset.x ?? "100";
   const panels = Array.from(container.querySelectorAll(".panel_horizontal"));
   const panelCount = panels.length;
   if (panelCount === 0) {
@@ -46,14 +51,14 @@ async function horizontalScroll(id, start, position = "top", mark) {
     width: `${100 * panelCount}vw`
   });
   gsap.to(panels, {
-    xPercent: -100 * (panelCount - 1),
+    xPercent: -x * (panelCount - 1),
     ease: "none",
     scrollTrigger: {
       trigger: container,
       pin: true,
       scrub: 1,
       snap: 1 / (panelCount - 1),
-      start: `${position} ${start}px`,
+      start: `${position} ${start}`,
       end: () => `+=${container.scrollWidth - window.innerWidth}`,
       markers: mark
     }
@@ -61,28 +66,41 @@ async function horizontalScroll(id, start, position = "top", mark) {
 }
 
 // src/utils/threepanelfadein.ts
-async function threePanelFade(id, start, panelSpeed, position = "top", mark) {
+async function threePanelFade(id) {
   const { gsap } = await import("./chunks/gsap-L2HCQACZ.mjs");
   const { ScrollTrigger } = await import("./chunks/ScrollTrigger-HIJSDX7Q.mjs");
   gsap.registerPlugin(ScrollTrigger);
-  const wrapper = document.getElementById(id);
-  if (!wrapper)
+  const el = document.querySelector(`[data-id="${id}"]`);
+  if (!el) {
+    console.warn(`Element with ID "${id}" not found`);
     return;
-  const children = Array.from(wrapper.children);
+  }
+  const start = el.dataset.start ?? "0";
+  const end = el.dataset.end ?? "100";
+  const position = el.dataset.position ?? "top";
+  const mark = el.dataset.mark === "true";
+  const y1 = el.dataset.y1 ?? "200";
+  const x1 = el.dataset.x1 ?? "-200";
+  const y2 = el.dataset.y2 ?? "200";
+  const x2 = el.dataset.x2 ?? "-200";
+  const y3 = el.dataset.y3 ?? "200";
+  const x3 = el.dataset.x3 ?? "-200";
+  const duration = parseFloat(el.dataset.duration ?? "2");
+  const children = Array.from(el.children);
   if (children.length === 0)
     return;
   if (position.endsWith("px")) {
-    gsap.set(wrapper, {
+    gsap.set(el, {
       position: "relative",
       top: position
     });
   }
-  const totalDuration = children.length * panelSpeed + 1;
+  const totalDuration = children.length * duration + 1;
   const tl = gsap.timeline({
     scrollTrigger: {
-      trigger: wrapper,
-      start: position.endsWith("px") ? `top top` : `${position} ${start}%`,
-      end: position.endsWith("px") ? `+=${totalDuration * 100}px` : `+=${totalDuration * 100}%`,
+      trigger: el,
+      start: `${position} ${start}%`,
+      end: `+=${totalDuration * 100}%`,
       // Percentage-based
       scrub: true,
       pin: true,
@@ -95,9 +113,9 @@ async function threePanelFade(id, start, panelSpeed, position = "top", mark) {
     }
   });
   const animations = [
-    { y: 200, opacity: 0 },
-    { x: -200, opacity: 0 },
-    { x: 200, opacity: 0 }
+    { y: y1, x: x1, opacity: 0 },
+    { y: y2, x: x2, opacity: 0 },
+    { y: y3, x: x3, opacity: 0 }
   ];
   children.forEach((child, index) => {
     const animationType = animations[index % animations.length];
@@ -105,23 +123,32 @@ async function threePanelFade(id, start, panelSpeed, position = "top", mark) {
       ...animationType,
       duration: 1,
       ease: "power2.out"
-    }, index * panelSpeed);
+    }, index * duration);
   });
   return () => ScrollTrigger.getAll().forEach((st) => st.kill());
 }
 
 // src/utils/svgScroll.ts
-async function svgScroll(id, start, position = "top", mainline, mainChar, pluse, pluseTiming, mark) {
+async function svgScroll(id) {
   const { gsap } = await import("./chunks/gsap-L2HCQACZ.mjs");
   const { ScrollTrigger } = await import("./chunks/ScrollTrigger-HIJSDX7Q.mjs");
   const { DrawSVGPlugin } = await import("./chunks/DrawSVGPlugin-ESCRFPMY.mjs");
   const { MotionPathPlugin } = await import("./chunks/MotionPathPlugin-6Z3F5HXQ.mjs");
   gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin, MotionPathPlugin);
-  const parent = document.getElementById(id);
+  const parent = document.querySelector(`[data-id="${id}"]`);
   if (!parent) {
-    console.warn(`SVGScroll: Element with ID "${id}" not found`);
+    console.warn(`Element with ID "${id}" not found`);
     return;
   }
+  const start = parent.dataset.start ?? "0";
+  const end = parent.dataset.end ?? "300";
+  const position = parent.dataset.position ?? "top";
+  const mark = parent.dataset.mark === "true";
+  const mainline = parent.dataset.mainline ?? ".theLine";
+  const mainChar = parent.dataset.mainChar ?? ".ball01";
+  const duration = parseFloat(parent.dataset.duration ?? "4");
+  const pluse = parent.dataset.pluse ?? "ball";
+  const pluseTiming = parent.dataset.pluseTiming ?? "0.1";
   const elements = Array.from(parent.querySelectorAll("*[class]"));
   const classList = /* @__PURE__ */ new Set();
   elements.forEach((element) => {
@@ -177,10 +204,10 @@ async function svgScroll(id, start, position = "top", mainline, mainChar, pluse,
   });
   const main = gsap.timeline({
     scrollTrigger: {
-      trigger: `#${id}`,
+      trigger: parent,
       scrub: true,
       start: `${position} ${start}`,
-      end: "+=300%",
+      end: `+=${end}%`,
       markers: mark
     }
   });
@@ -194,7 +221,7 @@ async function svgScroll(id, start, position = "top", mainline, mainChar, pluse,
         start: 0,
         end: 1
       },
-      duration: 4
+      duration
     },
     0
   ).add(pulses, 0);
@@ -464,7 +491,7 @@ async function gallery2(id, start, end, position = "top", positionEnd = "top", e
 }
 
 // src/utils/slideShow.ts
-async function slideshow(id, mark = false) {
+async function slideshow(id) {
   try {
     let showSlide2 = function(newIndex, direction) {
       if (newIndex === currentIndex)
@@ -493,7 +520,7 @@ async function slideshow(id, mark = false) {
     const [gsap] = await Promise.all([
       import("./chunks/gsap-L2HCQACZ.mjs").then((m) => m.gsap)
     ]);
-    const container = document.getElementById(id);
+    const container = document.querySelector(`[data-id="${id}"]`);
     if (!container) {
       console.warn(`Container with id "${id}" not found`);
       return;
@@ -532,14 +559,28 @@ async function slideshow(id, mark = false) {
 }
 
 // src/utils/parallex.ts
-async function parellex(id, start, position = "top", animi1x, animi1y, animi1dur, animi2x, animi2y, animi2dur, animi3x, animi3y, animi3dur, mark) {
+async function parellex(id) {
   const { gsap } = await import("./chunks/gsap-L2HCQACZ.mjs");
   const { ScrollTrigger } = await import("./chunks/ScrollTrigger-HIJSDX7Q.mjs");
   gsap.registerPlugin(ScrollTrigger);
-  const container = document.getElementById(id);
-  if (!container)
+  const el = document.querySelector(`[data-id="${id}"]`);
+  if (!el) {
+    console.warn(`Element with ID "${id}" not found`);
     return;
-  const children = Array.from(container.children);
+  }
+  const start = el.dataset.start ?? "0";
+  const position = el.dataset.position ?? "top";
+  const mark = el.dataset.mark === "true";
+  const animi1x = el.dataset.animi1x ?? "100";
+  const animi1y = el.dataset.animi1y ?? "0";
+  const animi1dur = el.dataset.animi1dur ?? "3";
+  const animi2x = el.dataset.animi2x ?? "-100";
+  const animi2y = el.dataset.animi2y ?? "-200";
+  const animi2dur = el.dataset.animi2dur ?? "2.5";
+  const animi3x = el.dataset.animi3x ?? "50";
+  const animi3y = el.dataset.animi3y ?? "-200";
+  const animi3dur = el.dataset.animi3dur ?? "2";
+  const children = Array.from(el.children);
   if (children.length < 3) {
     console.warn(`Container "${id}" must have at least 3 children`);
     return;
@@ -548,11 +589,12 @@ async function parellex(id, start, position = "top", animi1x, animi1y, animi1dur
   tl.to(children[0], { x: animi1x, y: animi1y, duration: animi1dur }, 0).to(children[1], { x: animi2x, y: animi2y, duration: animi2dur }, 0).to(children[2], { x: animi3x, y: animi3y, duration: animi3dur }, 0);
   ScrollTrigger.create({
     animation: tl,
-    trigger: container,
+    trigger: el,
     start: `${position} ${start}%`,
-    end: "+=1000",
+    end: `${el.scrollHeight * 1.5}px`,
     scrub: true,
     pin: true,
+    pinSpacing: false,
     markers: mark
   });
 }

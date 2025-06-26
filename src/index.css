@@ -144,10 +144,10 @@ visibility: hidden;
         color: aliceblue;
         }
 
-#svg_contain {
+/* #svg_contain {
     position: relative;
     z-index: 2;
-  }
+  } */
 
 .ball {
   fill: black;

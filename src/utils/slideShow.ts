@@ -1,13 +1,12 @@
 export async function slideshow(
     id: string,
-    mark: boolean = false
   ) {
     try {
       const [gsap] = await Promise.all([
         import("gsap").then((m) => m.gsap),
       ]);
   
-      const container = document.getElementById(id);
+      const container = document.querySelector<HTMLElement>(`[data-id="${id}"]`);
       if (!container) {
         console.warn(`Container with id "${id}" not found`);
         return;

@@ -1,26 +1,32 @@
-export async function parellex(
-    id: string,
-    start: number,
-    position: "top" | "center" | "bottom" | string = "top",
-    animi1x: number,
-    animi1y: number,
-    animi1dur: number,
-    animi2x: number,
-    animi2y: number,
-    animi2dur: number,
-    animi3x: number,
-    animi3y: number,
-    animi3dur: number,
-    mark: boolean
-  ) {
+export async function parellex(id: string) {
     const { gsap } = await import("gsap");
     const { ScrollTrigger } = await import("gsap/ScrollTrigger");
     gsap.registerPlugin(ScrollTrigger);
   
-    const container = document.getElementById(id);
-    if (!container) return;
-  
-    const children = Array.from(container.children);
+
+    const el = document.querySelector<HTMLElement>(`[data-id="${id}"]`);
+
+    // const el = document.getElementById(id);
+    if (!el) {
+      console.warn(`Element with ID "${id}" not found`);
+      return;
+    }
+    // Parse dataset values with fallbacks
+    const start = el.dataset.start ?? '0';
+
+    const position = el.dataset.position ?? 'top';
+
+    const mark = el.dataset.mark === 'true';
+    const animi1x = el.dataset.animi1x ?? '100';
+    const animi1y = el.dataset.animi1y ?? '0';
+    const animi1dur = el.dataset.animi1dur ?? '3';
+    const animi2x = el.dataset.animi2x ?? '-100';
+    const animi2y = el.dataset.animi2y ?? '-200';
+    const animi2dur = el.dataset.animi2dur ?? '2.5';
+    const animi3x = el.dataset.animi3x ?? '50';
+    const animi3y = el.dataset.animi3y ?? '-200';
+    const animi3dur = el.dataset.animi3dur ?? '2';
+    const children = Array.from(el.children);
     if (children.length < 3) {
       console.warn(`Container "${id}" must have at least 3 children`);
       return;
@@ -34,12 +40,12 @@ export async function parellex(
   
     ScrollTrigger.create({
       animation: tl,
-      trigger: container,
+      trigger: el,
       start: `${position} ${start}%`,
-      end: "+=1000",
+      end: `${el.scrollHeight*1.5}px`,
       scrub: true,
       pin: true,
- 
+      pinSpacing:false,
       markers: mark
     });
   }
