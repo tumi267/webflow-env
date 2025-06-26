@@ -1,15 +1,14 @@
-export async function initLineMaskReveal(id:string) {
+export async function initLineMaskReveal() {
   const { gsap } = await import('gsap');
   const { ScrollTrigger } = await import('gsap/ScrollTrigger');
   const { SplitText } = await import('gsap/SplitText');
 
   gsap.registerPlugin(ScrollTrigger, SplitText);
 
-  const element = document.querySelector<HTMLElement>(`[data-id="${id}"]`);
-  if (!element) {
-    console.warn(`Element not found for selector: ${id}`);
-    return;
-  }
+  const elements = document.querySelectorAll<HTMLElement>(`[data-animation="mask"]`);
+  const cleanups: (() => void)[] = [];
+
+  elements.forEach((element) => {
   const start = element.dataset.start ?? '0';
   const end = element.dataset.end ?? '100';
   const position = element.dataset.position ?? 'top';
@@ -47,4 +46,5 @@ export async function initLineMaskReveal(id:string) {
         markers:mark,
       }
     });
+  })
 }

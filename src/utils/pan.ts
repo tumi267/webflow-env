@@ -1,17 +1,15 @@
 
 
-export async function pan(id:string) {
+export async function pan() {
       // Dynamically import GSAP and its plugins
       const { gsap } = await import('gsap');
       const { ScrollTrigger } = await import('gsap/ScrollTrigger');
       const { SplitText } = await import('gsap/SplitText');
       
-      const el = document.querySelector<HTMLElement>(`[data-id="${id}"]`);
+      const elements = document.querySelectorAll<HTMLElement>(`[data-animation="pan"]`);
+      const cleanups: (() => void)[] = [];
     
-      if (!el) {
-        console.warn(`Element with ID "${id}" not found`);
-        return;
-      }
+      elements.forEach((el) => {
 
   const children = Array.from(el.children) as HTMLElement[];
 
@@ -53,4 +51,5 @@ export async function pan(id:string) {
   return () => {
     el.removeEventListener('mousemove', handleMouseMove);
   };
+})
 }

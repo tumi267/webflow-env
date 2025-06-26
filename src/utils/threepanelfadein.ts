@@ -3,13 +3,9 @@ export async function threePanelFade(id: string) {
     const { ScrollTrigger } = await import('gsap/ScrollTrigger');
     gsap.registerPlugin(ScrollTrigger);
   
-    const el = document.querySelector<HTMLElement>(`[data-id="${id}"]`);
-
-    // const el = document.getElementById(id);
-    if (!el) {
-      console.warn(`Element with ID "${id}" not found`);
-      return;
-    }
+    const elements = document.querySelectorAll<HTMLElement>(`[data-animation="threePanel"]`);
+    const cleanups: (() => void)[] = [];
+    elements.forEach((el) => {
     // Parse dataset values with fallbacks
     const start = el.dataset.start ?? '0';
     const end = el.dataset.end ?? '100';
@@ -69,4 +65,5 @@ export async function threePanelFade(id: string) {
     });
   
     return () => ScrollTrigger.getAll().forEach(st => st.kill());
+  })
   }

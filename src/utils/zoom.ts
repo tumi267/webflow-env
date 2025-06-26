@@ -1,15 +1,13 @@
-export async function zoom (id:string){
+export async function zoom (){
     // Dynamically import GSAP and its plugins
     const { gsap } = await import('gsap');
     const { ScrollTrigger } = await import('gsap/ScrollTrigger');
     const { SplitText } = await import('gsap/SplitText');
     gsap.registerPlugin(ScrollTrigger,SplitText)
-    const el = document.querySelector<HTMLElement>(`[data-id="${id}"]`);
-    
-    if (!el) {
-      console.warn(`Element with ID "${id}" not found`);
-      return;
-    }
+    const elements = document.querySelectorAll<HTMLElement>(`[data-animation="zoom"]`);
+    const cleanups: (() => void)[] = [];
+  
+    elements.forEach((el) => {
     
     // Parse dataset values with fallbacks
     const start = el.dataset.start ?? '0';
@@ -38,4 +36,5 @@ export async function zoom (id:string){
       }
     }
   );
+  })
 }

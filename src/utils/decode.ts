@@ -68,7 +68,7 @@ class TextDecoder {
   }
 }
 
-export async function initDecodeAnimations(id:string) {
+export async function initDecodeAnimations() {
     const { gsap } = await import("gsap");
     const { ScrollTrigger } = await import("gsap/ScrollTrigger");
     gsap.registerPlugin(ScrollTrigger);
@@ -81,8 +81,9 @@ export async function initDecodeAnimations(id:string) {
   
     function init() {
 
-
-      document.querySelectorAll<HTMLElement>(`[data-id="${id}"]`).forEach(el => {
+      const main = document.querySelectorAll<HTMLElement>(`[data-animation="decode"]`);
+     
+      main.forEach(el => {
         const decoder = new TextDecoder(el, gsap);
         const start = el.dataset.start ?? '50';
         const end = el.dataset.end ?? '30';

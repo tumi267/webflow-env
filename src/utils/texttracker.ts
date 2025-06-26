@@ -1,11 +1,13 @@
-export async function initTracking(id:string){
+export async function initTracking(){
     // Dynamically import GSAP and its plugins
     const { gsap } = await import('gsap');
     const { ScrollTrigger } = await import('gsap/ScrollTrigger');
     const { SplitText } = await import('gsap/SplitText');
 
-    const trackingText = document.querySelectorAll<HTMLElement>(`[data-id="${id}"]`);
 
+    const main = document.querySelectorAll<HTMLElement>(`[data-animation="tracker"]`);
+    main.forEach((trackingText)=>{
+   
     // Add mousemove effect
     document.addEventListener('mousemove', (e) => {
       // Get mouse position relative to viewport
@@ -38,5 +40,5 @@ export async function initTracking(id:string){
         duration: 1
       });
     });
-    
+  })
 }

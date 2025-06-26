@@ -1,10 +1,12 @@
-export async function slideInRight (id:string){
+export async function slideInRight (){
       // Dynamically import GSAP and its plugins
       const { gsap } = await import('gsap');
       const { ScrollTrigger } = await import('gsap/ScrollTrigger');
       gsap.registerPlugin(ScrollTrigger);
-      const parent = document.querySelector<HTMLElement>(`[data-id="${id}"]`);
-      if (!parent) return;
+      const elements = document.querySelectorAll<HTMLElement>(`[data-animation="slideRight"]`);
+      const cleanups: (() => void)[] = [];
+    
+      elements.forEach((parent) => {
       const start = parent.dataset.start ?? '0';
       const end = parent.dataset.end ?? '100';
       const position = parent.dataset.position ?? 'top';
@@ -27,4 +29,5 @@ export async function slideInRight (id:string){
           markers:mark
         }
       }); 
+    })
 }

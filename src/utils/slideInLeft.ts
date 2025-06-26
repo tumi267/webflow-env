@@ -1,10 +1,12 @@
-export async function slideInLeft (id:string){
+export async function slideInLeft (){
       // Dynamically import GSAP and its plugins
       const { gsap } = await import('gsap');
       const { ScrollTrigger } = await import('gsap/ScrollTrigger');
       gsap.registerPlugin(ScrollTrigger);
-      const parent = document.querySelector<HTMLElement>(`[data-id="${id}"]`);
-      if (!parent) return;
+      const elements = document.querySelectorAll<HTMLElement>(`[data-animation="slideLeft"]`);
+      const cleanups: (() => void)[] = [];
+    
+      elements.forEach((parent) => {
       const start = parent.dataset.start ?? '0';
       const end = parent.dataset.end ?? '100';
       const position = parent.dataset.position ?? 'top';
@@ -27,4 +29,5 @@ export async function slideInLeft (id:string){
           markers:mark
         }
       });
+    })
 }

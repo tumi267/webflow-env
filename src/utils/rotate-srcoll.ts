@@ -1,15 +1,13 @@
 // may have conflict with webflow
-export async function rotateScroll(id: string) {
+export async function rotateScroll() {
       // Dynamically import GSAP and its plugins
       const { gsap } = await import('gsap');
       const { ScrollTrigger } = await import('gsap/ScrollTrigger');
       gsap.registerPlugin(ScrollTrigger);
-      const el = document.querySelector<HTMLElement>(`[data-id="${id}"]`);
+      const elements = document.querySelectorAll<HTMLElement>(`[data-animation="rotate"]`);
+      const cleanups: (() => void)[] = [];
     
-      if (!el) {
-        console.warn(`Element with ID "${id}" not found`);
-        return;
-      }
+      elements.forEach((el) => {
       
       // Parse dataset values with fallbacks
       const start = el.dataset.start ?? '0';
@@ -37,4 +35,5 @@ export async function rotateScroll(id: string) {
     duration: duration,
     // stagger: 0.2, // optional: stagger effect
   });
+})
 }

@@ -1,16 +1,13 @@
-export async function Pin(id:string){
+export async function Pin(){
       // Dynamically import GSAP and its plugins
       const { gsap } = await import('gsap');
       const { ScrollTrigger } = await import('gsap/ScrollTrigger');
       gsap.registerPlugin(ScrollTrigger)
 
-      const el = document.querySelector<HTMLElement>(`[data-id="${id}"]`);
-
-      // const el = document.getElementById(id);
-      if (!el) {
-        console.warn(`Element with ID "${id}" not found`);
-        return;
-      }
+      const elements = document.querySelectorAll<HTMLElement>(`[data-animation="pin"]`);
+      const cleanups: (() => void)[] = [];
+    
+      elements.forEach((el) => {
       // Parse dataset values with fallbacks
       const start = el.dataset.start ?? '0';
       const end = el.dataset.end ?? '100';
@@ -29,4 +26,5 @@ export async function Pin(id:string){
           pinSpacing:false
         }
       });
+    })
 }

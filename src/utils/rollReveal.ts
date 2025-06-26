@@ -1,17 +1,13 @@
-export async function rollReveal(
-  id: string ,
-) {
+export async function rollReveal() {
       // Dynamically import GSAP and its plugins
       const { gsap } = await import('gsap');
       const { ScrollTrigger } = await import('gsap/ScrollTrigger');
       gsap.registerPlugin(ScrollTrigger);
 
-      const el = document.querySelector<HTMLElement>(`[data-id="${id}"]`);
-
-      if (!el) {
-        console.warn(`Element with ID "${id}" not found`);
-        return;
-      }
+      const elements = document.querySelectorAll<HTMLElement>(`[data-animation="roll"]`);
+      const cleanups: (() => void)[] = [];
+    
+      elements.forEach((el) => {
   // Set initial clip path
   gsap.set(el, {
     clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)"
@@ -42,4 +38,5 @@ export async function rollReveal(
   });
 
   return tl; // optional: return timeline for chaining or control
+})
 }

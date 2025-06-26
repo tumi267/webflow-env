@@ -5,11 +5,10 @@ export async function horizontalScroll(id: string): Promise<void> {
   const { ScrollTrigger } = await import('gsap/ScrollTrigger');
   gsap.registerPlugin(ScrollTrigger);
 
-  const container = document.querySelector<HTMLElement>(`[data-id="${id}"]`);
-  if (!container) {
-    console.warn('horizontalScroll: container not found.');
-    return;
-  }
+  const elements = document.querySelectorAll<HTMLElement>(`[data-animation="horizontal"]`);
+  const cleanups: (() => void)[] = [];
+
+  elements.forEach((container) => {
 
   // Parse dataset values with fallbacks
   const start = container.dataset.start ?? '0';
@@ -47,4 +46,5 @@ export async function horizontalScroll(id: string): Promise<void> {
       markers: mark,
     },
   });
+})
 }

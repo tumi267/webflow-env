@@ -1,17 +1,14 @@
 
 
-export async function colorChange(id: string) {
+export async function colorChange() {
       // Dynamically import GSAP and its plugins
       const { gsap } = await import('gsap');
       const { ScrollTrigger } = await import('gsap/ScrollTrigger');
      gsap.registerPlugin(ScrollTrigger)
-     const el = document.querySelector<HTMLElement>(`[data-id="${id}"]`);
-
-     // const el = document.getElementById(id);
-     if (!el) {
-       console.warn(`Element with ID "${id}" not found`);
-       return;
-     }
+     const elements = document.querySelectorAll<HTMLElement>(`[data-animation="color"]`);
+     const cleanups: (() => void)[] = [];
+   
+     elements.forEach((el) => {
      // Parse dataset values with fallbacks
      const start = el.dataset.start ?? '0';
      const end = el.dataset.end ?? '100';
@@ -23,7 +20,7 @@ export async function colorChange(id: string) {
      const child = el?.firstElementChild as HTMLElement | null;
 
   if (!el || !child) {
-    console.warn(`colorChange: Missing parent or child for id "${id}"`);
+    console.warn(`colorChange: Missing parent or child `);
     return;
   }
 
@@ -38,4 +35,5 @@ export async function colorChange(id: string) {
     backgroundColor:colorto,
     color:textcolorto
   });
+})
 }

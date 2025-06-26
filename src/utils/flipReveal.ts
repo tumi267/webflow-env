@@ -1,13 +1,14 @@
-export async function flipReveal (id:string){
+export async function flipReveal (){
       // Dynamically import GSAP and its plugins
       const { gsap } = await import('gsap');
       const { ScrollTrigger } = await import('gsap/ScrollTrigger');
       gsap.registerPlugin(ScrollTrigger);
 
-
-  const parent = document.querySelector<HTMLElement>(`[data-id="${id}"]`);
-      if (!parent) return;
+      const elements = document.querySelectorAll<HTMLElement>(`[data-animation="flip"]`);
+      const cleanups: (() => void)[] = [];
     
+      elements.forEach((parent) => {
+
       const children = parent.querySelectorAll<HTMLElement>('*'); // Animate children
     
       // Add perspective to parent for 3D rotation
@@ -53,5 +54,5 @@ export async function flipReveal (id:string){
           ease: "sine.inOut"
         });
       }
-
+    })
 }

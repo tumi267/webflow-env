@@ -8,13 +8,10 @@ export async function svgScroll(id: string): Promise<void> {
   // Register plugins
   gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin, MotionPathPlugin);
 
-  const parent = document.querySelector<HTMLElement>(`[data-id="${id}"]`);
+  const elements = document.querySelectorAll<HTMLElement>(`[data-animation="svg"]`);
+  const cleanups: (() => void)[] = [];
 
-  // const el = document.getElementById(id);
-  if (!parent) {
-    console.warn(`Element with ID "${id}" not found`);
-    return;
-  }
+  elements.forEach((parent) => {
   // Parse dataset values with fallbacks
   const start = parent.dataset.start ?? '0';
   const end = parent.dataset.end ?? '300';
@@ -137,4 +134,5 @@ export async function svgScroll(id: string): Promise<void> {
       0
     )
     .add(pulses, 0);
+  })
 }

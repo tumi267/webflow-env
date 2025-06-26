@@ -1,15 +1,13 @@
-export async function fadeIn (id:string){
+export async function fadeIn (){
       // Dynamically import GSAP and its plugins
  
       const { gsap } = await import('gsap');
       const { ScrollTrigger } = await import('gsap/ScrollTrigger');
       gsap.registerPlugin(ScrollTrigger);
-      const el = document.querySelector<HTMLElement>(`[data-id="${id}"]`);
-      // const el = document.getElementById(id);
-      if (!el) {
-        console.warn(`Element with ID "${id}" not found`);
-        return;
-      }
+      const elements = document.querySelectorAll<HTMLElement>(`[data-animation="fade"]`);
+      const cleanups: (() => void)[] = [];
+    
+      elements.forEach((el) => {
       
       // Parse dataset values with fallbacks
       const start = el.dataset.start ?? '0';
@@ -28,4 +26,5 @@ export async function fadeIn (id:string){
         markers:mark
       }
       });
+    })
 }

@@ -1,15 +1,12 @@
-export async function rollRevealReverse(
-  id: string 
-) {
+export async function rollRevealReverse() {
       // Dynamically import GSAP and its plugins
       const { gsap } = await import('gsap');
       const { ScrollTrigger } = await import('gsap/ScrollTrigger');
       gsap.registerPlugin(ScrollTrigger);
-      const el = document.querySelector<HTMLElement>(`[data-id="${id}"]`);
-      if (!el) {
-        console.warn(`Element with ID "${id}" not found`);
-        return;
-      }
+      const elements = document.querySelectorAll<HTMLElement>(`[data-animation="rollReverse"]`);
+      const cleanups: (() => void)[] = [];
+    
+      elements.forEach((el) => {
   // Set initial clip path
   gsap.set(el, {
     clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)"
@@ -40,4 +37,5 @@ export async function rollRevealReverse(
   });
 
   return tl; // optional: return timeline for chaining or control
+})
 }

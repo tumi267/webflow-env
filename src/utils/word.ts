@@ -1,4 +1,4 @@
-export async function initWordAnimations(id: string): Promise<() => void> {
+export async function initWordAnimations(): Promise<() => void> {
   try {
     // Dynamic imports with proper typing
     const { gsap } = await import('gsap');
@@ -10,66 +10,69 @@ export async function initWordAnimations(id: string): Promise<() => void> {
     // Register plugins
     gsap.registerPlugin(ScrollTrigger, SplitText);
 
-    const el = document.querySelector<HTMLElement>(`[data-id="${id}"]`);
-    if (!el) {
-      console.warn(`Element with data-id "${id}" not found`);
-      return () => {};
-    }
+    const elements = document.querySelectorAll<HTMLElement>(`[data-animation="word"]`);
+    const cleanups: (() => void)[] = [];
 
-    // Parse dataset values with fallbacks
-    const start = el.dataset.start ?? '0';
-    const end = el.dataset.end ?? '100';
-    const position = el.dataset.position ?? 'top';
-    const positionEnd = el.dataset.positionend ?? 'bottom';
-    const mark = el.dataset.mark === 'true';
-    const y = el.dataset.y ?? '100';
-    const x = el.dataset.x ?? '0';
-    const duration = parseFloat(el.dataset.duration ?? '0.5');
-    const stagger = parseFloat(el.dataset.stagger ?? '0.1');
-    const staggerseq = (el.dataset.staggerseq as 'start' | 'end' | 'center' | 'edges') ?? 'start';
+    elements.forEach((el) => {
+      // Parse dataset values with fallbacks
+      const start = el.dataset.start ?? '0';
+      const end = el.dataset.end ?? '100';
+      const position = el.dataset.position ?? 'top';
+      const positionEnd = el.dataset.positionend ?? 'bottom';
+      const mark = el.dataset.mark === 'true';
+      const y = el.dataset.y ?? '100';
+      const x = el.dataset.x ?? '0';
+      const duration = parseFloat(el.dataset.duration ?? '0.5');
+      const stagger = parseFloat(el.dataset.stagger ?? '0.1');
+      const staggerseq = (el.dataset.staggerseq as 'start' | 'end' | 'center' | 'edges') ?? 'start';
 
-    // Create SplitText instance
-    const splitInstance = SplitText.create(el, {
-      type: 'words',
-      wordsClass: `word-${id}`
-    });
+      // Create SplitText instance
+      const splitInstance = SplitText.create(el, {
+        type: 'words',
+        wordsClass: `word-${el.dataset.id || Math.random().toString(36).substring(2, 9)}`
+      });
 
-    // Create animation timeline
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: el,
-        start: `${position} ${start}%`,
-        end: `${positionEnd} ${end}%`,
-        scrub: true,
-        markers: mark,
-      }
-    });
-
-    // Animation setup
-    tl.from(splitInstance.words, {
-      y,
-      x,
-      opacity: 0,
-      rotation: () => gsap.utils.random(-80, 80),
-      duration,
-      ease: 'back',
-      stagger: {
-        each: stagger,
-        from: staggerseq
-      }
-    });
-
-    // Return cleanup function
-    return () => {
-      tl.kill();
-      splitInstance.revert();
-      ScrollTrigger.getAll().forEach(instance => {
-        if (instance.trigger === el) {
-          instance.kill();
+      // Create animation timeline
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: el,
+          start: `${position} ${start}%`,
+          end: `${positionEnd} ${end}%`,
+          scrub: true,
+          markers: mark,
         }
       });
-    };
 
+      // Animation setup
+      tl.from(splitInstance.words, {
+        y,
+        x,
+        opacity: 0,
+        rotation: () => gsap.utils.random(-80, 80),
+        duration,
+        ease: 'back',
+        stagger: {
+          each: stagger,
+          from: staggerseq
+        }
+      });
+
+      // Store cleanup function
+      cleanups.push(() => {
+        tl.kill();
+        splitInstance.revert();
+        ScrollTrigger.getAll().forEach(instance => {
+          if (instance.trigger === el) {
+            instance.kill();
+          }
+        });
+      });
+    });
+
+    // Return combined cleanup function
+    return () => {
+      cleanups.forEach(cleanup => cleanup());
+    };
   } catch (error) {
     console.error('Word animation initialization failed:', error);
     return () => {};

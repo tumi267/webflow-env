@@ -4,13 +4,10 @@ export async function parellex(id: string) {
     gsap.registerPlugin(ScrollTrigger);
   
 
-    const el = document.querySelector<HTMLElement>(`[data-id="${id}"]`);
-
-    // const el = document.getElementById(id);
-    if (!el) {
-      console.warn(`Element with ID "${id}" not found`);
-      return;
-    }
+    const elements = document.querySelectorAll<HTMLElement>(`[data-animation="perallex"]`);
+    const cleanups: (() => void)[] = [];
+  
+    elements.forEach((el) => {
     // Parse dataset values with fallbacks
     const start = el.dataset.start ?? '0';
 
@@ -48,5 +45,6 @@ export async function parellex(id: string) {
       pinSpacing:false,
       markers: mark
     });
+  })
   }
   

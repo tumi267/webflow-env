@@ -1,4 +1,4 @@
-export async function initCharAnimations(id: string) {
+export async function initCharAnimations() {
     try {
       // Dynamic imports with error handling
       const [gsap, ScrollTrigger, SplitText] = await Promise.all([
@@ -8,14 +8,8 @@ export async function initCharAnimations(id: string) {
       ]);
   
       gsap.registerPlugin(ScrollTrigger, SplitText);
-      
-      const el = document.querySelector<HTMLElement>(`[data-id="${id}"]`);
-
-        // const el = document.getElementById(id);
-        if (!el) {
-          console.warn(`Element with ID "${id}" not found`);
-          return;
-        }
+      const main = document.querySelectorAll<HTMLElement>(`[data-animation="char"]`);
+      main.forEach((el)=>{
         // Parse dataset values with fallbacks
         const start = el.dataset.start ?? '0';
         const end = el.dataset.end ?? '100';
@@ -29,7 +23,7 @@ export async function initCharAnimations(id: string) {
 
         const split = new SplitText(el, { 
           type: 'chars',
-          charsClass: `char-${id}` // Unique class for each instance
+          charsClass: `char-${el}` // Unique class for each instance
         });
   
         const tl = gsap.timeline({
@@ -49,6 +43,7 @@ export async function initCharAnimations(id: string) {
           duration: duration,
           stagger: stagger 
         });
+      })
   
     } catch (error) {
       console.error('Animation initialization failed:', error);
