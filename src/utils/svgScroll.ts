@@ -1,4 +1,4 @@
-export async function svgScroll(id: string): Promise<void> {
+export async function svgScroll(): Promise<void> {
   // Dynamically import GSAP and plugins
   const { gsap } = await import('gsap');
   const { ScrollTrigger } = await import('gsap/ScrollTrigger');
