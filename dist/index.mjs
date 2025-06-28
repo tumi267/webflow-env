@@ -323,7 +323,7 @@ async function vidOnSnap(start, mark) {
 }
 
 // src/utils/gallery.ts
-async function gallery(id, start, end, position = "top", positionEnd = "top", effectStart, effectEnd, mark) {
+async function gallery() {
   try {
     const [gsap, ScrollTrigger, SplitText] = await Promise.all([
       import("./chunks/gsap-L2HCQACZ.mjs").then((m) => m.gsap),
@@ -331,68 +331,79 @@ async function gallery(id, start, end, position = "top", positionEnd = "top", ef
       import("./chunks/SplitText-LUU4FCPQ.mjs").then((m) => m.SplitText)
     ]);
     gsap.registerPlugin(ScrollTrigger, SplitText);
-    const parent = document.getElementById(id);
-    if (!parent) {
-      console.warn(`Element with ID "${id}" not found`);
-      return;
-    }
-    const layers = Array.from(parent.children);
-    const total = layers.length;
-    ScrollTrigger.create({
-      trigger: parent,
-      start: `${position} ${start}%`,
-      end: `${positionEnd} ${end}%`,
-      scrub: true,
-      pin: true,
-      markers: mark
-    });
-    const unit = 100 / total;
-    layers.forEach((el, i) => {
-      const isEven = i % 2 === 0;
-      const fromX = isEven ? -50 : 50;
-      const exitX = isEven ? -10 : 10;
-      const progress = i / (total - 1 || 1);
-      const yOffset = -40;
-      const z = total - i;
-      const viewportHeight = window.innerHeight;
-      const elHeight = el.getBoundingClientRect().height;
-      const verticalOffset = (viewportHeight - elHeight) / 2;
-      gsap.set(el, {
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        y: verticalOffset,
-        zIndex: z
+    const parent = document.querySelectorAll(`[data-animation="gallery"]`);
+    parent.forEach((el) => {
+      const start = el.dataset.start ?? "50";
+      const end = el.dataset.end ?? "50";
+      const position = el.dataset.position ?? "top";
+      const positionEnd = el.dataset.positionend ?? "bottom";
+      const mark = el.dataset.mark === "true";
+      const effectStart = el.dataset.effectstart ?? "50";
+      const effectEnd = el.dataset.effectend ?? "50";
+      const effectMark = el.dataset.effectmark === "true";
+      const staggerX = el.dataset.stagger ?? "50";
+      const staggerY = el.dataset.stagger ?? "-300";
+      const fadeSpeed = parseFloat(el.dataset.fade ?? "1");
+      const effectSpeed = parseFloat(el.dataset.speed ?? "1");
+      const layers = Array.from(el.children);
+      const total = layers.length;
+      ScrollTrigger.create({
+        trigger: el,
+        start: `${position} ${start}%`,
+        end: `${positionEnd} ${end}%`,
+        scrub: true,
+        pin: true,
+        markers: mark
       });
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: parent,
-          start: `top+=${i * unit}% ${effectStart}%`,
-          end: `top+=${(i + 1) * unit}% ${effectEnd}%`,
-          scrub: true,
-          markers: mark
-        }
-      });
-      tl.fromTo(
-        el,
-        {
+      const unit = 100 / total;
+      layers.forEach((layer, i) => {
+        const isEven = i % 2 === 0;
+        const fromX = isEven ? -50 : 50;
+        const exitX = isEven ? -10 : 10;
+        const progress = i / (total - 1 || 1);
+        const z = total - i;
+        const viewportHeight = window.innerHeight;
+        const elHeight = layer.getBoundingClientRect().height;
+        const verticalOffset = (viewportHeight - elHeight) / 2;
+        gsap.set(layer, {
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          y: verticalOffset,
+          zIndex: z
+        });
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: el,
+            start: `top+=${i * unit}% ${effectStart}%`,
+            end: `top+=${i * unit}% ${effectEnd}%`,
+            scrub: true,
+            markers: effectMark
+          }
+        });
+        tl.fromTo(
+          layer,
+          {
+            opacity: 0,
+            scale: 1,
+            xPercent: fromX
+          },
+          {
+            opacity: 1,
+            scale: 1.2,
+            xPercent: 0,
+            ease: "none",
+            duration: 1 * effectSpeed
+          }
+        ).to(layer, {
           opacity: 0,
-          scale: 1,
-          xPercent: fromX
-        },
-        {
-          opacity: 1,
-          scale: 1.2,
-          xPercent: 0,
-          ease: "none"
-        }
-      ).to(el, {
-        opacity: 0,
-        scale: 1.4,
-        yPercent: yOffset,
-        xPercent: exitX,
-        ease: "none"
+          scale: 1.4,
+          yPercent: staggerY,
+          xPercent: exitX,
+          ease: "none",
+          duration: 1 * fadeSpeed
+        });
       });
     });
   } catch (error) {
@@ -401,85 +412,94 @@ async function gallery(id, start, end, position = "top", positionEnd = "top", ef
 }
 
 // src/utils/gallery2.ts
-async function gallery2(id, start, end, position = "top", positionEnd = "top", effectStart, effectEnd, effposition = "top", effpositionEnd = "top", overlapRatio = 0.33, mark = false, markcontatin = false) {
+async function gallery2() {
   try {
     const [gsap, ScrollTrigger] = await Promise.all([
       import("./chunks/gsap-L2HCQACZ.mjs").then((m) => m.gsap),
       import("./chunks/ScrollTrigger-HIJSDX7Q.mjs").then((m) => m.ScrollTrigger)
     ]);
     gsap.registerPlugin(ScrollTrigger);
-    const parent = document.getElementById(id);
-    if (!parent) {
-      console.warn(`Element with ID "${id}" not found`);
-      return;
-    }
-    const layers = Array.from(parent.children);
-    const total = layers.length;
-    ScrollTrigger.create({
-      trigger: parent,
-      start: `${position} ${start}%`,
-      end: `${positionEnd} ${end}%`,
-      scrub: true,
-      pin: true,
-      markers: markcontatin
-    });
-    const unit = 100 / total;
-    const overlapOffset = unit * overlapRatio;
-    layers.forEach((el, i) => {
-      const sideXPercent = i % 2 === 0 ? -30 : 30;
-      const z = 100 - i;
-      const vh = window.innerHeight;
-      const h = el.getBoundingClientRect().height;
-      const yOffset = (vh - h) / 2;
-      gsap.set(el, {
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "100%",
-        y: yOffset,
-        zIndex: z,
-        xPercent: sideXPercent
-        // Set fixed horizontal start position
+    const parents = document.querySelectorAll('[data-animation="gallery2"]');
+    parents.forEach((parent) => {
+      const start = parseFloat(parent.dataset.start ?? "0");
+      const end = parseFloat(parent.dataset.end ?? "100");
+      const position = parent.dataset.position ?? "top";
+      const positionEnd = parent.dataset.positionend ?? "bottom";
+      const effectStart = parseFloat(parent.dataset.effectstart ?? "50");
+      const effectEnd = parseFloat(parent.dataset.effectend ?? "50");
+      const effposition = parent.dataset.effposition ?? "top";
+      const effpositionEnd = parent.dataset.effpositionend ?? "bottom";
+      const y = parent.dataset.y ?? "-300";
+      const overlapRatio = parseFloat(parent.dataset.overlap ?? "0.33");
+      const mark = parent.dataset.mark === "true";
+      const markContainer = parent.dataset.markcontainer === "true";
+      const layers = Array.from(parent.children);
+      const total = layers.length;
+      ScrollTrigger.create({
+        trigger: parent,
+        start: `${position} ${start}%`,
+        end: `${positionEnd} ${end}%`,
+        scrub: true,
+        pin: true,
+        markers: markContainer
       });
-      const sectionStart = `${effposition}+=${i * overlapOffset}% ${effectStart}%`;
-      const sectionEnd = `${effpositionEnd}+=${(i + 1) * overlapOffset}% ${effectEnd}%`;
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: parent,
-          start: sectionStart,
-          end: sectionEnd,
-          scrub: true,
-          markers: mark
-        }
+      const unit = 100 / total;
+      const overlapOffset = unit * overlapRatio;
+      layers.forEach((el, i) => {
+        const sideXPercent = i % 2 === 0 ? -30 : 30;
+        const z = 100 - i;
+        const fadeSpeed = parseFloat(el.dataset.fade ?? "1");
+        const effectSpeed = parseFloat(el.dataset.speed ?? "1");
+        const vh = window.innerHeight;
+        const h = el.getBoundingClientRect().height;
+        const rawY = y;
+        const yOffset = rawY !== void 0 ? parseFloat(rawY) : (vh - h) / 2;
+        gsap.set(el, {
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          y: yOffset,
+          zIndex: z,
+          xPercent: sideXPercent
+        });
+        const sectionStart = `${effposition}+=${i * overlapOffset}% ${effectStart}%`;
+        const sectionEnd = `${effpositionEnd}+=${(i + 1) * overlapOffset}% ${effectEnd}%`;
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: parent,
+            start: sectionStart,
+            end: sectionEnd,
+            scrub: true,
+            markers: mark
+          }
+        });
+        tl.fromTo(
+          el,
+          {
+            opacity: 0,
+            scale: 0.1,
+            yPercent: 0
+          },
+          {
+            opacity: 1,
+            scale: 0.5,
+            ease: "power2.out",
+            duration: 0.4 * effectSpeed
+          }
+        );
+        tl.to(
+          el,
+          {
+            opacity: 0,
+            scale: 1,
+            yPercent: -30,
+            ease: "power1.inOut",
+            duration: 0.2 * fadeSpeed
+          },
+          ">0"
+        );
       });
-      tl.fromTo(
-        el,
-        {
-          opacity: 0,
-          scale: 0.1,
-          yPercent: 0
-          // xPercent is fixed by gsap.set above
-        },
-        {
-          opacity: 1,
-          scale: 0.5,
-          ease: "power2.out",
-          duration: 0.4
-          // xPercent stays fixed here
-        }
-      );
-      tl.to(
-        el,
-        {
-          opacity: 0,
-          scale: 1,
-          yPercent: -30,
-          ease: "power1.inOut",
-          duration: 0.2
-          // xPercent stays fixed here too
-        },
-        ">0"
-      );
     });
   } catch (error) {
     console.error("Animation initialization failed:", error);
