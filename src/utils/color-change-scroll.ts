@@ -17,6 +17,7 @@ export async function colorChange() {
      const mark = el.dataset.mark === 'true';
      const colorto = el.dataset.colorto ?? '"#4a00e0"';
      const textcolorto  = el.dataset.textcolorto  ?? "#FFFF00";
+     
      const child = el?.firstElementChild as HTMLElement | null;
 
   if (!el || !child) {

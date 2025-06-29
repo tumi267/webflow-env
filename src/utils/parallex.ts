@@ -23,6 +23,7 @@ export async function parellex(id: string) {
     const animi3x = el.dataset.animi3x ?? '50';
     const animi3y = el.dataset.animi3y ?? '-200';
     const animi3dur = el.dataset.animi3dur ?? '2';
+    
     const children = Array.from(el.children);
     if (children.length < 3) {
       console.warn(`Container "${id}" must have at least 3 children`);

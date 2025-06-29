@@ -5,7 +5,7 @@ import {
   initLineMaskReveal,
   initTracking,
   initWordAnimations
-} from "./chunks/chunk-TWWDOEPB.mjs";
+} from "./chunks/chunk-5F2K3X4T.mjs";
 import {
   Pin,
   colorChange,
@@ -13,7 +13,7 @@ import {
   rotateScroll,
   staggerItemScroll,
   toggleScroll
-} from "./chunks/chunk-UWMMN37I.mjs";
+} from "./chunks/chunk-MQZUJDY7.mjs";
 import {
   fadeIn,
   flipReveal,
@@ -127,7 +127,7 @@ async function threePanelFade(id) {
 }
 
 // src/utils/svgScroll.ts
-async function svgScroll(id) {
+async function svgScroll() {
   const { gsap } = await import("./chunks/gsap-L2HCQACZ.mjs");
   const { ScrollTrigger } = await import("./chunks/ScrollTrigger-HIJSDX7Q.mjs");
   const { DrawSVGPlugin } = await import("./chunks/DrawSVGPlugin-ESCRFPMY.mjs");
