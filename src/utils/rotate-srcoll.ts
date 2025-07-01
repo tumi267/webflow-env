@@ -24,14 +24,14 @@ export async function rotateScroll() {
 
   gsap.from(children, {
     scrollTrigger: {
-      trigger: el,
+      trigger: children,
       start: `${position} ${start}%`,
       end: `${positionEnd} ${end}%`,
       scrub: true,
       markers:mark,
     },
     rotation: amount,
-    opacity: 0,
+
     duration: duration,
     // stagger: 0.2, // optional: stagger effect
   });

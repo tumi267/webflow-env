@@ -32,7 +32,7 @@ if (gallery) {
 var head = document.getElementById("header");
 var subhead = document.getElementById("sub_header");
 var line_amination = document.getElementById("line_amination");
-var name = "John Dwight";
+var name = "John itumeleng ";
 if (head) {
   head.innerHTML = `<h1>${greetUser(name)}</h1>`;
 } else {

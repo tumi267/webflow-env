@@ -34,7 +34,7 @@ export async function initLineAnimations(): Promise<() => void> {
 
       // Initial hidden state
       gsap.set(split.lines, { 
-        opacity: 0, 
+        
         y: y,
         x: x
       });

@@ -55,8 +55,8 @@ async function slideInRight() {
     gsap.from(parent, {
       x,
       y,
-      opacity: 0,
-      duration: 2,
+      // opacity: 0,
+      // duration: 2,
       ease: "power3.out",
       scrollTrigger: {
         trigger: parent,
@@ -91,8 +91,8 @@ async function slideInLeft() {
     gsap.from(parent, {
       x: -x,
       y,
-      opacity: 0,
-      duration,
+      // opacity: 0,
+      // duration: duration,
       ease: "power3.out",
       scrollTrigger: {
         trigger: parent,
@@ -306,4 +306,4 @@ export {
   rollRevealReverse,
   rollReveal
 };
-//# sourceMappingURL=chunk-IDHYLFIP.mjs.map
+//# sourceMappingURL=chunk-G75IGY3S.mjs.map

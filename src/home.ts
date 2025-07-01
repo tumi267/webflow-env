@@ -17,7 +17,7 @@ if(gallery){
 const head = document.getElementById('header')
 const subhead = document.getElementById('sub_header')
 const line_amination = document.getElementById('line_amination')
-  const name = 'John Dwight';
+  const name = 'John itumeleng ';
   if(head){
     head.innerHTML=`<h1>${greetUser(name)}</h1>`
   }else{

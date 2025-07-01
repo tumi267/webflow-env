@@ -48,7 +48,7 @@ export async function initWordAnimations(): Promise<() => void> {
         y,
         x,
         opacity: 0,
-        rotation: () => gsap.utils.random(-80, 80),
+        
         duration,
         ease: 'power1.out',
         stagger: {

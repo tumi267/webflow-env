@@ -18,8 +18,8 @@ export async function slideInLeft (){
     gsap.from(parent, {
         x: -x,
         y:y,
-        opacity: 0,
-        duration: duration,
+        // opacity: 0,
+        // duration: duration,
         ease: "power3.out",
         scrollTrigger: {
           trigger: parent,

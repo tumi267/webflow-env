@@ -18,8 +18,8 @@ export async function slideInRight (){
     gsap.from(parent, {
         x: x,
         y:y,
-        opacity: 0,
-        duration: 2,
+        // opacity: 0,
+        // duration: 2,
         ease: "power3.out",
         scrollTrigger: {
           trigger: parent, // Element that triggers the animation

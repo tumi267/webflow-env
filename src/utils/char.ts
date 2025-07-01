@@ -9,6 +9,22 @@ export async function initCharAnimations() {
   
       gsap.registerPlugin(ScrollTrigger, SplitText);
       const main = document.querySelectorAll<HTMLElement>(`[data-animation="char"]`);
+
+      if (main) {
+        const style = document.createElement('style');
+        style.id = 'char-animation-style';
+        style.textContent = `
+          [data-animation="char"] {
+            word-break: break-word;
+            overflow-wrap: break-word;
+          }
+          [data-animation="char"] .char {
+            display: inline-block;
+            word-break: break-word;
+          }
+        `;
+        document.head.appendChild(style);
+      }
       main.forEach((el)=>{
         // Parse dataset values with fallbacks
         const start = el.dataset.start ?? '0';
@@ -19,7 +35,7 @@ export async function initCharAnimations() {
         const y = el.dataset.y ?? '100';
         const x = el.dataset.x ?? '0';
         const duration = parseFloat(el.dataset.duration ?? '0.5');
-        const stagger = parseFloat(el.dataset.stagger ?? '0.1');
+        const stagger = parseFloat(el.dataset.stagger ?? '0.001');
 
         const split = new SplitText(el, { 
           type: 'chars',
@@ -37,11 +53,14 @@ export async function initCharAnimations() {
         });
   
         tl.from(split.chars, {
-          autoAlpha: 0,
-          y: y,
-          x:x,
+          // autoAlpha: 0,
+          opacity:0,
+          y: y ,     // use a visible offset
+          x: x ,
+          stagger: stagger,
+          ease: 'power2.out',
           duration: duration,
-          stagger: stagger 
+          immediateRender: true
         });
       })
   
