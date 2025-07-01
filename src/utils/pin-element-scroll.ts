@@ -19,8 +19,8 @@ export async function Pin(){
         scrollTrigger: {
           trigger: el,
           pin: true,
-          start: `top ${start}`,
-          end: `bottom ${end}`,
+          start: `${position} ${start}`,
+          end: `${positionEnd} ${end}`,
           // scrub:true,
           markers:mark,
           pinSpacing:false

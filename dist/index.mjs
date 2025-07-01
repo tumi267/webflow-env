@@ -13,7 +13,7 @@ import {
   rotateScroll,
   staggerItemScroll,
   toggleScroll
-} from "./chunks/chunk-ZTVA3QHQ.mjs";
+} from "./chunks/chunk-HWCYYKJD.mjs";
 import {
   fadeIn,
   flipReveal,
