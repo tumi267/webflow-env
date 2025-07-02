@@ -301,7 +301,6 @@ async function initLineMaskReveal() {
   const { SplitText } = await import("./SplitText-LUU4FCPQ.mjs");
   gsap.registerPlugin(ScrollTrigger, SplitText);
   const elements = document.querySelectorAll(`[data-animation="mask"]`);
-  const cleanups = [];
   elements.forEach((element) => {
     const start = element.dataset.start ?? "0";
     const end = element.dataset.end ?? "100";
@@ -309,21 +308,37 @@ async function initLineMaskReveal() {
     const positionEnd = element.dataset.positionend ?? "bottom";
     const mark = element.dataset.mark === "true";
     const stagger = parseFloat(element.dataset.stagger ?? "0.1");
-    const split = SplitText.create(element, {
-      type: "lines",
-      linesClass: "line"
+    const direction = element.dataset.direction ?? "x";
+    const maskColor = element.dataset.maskcolor ?? "#000";
+    const wrapper = document.createElement("div");
+    wrapper.style.position = "relative";
+    wrapper.style.display = "inline-block";
+    wrapper.style.overflow = "hidden";
+    const content = element.cloneNode(true);
+    content.removeAttribute("data-animation");
+    element.replaceWith(wrapper);
+    wrapper.appendChild(content);
+    const mask = document.createElement("div");
+    mask.classList.add("mask_style");
+    wrapper.appendChild(mask);
+    const isHorizontal = direction === "x";
+    Object.assign(mask.style, {
+      position: "absolute",
+      top: "0",
+      left: "0",
+      width: "100%",
+      height: "100%",
+      backgroundColor: maskColor,
+      transformOrigin: "left center",
+      transform: "scaleX(1)",
+      zIndex: "2",
+      pointerEvents: "none"
     });
-    gsap.set(split.lines, {
-      yPercent: 100,
-      opacity: 0
-    });
-    gsap.to(split.lines, {
-      yPercent: 0,
-      opacity: 1,
-      ease: "power3.out",
-      stagger,
+    gsap.to(mask, {
+      ...isHorizontal ? { scaleX: 0 } : { scaleY: 0 },
+      ease: "power2.out",
       scrollTrigger: {
-        trigger: element,
+        trigger: wrapper,
         start: `${position} ${start}%`,
         end: `${positionEnd} ${end}%`,
         scrub: true,
@@ -374,4 +389,4 @@ export {
   initLineMaskReveal,
   initTracking
 };
-//# sourceMappingURL=chunk-YMTCXLEI.mjs.map
+//# sourceMappingURL=chunk-ESMJ7ORI.mjs.map
