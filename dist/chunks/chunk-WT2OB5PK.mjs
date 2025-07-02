@@ -158,6 +158,7 @@ async function flipReveal() {
   ;
   const cleanups = [];
   elements.forEach((parent) => {
+    console.log(parent);
     const children = parent.querySelectorAll("*");
     const hasChildren = children.length > 0;
     const target = hasChildren ? children : parent;
@@ -320,4 +321,4 @@ export {
   rollRevealReverse,
   rollReveal
 };
-//# sourceMappingURL=chunk-AUBRXVHE.mjs.map
+//# sourceMappingURL=chunk-WT2OB5PK.mjs.map
