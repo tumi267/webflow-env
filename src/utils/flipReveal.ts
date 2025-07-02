@@ -25,7 +25,7 @@ export async function flipReveal (){
       const wobble =parent.dataset.wobble??'6'
       const num = parent.dataset.num??'6';
 
-
+console.log(`trigger: ${parent}`)
       const tl = gsap.timeline({
       scrollTrigger: {
       trigger: parent,
