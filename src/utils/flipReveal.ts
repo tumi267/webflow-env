@@ -22,7 +22,7 @@ export async function flipReveal (){
       const duration = parseFloat(parent.dataset.duration ?? '0.5');
       const wobble =parent.dataset.wobble??'6'
       const num = parent.dataset.num??'6';
-
+console.log('working')
 
       const tl = gsap.timeline({
       scrollTrigger: {
