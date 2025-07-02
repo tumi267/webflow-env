@@ -8,7 +8,7 @@ export async function flipReveal (){
       const cleanups: (() => void)[] = [];
     
       elements.forEach((parent) => {
-        console.log(parent)
+       
         const children = parent.querySelectorAll('*');
         const hasChildren = children.length > 0;
         const target = hasChildren ? children : parent; // ← key line
@@ -24,11 +24,11 @@ export async function flipReveal (){
       const duration = parseFloat(parent.dataset.duration ?? '0.5');
       const wobble =parent.dataset.wobble??'6'
       const num = parent.dataset.num??'6';
-console.log('working')
+
 
       const tl = gsap.timeline({
       scrollTrigger: {
-      trigger: target,
+      trigger: parent,
       start: `top ${start}%`,
       end: `bottom ${end}%`,
       toggleActions: "play none none none",
