@@ -68,7 +68,7 @@ export async function initWordAnimations(): Promise<() => void> {
         });
       });
     });
-
+    ScrollTrigger.refresh();
     // Return combined cleanup function
     return () => {
       cleanups.forEach(cleanup => cleanup());

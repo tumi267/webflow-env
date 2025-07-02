@@ -48,6 +48,7 @@ async function colorChange() {
       color: textcolorto
     });
   });
+  ScrollTrigger.refresh();
 }
 
 // src/utils/stagger-item-scroll.ts
@@ -84,6 +85,7 @@ async function staggerItemScroll() {
       stagger: 0.2
     });
   });
+  ScrollTrigger.refresh();
 }
 
 // src/utils/rotate-srcoll.ts
@@ -117,6 +119,7 @@ async function rotateScroll() {
       // stagger: 0.2, // optional: stagger effect
     });
   });
+  ScrollTrigger.refresh();
 }
 
 // src/utils/progress-bar-scroll.ts
@@ -149,6 +152,7 @@ async function progressBar() {
       // height:`${y}%`,
     });
   });
+  ScrollTrigger.refresh();
 }
 
 // src/utils/pin-element-scroll.ts
@@ -176,6 +180,7 @@ async function Pin() {
       }
     });
   });
+  ScrollTrigger.refresh();
 }
 
 export {
@@ -186,4 +191,4 @@ export {
   progressBar,
   Pin
 };
-//# sourceMappingURL=chunk-HWCYYKJD.mjs.map
+//# sourceMappingURL=chunk-55KX3HD2.mjs.map

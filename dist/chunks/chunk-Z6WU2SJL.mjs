@@ -70,6 +70,7 @@ async function slideInRight() {
       }
     });
   });
+  ScrollTrigger.refresh();
 }
 
 // src/utils/slideInLeft.ts
@@ -103,6 +104,7 @@ async function slideInLeft() {
       }
     });
   });
+  ScrollTrigger.refresh();
 }
 
 // src/utils/pan.ts
@@ -144,6 +146,7 @@ async function pan() {
       el.removeEventListener("mousemove", handleMouseMove);
     };
   });
+  ScrollTrigger.refresh();
 }
 
 // src/utils/flipReveal.ts
@@ -192,6 +195,7 @@ async function flipReveal() {
       });
     }
   });
+  ScrollTrigger.refresh();
 }
 
 // src/utils/fadeIn.ts
@@ -222,6 +226,7 @@ async function fadeIn() {
       }
     });
   });
+  ScrollTrigger.refresh();
 }
 
 // src/utils/rollRevealReverse.ts
@@ -259,6 +264,7 @@ async function rollRevealReverse() {
     });
     return tl;
   });
+  ScrollTrigger.refresh();
 }
 
 // src/utils/rollReveal.ts
@@ -294,6 +300,7 @@ async function rollReveal() {
     });
     return tl;
   });
+  ScrollTrigger.refresh();
 }
 
 export {
@@ -306,4 +313,4 @@ export {
   rollRevealReverse,
   rollReveal
 };
-//# sourceMappingURL=chunk-G75IGY3S.mjs.map
+//# sourceMappingURL=chunk-Z6WU2SJL.mjs.map

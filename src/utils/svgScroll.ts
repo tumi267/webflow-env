@@ -135,4 +135,5 @@ export async function svgScroll(): Promise<void> {
     )
     .add(pulses, 0);
   })
+  ScrollTrigger.refresh();
 }

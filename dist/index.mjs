@@ -5,7 +5,7 @@ import {
   initLineMaskReveal,
   initTracking,
   initWordAnimations
-} from "./chunks/chunk-ESMJ7ORI.mjs";
+} from "./chunks/chunk-IVGYP2LX.mjs";
 import {
   Pin,
   colorChange,
@@ -13,7 +13,7 @@ import {
   rotateScroll,
   staggerItemScroll,
   toggleScroll
-} from "./chunks/chunk-HWCYYKJD.mjs";
+} from "./chunks/chunk-55KX3HD2.mjs";
 import {
   fadeIn,
   flipReveal,
@@ -23,7 +23,7 @@ import {
   slideInLeft,
   slideInRight,
   zoom
-} from "./chunks/chunk-G75IGY3S.mjs";
+} from "./chunks/chunk-Z6WU2SJL.mjs";
 import "./chunks/chunk-SUYWSG3L.mjs";
 
 // src/utils/horizontalScroll.ts
@@ -62,6 +62,7 @@ async function horizontalScroll(id) {
       }
     });
   });
+  ScrollTrigger.refresh();
 }
 
 // src/utils/threepanelfadein.ts
@@ -124,6 +125,7 @@ async function threePanelFade(id) {
     });
     return () => ScrollTrigger.getAll().forEach((st) => st.kill());
   });
+  ScrollTrigger.refresh();
 }
 
 // src/utils/svgScroll.ts
@@ -222,6 +224,7 @@ async function svgScroll() {
       0
     ).add(pulses, 0);
   });
+  ScrollTrigger.refresh();
 }
 
 // src/utils/contextual.ts
@@ -251,6 +254,7 @@ async function Contextual(id) {
         element.style.display = "none";
       }
     });
+    ScrollTrigger.refresh();
   });
 }
 
@@ -406,6 +410,7 @@ async function gallery() {
         });
       });
     });
+    ScrollTrigger.refresh();
   } catch (error) {
     console.error("Animation initialization failed:", error);
   }
@@ -501,6 +506,7 @@ async function gallery2() {
         );
       });
     });
+    ScrollTrigger.refresh();
   } catch (error) {
     console.error("Animation initialization failed:", error);
   }
@@ -611,6 +617,7 @@ async function parellex(id) {
       markers: mark
     });
   });
+  ScrollTrigger.refresh();
 }
 
 // src/index.ts

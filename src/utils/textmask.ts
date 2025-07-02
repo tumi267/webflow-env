@@ -63,4 +63,5 @@ export async function initLineMaskReveal() {
       }
     });
   });
+  ScrollTrigger.refresh();
 }

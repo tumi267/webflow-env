@@ -102,5 +102,6 @@ export async function initDecodeAnimations() {
           markers:mark, // Encode again when leaving upward
         });
       });
+      ScrollTrigger.refresh();
     }
   }

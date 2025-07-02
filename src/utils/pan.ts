@@ -52,4 +52,5 @@ export async function pan() {
     el.removeEventListener('mousemove', handleMouseMove);
   };
 })
+ScrollTrigger.refresh();
 }

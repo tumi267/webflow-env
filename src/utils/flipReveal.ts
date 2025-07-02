@@ -55,4 +55,5 @@ export async function flipReveal (){
         });
       }
     })
+    ScrollTrigger.refresh();
 }

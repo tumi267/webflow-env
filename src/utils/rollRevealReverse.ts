@@ -38,4 +38,5 @@ export async function rollRevealReverse() {
 
   return tl; // optional: return timeline for chaining or control
 })
+ScrollTrigger.refresh();
 }

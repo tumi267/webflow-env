@@ -94,6 +94,7 @@ export async function gallery() {
         });
       });
     });
+    ScrollTrigger.refresh();
   } catch (error) {
     console.error("Animation initialization failed:", error);
   }

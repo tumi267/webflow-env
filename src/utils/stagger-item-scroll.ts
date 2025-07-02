@@ -37,4 +37,5 @@ export async function staggerItemScroll() {
     stagger: 0.2,
   });
 })
+ScrollTrigger.refresh();
 }

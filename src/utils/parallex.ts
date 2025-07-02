@@ -47,5 +47,6 @@ export async function parellex(id: string) {
       markers: mark
     });
   })
+  ScrollTrigger.refresh();
   }
   

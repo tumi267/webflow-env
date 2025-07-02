@@ -47,4 +47,5 @@ export async function horizontalScroll(id: string): Promise<void> {
     },
   });
 })
+ScrollTrigger.refresh();
 }

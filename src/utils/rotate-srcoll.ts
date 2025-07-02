@@ -36,4 +36,5 @@ export async function rotateScroll() {
     // stagger: 0.2, // optional: stagger effect
   });
 })
+ScrollTrigger.refresh();
 }

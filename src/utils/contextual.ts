@@ -31,5 +31,6 @@ export async function Contextual(id: string) {
             element.style.display = 'none';
         }
     });
+    ScrollTrigger.refresh();
 })
 }

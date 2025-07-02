@@ -66,4 +66,5 @@ export async function threePanelFade(id: string) {
   
     return () => ScrollTrigger.getAll().forEach(st => st.kill());
   })
+  ScrollTrigger.refresh();
   }

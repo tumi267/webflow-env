@@ -27,4 +27,5 @@ export async function Pin(){
         }
       });
     })
+    ScrollTrigger.refresh();
 }

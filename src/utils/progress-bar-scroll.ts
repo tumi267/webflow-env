@@ -34,4 +34,5 @@ export async function progressBar(){
         // height:`${y}%`,
       });
     })
+    ScrollTrigger.refresh();
 }

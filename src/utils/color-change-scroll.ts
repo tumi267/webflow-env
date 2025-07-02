@@ -37,4 +37,5 @@ export async function colorChange() {
     color:textcolorto
   });
 })
+ScrollTrigger.refresh();
 }

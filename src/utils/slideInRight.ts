@@ -30,4 +30,5 @@ export async function slideInRight (){
         }
       }); 
     })
+    ScrollTrigger.refresh();
 }

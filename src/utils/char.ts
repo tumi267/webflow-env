@@ -63,7 +63,7 @@ export async function initCharAnimations() {
           immediateRender: true
         });
       })
-  
+      ScrollTrigger.refresh();
     } catch (error) {
       console.error('Animation initialization failed:', error);
     }

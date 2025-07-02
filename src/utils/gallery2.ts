@@ -106,6 +106,7 @@ export async function gallery2() {
         );
       });
     });
+    ScrollTrigger.refresh();
   } catch (error) {
     console.error("Animation initialization failed:", error);
   }

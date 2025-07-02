@@ -78,6 +78,7 @@ export async function initLineAnimations(): Promise<() => void> {
         });
       });
     });
+    ScrollTrigger.refresh();
 
     // Return combined cleanup function
     return () => {
