@@ -13,7 +13,7 @@ import {
   rotateScroll,
   staggerItemScroll,
   toggleScroll
-} from "./chunks/chunk-55KX3HD2.mjs";
+} from "./chunks/chunk-AMUYTRTP.mjs";
 import {
   fadeIn,
   flipReveal,
@@ -23,7 +23,7 @@ import {
   slideInLeft,
   slideInRight,
   zoom
-} from "./chunks/chunk-ENJDQC33.mjs";
+} from "./chunks/chunk-AUBRXVHE.mjs";
 import "./chunks/chunk-SUYWSG3L.mjs";
 
 // src/utils/horizontalScroll.ts

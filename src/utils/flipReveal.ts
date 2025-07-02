@@ -4,13 +4,15 @@ export async function flipReveal (){
       const { ScrollTrigger } = await import('gsap/ScrollTrigger');
       gsap.registerPlugin(ScrollTrigger);
 
-      const elements = document.querySelectorAll(`[data-animation="flip"]`);
+      const elements = document.querySelectorAll(`[data-animation="flip"]`) as NodeListOf<HTMLElement>;;
       const cleanups: (() => void)[] = [];
     
       elements.forEach((parent) => {
 
-      const children = parent.querySelectorAll('*'); // Animate children
-    
+        const children = parent.querySelectorAll('*');
+        const hasChildren = children.length > 0;
+        const target = hasChildren ? children : parent; // ← key line
+
       // Add perspective to parent for 3D rotation
       gsap.set(parent, { transformPerspective: 2000 });
 
@@ -26,13 +28,13 @@ console.log('working')
 
       const tl = gsap.timeline({
       scrollTrigger: {
-      trigger: parent,
+      trigger: target,
       start: `top ${start}%`,
       end: `bottom ${end}%`,
       toggleActions: "play none none none",
       scrub:true,
       id: 'flip' ,
-      markers:true
+      markers:mark
       }
     })
     

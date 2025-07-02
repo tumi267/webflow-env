@@ -3,7 +3,7 @@ export async function rollRevealReverse() {
       const { gsap } = await import('gsap');
       const { ScrollTrigger } = await import('gsap/ScrollTrigger');
       gsap.registerPlugin(ScrollTrigger);
-      const elements = document.querySelectorAll<HTMLElement>(`[data-animation="rollReverse"]`);
+      const elements = document.querySelectorAll(`[data-animation="rollReverse"]`) as NodeListOf<HTMLElement>;;
       const cleanups: (() => void)[] = [];
     
       elements.forEach((el) => {

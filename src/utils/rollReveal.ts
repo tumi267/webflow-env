@@ -4,7 +4,7 @@ export async function rollReveal() {
       const { ScrollTrigger } = await import('gsap/ScrollTrigger');
       gsap.registerPlugin(ScrollTrigger);
 
-      const elements = document.querySelectorAll<HTMLElement>(`[data-animation="roll"]`);
+      const elements = document.querySelectorAll(`[data-animation="roll"]`) as NodeListOf<HTMLElement>;;
       const cleanups: (() => void)[] = [];
     
       elements.forEach((el) => {
