@@ -37,7 +37,7 @@ export async function flipReveal() {
         toggleActions: "play none none none",
         scrub: true,
         id:'flip',
-        markers: true,
+        markers: mark,
       },
     });
 
@@ -46,15 +46,15 @@ export async function flipReveal() {
       stagger: 0.2,
       duration,
       ease: "back.out(1.7)",
-      onComplete: () => {
-        gsap.to(children, {
-          rotationY: `+=${2 * wobble}`,
-          duration: 0.5,
-          yoyo: true,
-          repeat: 3,
-          ease: "sine.inOut",
-        });
-      },
+      // onComplete: () => {
+      //   gsap.to(children, {
+      //     rotationY: `+=${2 * wobble}`,
+      //     duration: 0.5,
+      //     yoyo: true,
+      //     repeat: 3,
+      //     ease: "sine.inOut",
+      //   });
+      // },
     });
   });
 
