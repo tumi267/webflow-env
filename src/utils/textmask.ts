@@ -36,7 +36,7 @@ export async function initLineMaskReveal() {
 
     // Determine direction-specific transform styles
     const isHorizontal = direction === 'x';
-    const isVertical = direction === 'y';
+
     Object.assign(mask.style, {
       position: 'absolute',
       top: '0',
@@ -45,7 +45,7 @@ export async function initLineMaskReveal() {
       height: '100%',
       backgroundColor: maskColor,
       transformOrigin: 'left center' ,
-      transform: isVertical ? 'scaleY(1)' : 'scaleX(1)',
+      transform: 'scaleX(1)' ,
       zIndex: '2',
       pointerEvents: 'none'
     });
