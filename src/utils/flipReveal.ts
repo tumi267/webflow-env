@@ -36,7 +36,8 @@ export async function flipReveal() {
         end: `${positionEnd} ${end}%`,
         toggleActions: "play none none none",
         scrub: true,
-        markers: mark,
+        id:'flip',
+        markers: true,
       },
     });
 

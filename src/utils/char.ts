@@ -58,7 +58,7 @@ export async function initCharAnimations() {
           y: y ,     // use a visible offset
           x: x ,
           stagger: stagger,
-          ease: 'power2.out',
+          ease: 'none',
           duration: duration,
           immediateRender: true
         });

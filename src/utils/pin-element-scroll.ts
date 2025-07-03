@@ -21,7 +21,7 @@ export async function Pin(){
           pin: true,
           start: `${position} ${start}`,
           end: `${positionEnd} ${end}`,
-          // scrub:true,
+          scrub:true,
           markers:mark,
           pinSpacing:false
         }

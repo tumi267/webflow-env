@@ -42,7 +42,7 @@ export async function horizontalScroll(id: string): Promise<void> {
       scrub: 1,
       snap: 1 / (panelCount - 1),
       start: `${position} ${start}`,
-      end: () => `+=${container.scrollWidth - window.innerWidth}`,
+      // end: () => `+=${container.scrollWidth - window.innerWidth}`,
       markers: mark,
     },
   });

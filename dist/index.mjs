@@ -5,7 +5,7 @@ import {
   initLineMaskReveal,
   initTracking,
   initWordAnimations
-} from "./chunks/chunk-IVGYP2LX.mjs";
+} from "./chunks/chunk-M4KXRB2P.mjs";
 import {
   Pin,
   colorChange,
@@ -13,7 +13,7 @@ import {
   rotateScroll,
   staggerItemScroll,
   toggleScroll
-} from "./chunks/chunk-AMUYTRTP.mjs";
+} from "./chunks/chunk-56EQ57KE.mjs";
 import {
   fadeIn,
   flipReveal,
@@ -23,7 +23,7 @@ import {
   slideInLeft,
   slideInRight,
   zoom
-} from "./chunks/chunk-GZISSNIC.mjs";
+} from "./chunks/chunk-NEPU5WQQ.mjs";
 import "./chunks/chunk-SUYWSG3L.mjs";
 
 // src/utils/horizontalScroll.ts
@@ -57,7 +57,7 @@ async function horizontalScroll(id) {
         scrub: 1,
         snap: 1 / (panelCount - 1),
         start: `${position} ${start}`,
-        end: () => `+=${container.scrollWidth - window.innerWidth}`,
+        // end: () => `+=${container.scrollWidth - window.innerWidth}`,
         markers: mark
       }
     });

@@ -54,7 +54,7 @@ async function initCharAnimations() {
         // use a visible offset
         x,
         stagger,
-        ease: "power2.out",
+        ease: "none",
         duration,
         immediateRender: true
       });
@@ -394,4 +394,4 @@ export {
   initLineMaskReveal,
   initTracking
 };
-//# sourceMappingURL=chunk-IVGYP2LX.mjs.map
+//# sourceMappingURL=chunk-M4KXRB2P.mjs.map
