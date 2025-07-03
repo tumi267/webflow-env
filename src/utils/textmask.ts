@@ -13,21 +13,24 @@ export async function initLineMaskReveal() {
     const mark = element.dataset.mark === 'true';
     const maskColor = element.dataset.maskcolor ?? '#000';
 
-    // Create a wrapper around the original element
+    // Create a wrapper around the element
     const wrapper = document.createElement('div');
     wrapper.style.position = 'relative';
     wrapper.style.display = 'inline-block';
     wrapper.style.overflow = 'hidden';
+    wrapper.style.width = '100%';
 
+    // Clone content inside wrapper
     const content = element.cloneNode(true) as HTMLElement;
     content.removeAttribute('data-animation');
     element.replaceWith(wrapper);
     wrapper.appendChild(content);
 
-    // Create the top and bottom masks
+    // Create top and bottom masks
     const maskTop = document.createElement('div');
     const maskBottom = document.createElement('div');
 
+    // Common mask styles
     [maskTop, maskBottom].forEach(mask => {
       Object.assign(mask.style, {
         position: 'absolute',
@@ -37,16 +40,18 @@ export async function initLineMaskReveal() {
         left: '0',
         zIndex: '2',
         pointerEvents: 'none',
+        transition: 'none'
       });
     });
 
+    // Position them
     maskTop.style.top = '0';
     maskBottom.style.bottom = '0';
 
     wrapper.appendChild(maskTop);
     wrapper.appendChild(maskBottom);
 
-    // Animate masks on scroll
+    // Animate them on scroll
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: wrapper,
@@ -59,15 +64,16 @@ export async function initLineMaskReveal() {
     });
 
     tl.to(maskTop, {
-      yPercent: -100, // move up
+      yPercent: -100,
       ease: 'power2.out',
     }, 0);
 
     tl.to(maskBottom, {
-      yPercent: 100, // move down
+      yPercent: 100,
       ease: 'power2.out',
     }, 0);
   });
 
   ScrollTrigger.refresh();
 }
+
