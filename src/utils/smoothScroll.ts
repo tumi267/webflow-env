@@ -4,7 +4,7 @@ import { ScrollSmoother } from 'gsap/ScrollSmoother';
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-export function initSmoothScroll() {
+export function SmoothScroll() {
   const elements = document.querySelectorAll<HTMLElement>(`[data-animation="smooth"]`);
 
   // Set defaults

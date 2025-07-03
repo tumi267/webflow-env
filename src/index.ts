@@ -28,6 +28,7 @@ import { gallery } from '$utils/gallery';
 import { gallery2 } from '$utils/gallery2';
 import { slideshow } from '$utils/slideShow';
 import { parellex } from '$utils/parallex';
+import { SmoothScroll } from '$utils/smoothScroll';
 
 
 
@@ -66,4 +67,5 @@ import { parellex } from '$utils/parallex';
 (globalThis as any).vidOnSnap = vidOnSnap;
 
 
-(globalThis as any).parellex=parellex
+(globalThis as any).parellex=parellex;
+(globalThis as any).SmoothScroll=SmoothScroll;
