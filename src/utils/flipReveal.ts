@@ -25,7 +25,7 @@ export async function flipReveal() {
     const positionEnd = parent.dataset.positionend ?? 'bottom';
     const mark = parent.dataset.mark === 'true';
     const duration = parseFloat(parent.dataset.duration ?? '0.5');
-    const wobble = parseFloat(parent.dataset.wobble ?? '6');
+    const wobble = parseFloat(parent.dataset.wobble ?? '0');
     const num = parseFloat(parent.dataset.num ?? '3');
 
     // Setup GSAP scroll-triggered animation
