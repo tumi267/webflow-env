@@ -25,7 +25,7 @@ export async function fadeIn() {
         start: `${position} ${start}%`,
         end: `${positionEnd} ${end}%`,
         scrub: true, // ✅ smooth scroll control
-        markers: mark,
+        markers: true,
         id: `fade-${index + 1}`,
       },
     });
