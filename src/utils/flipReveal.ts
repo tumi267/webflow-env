@@ -32,8 +32,8 @@ export async function flipReveal() {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: parent,
-        start: `${position} ${start}%`,
-        end: `${positionEnd} ${end}%`,
+        start: `top 50%`,
+        end: `top 50%`,
         toggleActions: "play none none none",
         scrub: true,
         id:'flip',
