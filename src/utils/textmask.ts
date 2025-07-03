@@ -1,67 +1,73 @@
 export async function initLineMaskReveal() {
   const { gsap } = await import('gsap');
   const { ScrollTrigger } = await import('gsap/ScrollTrigger');
-  const { SplitText } = await import('gsap/SplitText');
-
-  gsap.registerPlugin(ScrollTrigger, SplitText);
+  gsap.registerPlugin(ScrollTrigger);
 
   const elements = document.querySelectorAll<HTMLElement>(`[data-animation="mask"]`);
 
-  elements.forEach((element) => {
+  elements.forEach((element, index) => {
     const start = element.dataset.start ?? '0';
     const end = element.dataset.end ?? '100';
     const position = element.dataset.position ?? 'top';
     const positionEnd = element.dataset.positionend ?? 'bottom';
     const mark = element.dataset.mark === 'true';
-    const stagger = parseFloat(element.dataset.stagger ?? '0.1');
-    const direction = element.dataset.direction ?? 'y'; // 'x' or 'y'
-    const maskColor = element.dataset.maskcolor ?? '#000'; // default to black
+    const maskColor = element.dataset.maskcolor ?? '#000';
 
-    // Wrap the element in a container for positioning
+    // Create a wrapper around the original element
     const wrapper = document.createElement('div');
     wrapper.style.position = 'relative';
     wrapper.style.display = 'inline-block';
     wrapper.style.overflow = 'hidden';
 
-    // Move original content inside the wrapper
     const content = element.cloneNode(true) as HTMLElement;
     content.removeAttribute('data-animation');
     element.replaceWith(wrapper);
     wrapper.appendChild(content);
 
-    // Create mask element
-    const mask = document.createElement('div');
-    mask.classList.add('mask_style');
-    wrapper.appendChild(mask);
+    // Create the top and bottom masks
+    const maskTop = document.createElement('div');
+    const maskBottom = document.createElement('div');
 
-    // Determine direction-specific transform styles
-    const isHorizontal = direction === 'x';
-
-    Object.assign(mask.style, {
-      position: 'absolute',
-      top: '0',
-      left: '0',
-      width: '100%',
-      height: '100%',
-      backgroundColor: maskColor,
-      transformOrigin: 'left center' ,
-      transform: 'scaleX(1)' ,
-      zIndex: '2',
-      pointerEvents: 'none'
+    [maskTop, maskBottom].forEach(mask => {
+      Object.assign(mask.style, {
+        position: 'absolute',
+        width: '100%',
+        height: '50%',
+        backgroundColor: maskColor,
+        left: '0',
+        zIndex: '2',
+        pointerEvents: 'none',
+      });
     });
 
-    // Animate the mask reveal based on direction
-    gsap.to(mask, {
-      ...(isHorizontal ? { scaleX: 0 } : { scaleY: 0 }),
-      ease: 'power2.out',
+    maskTop.style.top = '0';
+    maskBottom.style.bottom = '0';
+
+    wrapper.appendChild(maskTop);
+    wrapper.appendChild(maskBottom);
+
+    // Animate masks on scroll
+    const tl = gsap.timeline({
       scrollTrigger: {
         trigger: wrapper,
         start: `${position} ${start}%`,
         end: `${positionEnd} ${end}%`,
         scrub: true,
-        markers: mark
-      }
+        markers: mark,
+        id: `mask-split-${index + 1}`,
+      },
     });
+
+    tl.to(maskTop, {
+      yPercent: -100, // move up
+      ease: 'power2.out',
+    }, 0);
+
+    tl.to(maskBottom, {
+      yPercent: 100, // move down
+      ease: 'power2.out',
+    }, 0);
   });
+
   ScrollTrigger.refresh();
 }
