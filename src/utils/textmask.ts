@@ -13,28 +13,27 @@ export async function initLineMaskReveal() {
     const position = element.dataset.position ?? 'top';
     const positionEnd = element.dataset.positionend ?? 'bottom';
     const mark = element.dataset.mark === 'true';
-    const stagger = parseFloat(element.dataset.stagger ?? '0.1');
-    const direction = element.dataset.direction ?? 'y'; // 'x' or 'y'
-    const maskColor = element.dataset.maskcolor ?? '#000'; // default to black
+    const direction = element.dataset.direction ?? 'x'; // 'x' or 'y'
+    const maskColor = element.dataset.maskcolor ?? '#000';
 
-    // Wrap the element in a container for positioning
+    // Wrap the element in a container
     const wrapper = document.createElement('div');
     wrapper.style.position = 'relative';
     wrapper.style.display = 'inline-block';
     wrapper.style.overflow = 'hidden';
 
-    // Move original content inside the wrapper
+    // Move content into wrapper
     const content = element.cloneNode(true) as HTMLElement;
     content.removeAttribute('data-animation');
     element.replaceWith(wrapper);
     wrapper.appendChild(content);
 
-    // Create mask element
+    // Create the mask
     const mask = document.createElement('div');
     mask.classList.add('mask_style');
     wrapper.appendChild(mask);
 
-    // Determine direction-specific transform styles
+    // Determine direction and set styles
     const isHorizontal = direction === 'x';
 
     Object.assign(mask.style, {
@@ -44,13 +43,13 @@ export async function initLineMaskReveal() {
       width: '100%',
       height: '100%',
       backgroundColor: maskColor,
-      transformOrigin: 'left center' ,
-      transform: 'scaleX(1)' ,
+      transformOrigin: 'center center', // ✅ center reveal
+      transform: isHorizontal ? 'scaleX(1)' : 'scaleY(1)',
       zIndex: '2',
       pointerEvents: 'none'
     });
 
-    // Animate the mask reveal based on direction
+    // Animate mask scaling away from center
     gsap.to(mask, {
       ...(isHorizontal ? { scaleX: 0 } : { scaleY: 0 }),
       ease: 'power2.out',
@@ -63,5 +62,6 @@ export async function initLineMaskReveal() {
       }
     });
   });
+
   ScrollTrigger.refresh();
 }
