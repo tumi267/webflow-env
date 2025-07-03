@@ -9,13 +9,14 @@ export async function flipReveal() {
     const children = parent.querySelectorAll('*') as NodeListOf<HTMLElement>;
     if (!children.length) return;
 
-    // Apply 3D perspective to parent container
+    // Set up 3D perspective on the container
     gsap.set(parent, { transformPerspective: 2000 });
 
-    // Ensure children are 3D-enabled
+    // Set up children for 3D
     gsap.set(children, {
       transformStyle: 'preserve-3d',
       backfaceVisibility: 'hidden',
+      rotationY: 0, // Reset any previous transform
     });
 
     // Parse data attributes
@@ -25,36 +26,27 @@ export async function flipReveal() {
     const positionEnd = parent.dataset.positionend ?? 'bottom';
     const mark = parent.dataset.mark === 'true';
     const duration = parseFloat(parent.dataset.duration ?? '0.5');
-    const wobble = parseFloat(parent.dataset.wobble ?? '0');
-    const num = parseFloat(parent.dataset.num ?? '3');
+    const num = parseFloat(parent.dataset.num ?? '1');
 
-    // Setup GSAP scroll-triggered animation
+    // Determine final rotation (absolute if num is 1, relative otherwise)
+    const rotation = num === 1 ? 360 : `+=${360 * num}`;
+
+    // Create the scroll-triggered flip animation
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: parent,
         start: `${position} ${start}%`,
         end: `${positionEnd} ${end}%`,
-        toggleActions: "play none none none",
         scrub: true,
-        id:'flip',
         markers: mark,
       },
     });
 
     tl.to(children, {
-      rotationY: `+=${360 * num}`,
+      rotationY: rotation,
       stagger: 0.2,
       duration,
-      ease: "back.out(1.7)",
-      // onComplete: () => {
-      //   gsap.to(children, {
-      //     rotationY: `+=${2 * wobble}`,
-      //     duration: 0.5,
-      //     yoyo: true,
-      //     repeat: 3,
-      //     ease: "sine.inOut",
-      //   });
-      // },
+      ease: "power2.out",
     });
   });
 

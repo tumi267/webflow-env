@@ -23,7 +23,7 @@ import {
   slideInLeft,
   slideInRight,
   zoom
-} from "./chunks/chunk-L65OBAN6.mjs";
+} from "./chunks/chunk-W5WWBSG2.mjs";
 import "./chunks/chunk-SUYWSG3L.mjs";
 
 // src/utils/horizontalScroll.ts

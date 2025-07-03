@@ -162,7 +162,9 @@ async function flipReveal() {
     gsap.set(parent, { transformPerspective: 2e3 });
     gsap.set(children, {
       transformStyle: "preserve-3d",
-      backfaceVisibility: "hidden"
+      backfaceVisibility: "hidden",
+      rotationY: 0
+      // Reset any previous transform
     });
     const start = parent.dataset.start ?? "0";
     const end = parent.dataset.end ?? "100";
@@ -170,33 +172,22 @@ async function flipReveal() {
     const positionEnd = parent.dataset.positionend ?? "bottom";
     const mark = parent.dataset.mark === "true";
     const duration = parseFloat(parent.dataset.duration ?? "0.5");
-    const wobble = parseFloat(parent.dataset.wobble ?? "0");
-    const num = parseFloat(parent.dataset.num ?? "3");
+    const num = parseFloat(parent.dataset.num ?? "1");
+    const rotation = num === 1 ? 360 : `+=${360 * num}`;
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: parent,
         start: `${position} ${start}%`,
         end: `${positionEnd} ${end}%`,
-        toggleActions: "play none none none",
         scrub: true,
-        id: "flip",
         markers: mark
       }
     });
     tl.to(children, {
-      rotationY: `+=${360 * num}`,
+      rotationY: rotation,
       stagger: 0.2,
       duration,
-      ease: "back.out(1.7)"
-      // onComplete: () => {
-      //   gsap.to(children, {
-      //     rotationY: `+=${2 * wobble}`,
-      //     duration: 0.5,
-      //     yoyo: true,
-      //     repeat: 3,
-      //     ease: "sine.inOut",
-      //   });
-      // },
+      ease: "power2.out"
     });
   });
   ScrollTrigger.refresh();
@@ -321,4 +312,4 @@ export {
   rollRevealReverse,
   rollReveal
 };
-//# sourceMappingURL=chunk-L65OBAN6.mjs.map
+//# sourceMappingURL=chunk-W5WWBSG2.mjs.map
