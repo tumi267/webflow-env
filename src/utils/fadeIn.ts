@@ -23,7 +23,7 @@ export async function fadeIn() {
         trigger: parent,
         start: `${position} ${start}%`,
         end: `${positionEnd} ${end}%`,
-        scrub:true,
+        toggleActions: 'play none none none',
         markers: mark,
         id: `fade-${index + 1}`,
       },
