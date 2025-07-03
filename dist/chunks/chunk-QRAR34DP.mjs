@@ -22,30 +22,26 @@ async function colorChange() {
   const { ScrollTrigger } = await import("./ScrollTrigger-HIJSDX7Q.mjs");
   gsap.registerPlugin(ScrollTrigger);
   const elements = document.querySelectorAll(`[data-animation="color"]`);
-  const cleanups = [];
-  elements.forEach((el) => {
+  elements.forEach((el, index) => {
     const start = el.dataset.start ?? "0";
     const end = el.dataset.end ?? "100";
     const position = el.dataset.position ?? "top";
     const positionEnd = el.dataset.positionend ?? "bottom";
     const mark = el.dataset.mark === "true";
-    const colorto = el.dataset.colorto ?? '"#4a00e0"';
+    const colorto = el.dataset.colorto ?? "#4a00e0";
     const textcolorto = el.dataset.textcolorto ?? "#FFFF00";
-    const child = el?.firstElementChild;
-    if (!el || !child) {
-      console.warn(`colorChange: Missing parent or child `);
-      return;
-    }
-    gsap.to(child, {
+    gsap.to(el, {
       scrollTrigger: {
         trigger: el,
         start: `${position} ${start}%`,
         end: `${positionEnd} ${end}%`,
         scrub: true,
-        markers: mark
+        markers: mark,
+        id: `color-${index + 1}`
       },
       backgroundColor: colorto,
-      color: textcolorto
+      color: textcolorto,
+      ease: "power1.out"
     });
   });
   ScrollTrigger.refresh();
@@ -202,4 +198,4 @@ export {
   progressBar,
   Pin
 };
-//# sourceMappingURL=chunk-45HPYAGO.mjs.map
+//# sourceMappingURL=chunk-QRAR34DP.mjs.map
