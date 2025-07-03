@@ -5,38 +5,42 @@ export async function rollReveal() {
 
   const elements = document.querySelectorAll('[data-animation="roll"]') as NodeListOf<HTMLElement>;
 
-  elements.forEach((el) => {
-    const children = el.querySelectorAll('*') as NodeListOf<HTMLElement>;
+  elements.forEach((parent) => {
+    const children = parent.querySelectorAll('*') as NodeListOf<HTMLElement>;
     if (!children.length) return;
 
-    const start = el.dataset.start ?? '0';
-    const end = el.dataset.end ?? '100';
-    const position = el.dataset.position ?? 'top';
-    const positionEnd = el.dataset.positionend ?? 'bottom';
-    const mark = el.dataset.mark === 'true';
-    const duration = parseFloat(el.dataset.duration ?? '0.5');
+    const start = parent.dataset.start ?? '50';
+    const end = parent.dataset.end ?? '0';
+    const position = parent.dataset.position ?? 'top';
+    const positionEnd = parent.dataset.positionend ?? 'top';
+    const mark = parent.dataset.mark === 'true';
+    const duration = parseFloat(parent.dataset.duration ?? '0.5');
 
-    // Set initial clipPath for each child
+    // Set initial styles
+    gsap.set(parent, { transformPerspective: 1000 });
     gsap.set(children, {
-      clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)"
+      transformStyle: 'preserve-3d',
+      backfaceVisibility: 'hidden',
+      clipPath: 'polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)',
     });
 
-    // Animate each child in timeline
+    // Timeline (not scrubbed) — runs once on trigger
     const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: el,
+        trigger: parent,
         start: `${position} ${start}%`,
         end: `${positionEnd} ${end}%`,
-        scrub: true,
+        scrub:true,
         markers: mark,
-      }
+      },
     });
 
+    // Animate one child after the next
     tl.to(children, {
-      clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+      clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
       duration,
-      ease: "power3.out",
-      stagger: 0.1, // Optional: animate each child with a delay
+      ease: 'power3.out',
+      stagger: duration, // one full duration between each child
     });
   });
 

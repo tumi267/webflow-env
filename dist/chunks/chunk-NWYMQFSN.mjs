@@ -269,22 +269,25 @@ async function rollReveal() {
   const { ScrollTrigger } = await import("./ScrollTrigger-HIJSDX7Q.mjs");
   gsap.registerPlugin(ScrollTrigger);
   const elements = document.querySelectorAll('[data-animation="roll"]');
-  elements.forEach((el) => {
-    const children = el.querySelectorAll("*");
+  elements.forEach((parent) => {
+    const children = parent.querySelectorAll("*");
     if (!children.length)
       return;
-    const start = el.dataset.start ?? "0";
-    const end = el.dataset.end ?? "100";
-    const position = el.dataset.position ?? "top";
-    const positionEnd = el.dataset.positionend ?? "bottom";
-    const mark = el.dataset.mark === "true";
-    const duration = parseFloat(el.dataset.duration ?? "0.5");
+    const start = parent.dataset.start ?? "50";
+    const end = parent.dataset.end ?? "0";
+    const position = parent.dataset.position ?? "top";
+    const positionEnd = parent.dataset.positionend ?? "top";
+    const mark = parent.dataset.mark === "true";
+    const duration = parseFloat(parent.dataset.duration ?? "0.5");
+    gsap.set(parent, { transformPerspective: 1e3 });
     gsap.set(children, {
+      transformStyle: "preserve-3d",
+      backfaceVisibility: "hidden",
       clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)"
     });
     const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: el,
+        trigger: parent,
         start: `${position} ${start}%`,
         end: `${positionEnd} ${end}%`,
         scrub: true,
@@ -295,8 +298,8 @@ async function rollReveal() {
       clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
       duration,
       ease: "power3.out",
-      stagger: 0.1
-      // Optional: animate each child with a delay
+      stagger: duration
+      // one full duration between each child
     });
   });
   ScrollTrigger.refresh();
@@ -312,4 +315,4 @@ export {
   rollRevealReverse,
   rollReveal
 };
-//# sourceMappingURL=chunk-W5WWBSG2.mjs.map
+//# sourceMappingURL=chunk-NWYMQFSN.mjs.map
