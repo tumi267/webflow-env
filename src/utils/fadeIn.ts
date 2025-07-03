@@ -30,7 +30,7 @@ export async function fadeIn() {
     });
 
     tl.to(children, {
-     
+      opacity: 1,
       duration,
       ease: 'power2.out',
       stagger: duration,
