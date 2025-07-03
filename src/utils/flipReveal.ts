@@ -1,59 +1,61 @@
-export async function flipReveal (){
-      // Dynamically import GSAP and its plugins
-      const { gsap } = await import('gsap');
-      const { ScrollTrigger } = await import('gsap/ScrollTrigger');
-      gsap.registerPlugin(ScrollTrigger);
+export async function flipReveal() {
+  const { gsap } = await import('gsap');
+  const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+  gsap.registerPlugin(ScrollTrigger);
 
-      const elements = document.querySelectorAll<HTMLElement>(`[data-animation="flip"]`);
-      const cleanups: (() => void)[] = [];
-    
-      elements.forEach((parent) => {
+  const elements = document.querySelectorAll(`[data-animation="flip"]`) as NodeListOf<HTMLElement>;
 
-      const children = parent.querySelectorAll<HTMLElement>('*'); // Animate children
-    
-      // Add perspective to parent for 3D rotation
-      gsap.set(parent, { transformPerspective: 2000 });
+  elements.forEach((parent) => {
+    const children = parent.querySelectorAll('*') as NodeListOf<HTMLElement>;
+    if (!children.length) return;
 
-      const start = parent.dataset.start ?? '0';
-      const end = parent.dataset.end ?? '100';
-      const position = parent.dataset.position ?? 'top';
-      const positionEnd = parent.dataset.positionend ?? 'bottom';
-      const mark = parent.dataset.mark === 'true';
-      const duration = parseFloat(parent.dataset.duration ?? '0.5');
-      const wobble =parent.dataset.wobble??'6'
-      const num = parent.dataset.num??'3';
+    // Apply 3D perspective to parent container
+    gsap.set(parent, { transformPerspective: 2000 });
 
+    // Ensure children are 3D-enabled
+    gsap.set(children, {
+      transformStyle: 'preserve-3d',
+      backfaceVisibility: 'hidden',
+    });
 
-      const tl = gsap.timeline({
+    // Parse data attributes
+    const start = parent.dataset.start ?? '0';
+    const end = parent.dataset.end ?? '100';
+    const position = parent.dataset.position ?? 'top';
+    const positionEnd = parent.dataset.positionend ?? 'bottom';
+    const mark = parent.dataset.mark === 'true';
+    const duration = parseFloat(parent.dataset.duration ?? '0.5');
+    const wobble = parseFloat(parent.dataset.wobble ?? '6');
+    const num = parseFloat(parent.dataset.num ?? '3');
+
+    // Setup GSAP scroll-triggered animation
+    const tl = gsap.timeline({
       scrollTrigger: {
-      trigger: parent,
-      start: `${position} ${start}%`,
-      end: `${positionEnd} ${end}%`,
-      toggleActions: "play none none none",
-      scrub:true,
-      markers:mark
-      }
-    })
-    
+        trigger: parent,
+        start: `${position} ${start}%`,
+        end: `${positionEnd} ${end}%`,
+        toggleActions: "play none none none",
+        scrub: true,
+        markers: mark,
+      },
+    });
+
     tl.to(children, {
       rotationY: `+=${360 * num}`,
-   
       stagger: 0.2,
-      duration: duration,
+      duration,
       ease: "back.out(1.7)",
-      transformPerspective: 2000,
-      onComplete: addFinalWobble
-    });
-    function addFinalWobble() {
+      onComplete: () => {
         gsap.to(children, {
-          rotationY: `+=2${wobble}`,
-  
+          rotationY: `+=${2 * wobble}`,
           duration: 0.5,
           yoyo: true,
           repeat: 3,
-          ease: "sine.inOut"
+          ease: "sine.inOut",
         });
-      }
-    })
-    ScrollTrigger.refresh();
+      },
+    });
+  });
+
+  ScrollTrigger.refresh();
 }
