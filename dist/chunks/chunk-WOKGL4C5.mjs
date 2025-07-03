@@ -302,53 +302,60 @@ async function initDecodeAnimations() {
 async function initLineMaskReveal() {
   const { gsap } = await import("./gsap-L2HCQACZ.mjs");
   const { ScrollTrigger } = await import("./ScrollTrigger-HIJSDX7Q.mjs");
-  const { SplitText } = await import("./SplitText-LUU4FCPQ.mjs");
-  gsap.registerPlugin(ScrollTrigger, SplitText);
+  gsap.registerPlugin(ScrollTrigger);
   const elements = document.querySelectorAll(`[data-animation="mask"]`);
-  elements.forEach((element) => {
+  elements.forEach((element, index) => {
     const start = element.dataset.start ?? "0";
     const end = element.dataset.end ?? "100";
     const position = element.dataset.position ?? "top";
     const positionEnd = element.dataset.positionend ?? "bottom";
     const mark = element.dataset.mark === "true";
-    const stagger = parseFloat(element.dataset.stagger ?? "0.1");
-    const direction = element.dataset.direction ?? "y";
     const maskColor = element.dataset.maskcolor ?? "#000";
     const wrapper = document.createElement("div");
     wrapper.style.position = "relative";
     wrapper.style.display = "inline-block";
     wrapper.style.overflow = "hidden";
+    wrapper.style.width = "100%";
     const content = element.cloneNode(true);
     content.removeAttribute("data-animation");
     element.replaceWith(wrapper);
     wrapper.appendChild(content);
-    const mask = document.createElement("div");
-    mask.classList.add("mask_style");
-    wrapper.appendChild(mask);
-    const isHorizontal = direction === "x";
-    Object.assign(mask.style, {
-      position: "absolute",
-      top: "0",
-      left: "0",
-      width: "100%",
-      height: "100%",
-      backgroundColor: maskColor,
-      transformOrigin: "left center",
-      transform: "scaleX(1)",
-      zIndex: "2",
-      pointerEvents: "none"
+    const maskTop = document.createElement("div");
+    const maskBottom = document.createElement("div");
+    [maskTop, maskBottom].forEach((mask) => {
+      Object.assign(mask.style, {
+        position: "absolute",
+        width: "100%",
+        height: "50%",
+        backgroundColor: maskColor,
+        left: "0",
+        zIndex: "2",
+        pointerEvents: "none",
+        transition: "none"
+      });
     });
-    gsap.to(mask, {
-      ...isHorizontal ? { scaleX: 0 } : { scaleY: 0 },
-      ease: "power2.out",
+    maskTop.style.top = "0";
+    maskBottom.style.bottom = "0";
+    wrapper.appendChild(maskTop);
+    wrapper.appendChild(maskBottom);
+    const tl = gsap.timeline({
       scrollTrigger: {
         trigger: wrapper,
         start: `${position} ${start}%`,
         end: `${positionEnd} ${end}%`,
         scrub: true,
-        markers: mark
+        markers: mark,
+        id: `mask-split-${index + 1}`
       }
     });
+    tl.to(maskTop, {
+      yPercent: -100,
+      ease: "power2.out"
+    }, 0);
+    tl.to(maskBottom, {
+      yPercent: 100,
+      ease: "power2.out"
+    }, 0);
   });
   ScrollTrigger.refresh();
 }
@@ -394,4 +401,4 @@ export {
   initLineMaskReveal,
   initTracking
 };
-//# sourceMappingURL=chunk-M4KXRB2P.mjs.map
+//# sourceMappingURL=chunk-WOKGL4C5.mjs.map
