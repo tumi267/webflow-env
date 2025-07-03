@@ -44,7 +44,7 @@ export async function initLineMaskReveal() {
       width: '100%',
       height: '100%',
       backgroundColor: maskColor,
-      transformOrigin: 'left bottom' ,
+      transformOrigin: 'left center' ,
       transform: 'scaleX(1)' ,
       zIndex: '2',
       pointerEvents: 'none'

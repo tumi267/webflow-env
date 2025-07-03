@@ -333,7 +333,7 @@ async function initLineMaskReveal() {
       width: "100%",
       height: "100%",
       backgroundColor: maskColor,
-      transformOrigin: "left bottom",
+      transformOrigin: "left center",
       transform: "scaleX(1)",
       zIndex: "2",
       pointerEvents: "none"
@@ -394,4 +394,4 @@ export {
   initLineMaskReveal,
   initTracking
 };
-//# sourceMappingURL=chunk-GXDJSDBU.mjs.map
+//# sourceMappingURL=chunk-M4KXRB2P.mjs.map
