@@ -5,7 +5,7 @@ import {
   initLineMaskReveal,
   initTracking,
   initWordAnimations
-} from "./chunks/chunk-M4KXRB2P.mjs";
+} from "./chunks/chunk-GXDJSDBU.mjs";
 import {
   Pin,
   colorChange,
@@ -23,7 +23,7 @@ import {
   slideInLeft,
   slideInRight,
   zoom
-} from "./chunks/chunk-NEPU5WQQ.mjs";
+} from "./chunks/chunk-L65OBAN6.mjs";
 import "./chunks/chunk-SUYWSG3L.mjs";
 
 // src/utils/horizontalScroll.ts

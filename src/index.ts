@@ -28,7 +28,7 @@ import { gallery } from '$utils/gallery';
 import { gallery2 } from '$utils/gallery2';
 import { slideshow } from '$utils/slideShow';
 import { parellex } from '$utils/parallex';
-import { SmoothScroll } from '$utils/smoothScroll';
+// import { SmoothScroll } from '$utils/smoothScroll';
 
 
 
@@ -68,4 +68,4 @@ import { SmoothScroll } from '$utils/smoothScroll';
 
 
 (globalThis as any).parellex=parellex;
-(globalThis as any).SmoothScroll=SmoothScroll;
+// (globalThis as any).SmoothScroll=SmoothScroll;
