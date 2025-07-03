@@ -14,8 +14,8 @@ export async function slideInRight() {
     const position = parent.dataset.position ?? 'top';
     const positionEnd = parent.dataset.positionend ?? 'bottom';
     const mark = parent.dataset.mark === 'true';
-    const y = parseFloat(parent.dataset.y ?? '100');
-    const x = parseFloat(parent.dataset.x ?? '0');
+    const y = parseFloat(parent.dataset.y ?? '0');
+    const x = parseFloat(parent.dataset.x ?? '1000');
     const duration = parseFloat(parent.dataset.duration ?? '0.5');
 
     // Set initial state for children — slide in from right
