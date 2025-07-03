@@ -13,29 +13,30 @@ export async function initLineMaskReveal() {
     const position = element.dataset.position ?? 'top';
     const positionEnd = element.dataset.positionend ?? 'bottom';
     const mark = element.dataset.mark === 'true';
-    const direction = element.dataset.direction ?? 'x'; // 'x' or 'y'
-    const maskColor = element.dataset.maskcolor ?? '#000';
+    const stagger = parseFloat(element.dataset.stagger ?? '0.1');
+    const direction = element.dataset.direction ?? 'y'; // 'x' or 'y'
+    const maskColor = element.dataset.maskcolor ?? '#000'; // default to black
 
-    // Wrap the element in a container
+    // Wrap the element in a container for positioning
     const wrapper = document.createElement('div');
     wrapper.style.position = 'relative';
     wrapper.style.display = 'inline-block';
     wrapper.style.overflow = 'hidden';
 
-    // Move content into wrapper
+    // Move original content inside the wrapper
     const content = element.cloneNode(true) as HTMLElement;
     content.removeAttribute('data-animation');
     element.replaceWith(wrapper);
     wrapper.appendChild(content);
 
-    // Create the mask
+    // Create mask element
     const mask = document.createElement('div');
     mask.classList.add('mask_style');
     wrapper.appendChild(mask);
 
-    // Determine direction and set styles
+    // Determine direction-specific transform styles
     const isHorizontal = direction === 'x';
-
+    const isVertical = direction === 'y';
     Object.assign(mask.style, {
       position: 'absolute',
       top: '0',
@@ -43,13 +44,13 @@ export async function initLineMaskReveal() {
       width: '100%',
       height: '100%',
       backgroundColor: maskColor,
-      transformOrigin: 'center center', // ✅ center reveal
-      transform: isHorizontal ? 'scaleX(1)' : 'scaleY(1)',
+      transformOrigin: 'left center' ,
+      transform: isVertical ? 'scaleY(1)' : 'scaleX(1)',
       zIndex: '2',
       pointerEvents: 'none'
     });
 
-    // Animate mask scaling away from center
+    // Animate the mask reveal based on direction
     gsap.to(mask, {
       ...(isHorizontal ? { scaleX: 0 } : { scaleY: 0 }),
       ease: 'power2.out',
@@ -62,6 +63,5 @@ export async function initLineMaskReveal() {
       }
     });
   });
-
   ScrollTrigger.refresh();
 }
