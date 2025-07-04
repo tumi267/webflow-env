@@ -64,12 +64,12 @@ export async function initLineMaskReveal() {
     });
 
     tl.to(maskTop, {
-      yPercent: -100,
+      yPercent: -101,
       ease: 'power2.out',
     }, 0);
 
     tl.to(maskBottom, {
-      yPercent: 100,
+      yPercent: 101,
       ease: 'power2.out',
     }, 0);
   });
